@@ -3,7 +3,7 @@
 </template>
 
 <script setup lang="ts">
-import { watch, onMounted, onBeforeUnmount, ref } from 'vue'
+import { onMounted, onBeforeUnmount, ref, watchEffect, reactive } from 'vue'
 import ace from 'ace-builds'
 import type { Ace } from 'ace-builds'
 // 代码语言
@@ -49,12 +49,14 @@ const props = withDefaults(defineProps<IEditorProps>(), {
   language: 'javascript'
 })
 
-const emit = defineEmits(['update:value'])
+const emit = defineEmits<{
+  (e: 'update:value', value: string): void
+}>()
 
 let editor: Ace.Editor
 const editorForm = ref<HTMLDivElement>()
 
-const options = {
+const options = reactive({
   theme: `ace/theme/monokai`,
   mode: `ace/mode/${props.language}`,
   tabSize: 4, // 标签大小
@@ -62,7 +64,7 @@ const options = {
   minLines: 33,
   maxLines: 33,
   showPrintMargin: false,
-  readOnly: props.readonly ? props.readonly : false,
+  readOnly: props.readonly,
   enableBasicAutocompletion: true, // 启用基本自动完成
   enableSnippets: true, // 启用代码段
   enableLiveAutocompletion: true, // 启用实时自动完成
@@ -74,7 +76,7 @@ const options = {
   fadeFoldWidgets: true, // 淡入折叠部件
   wrap: true, // 换行
   tooltipFollowsMouse: true
-}
+})
 
 function initialize() {
   if (editor) {
@@ -90,39 +92,18 @@ function initialize() {
   })
   editor.getSession().setUseWrapMode(true)
   editor.on('change', () => {
-    if (emit) {
-      emit('update:value', editor.getValue())
-    }
+    emit('update:value', editor.getValue())
   })
-  editor.setValue(props.value ? props.value : '')
+  editor.setValue(props.value || '')
 }
 
-watch(
-  () => props.id,
-  () => {
-    initialize()
-  }
-)
-
-watch(
-  () => props.value,
-  newProps => {
-    const position = editor.getCursorPosition()
-    editor.getSession().setValue(newProps)
-    editor.clearSelection()
-    editor.moveCursorToPosition(position)
-  }
-)
-
-watch(
-  () => props.language,
-  newProps => {
-    const position = editor.getCursorPosition()
-    editor.getSession().setMode(`ace/mode/${newProps}`)
-    editor.clearSelection()
-    editor.moveCursorToPosition(position)
-  }
-)
+watchEffect(() => {
+  initialize()
+  editor.getSession().setValue(props.value)
+  editor.getSession().setMode(`ace/mode/${props.language}`)
+  editor.clearSelection()
+  editor.moveCursorToPosition(editor.getCursorPosition())
+})
 
 onMounted(() => {
   initialize()

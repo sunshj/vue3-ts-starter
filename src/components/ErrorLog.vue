@@ -3,7 +3,7 @@
     <el-badge
       :is-dot="errorLogsStore.logs.length > 0"
       style="line-height: 25px"
-      @click="showDialog()"
+      @click="dialogTableVisible = true"
     >
       <el-button style="padding: 8px 10px" type="danger">
         <font-awesome-icon icon="fas fa-bug"></font-awesome-icon>
@@ -61,10 +61,6 @@ import { useErrorLogsStore } from '@/stores/error-logs'
 const errorLogsStore = useErrorLogsStore()
 
 const dialogTableVisible = ref(false)
-
-function showDialog() {
-  dialogTableVisible.value = true
-}
 
 function clearAll() {
   dialogTableVisible.value = false

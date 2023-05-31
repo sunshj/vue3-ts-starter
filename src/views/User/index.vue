@@ -119,7 +119,7 @@
             />
             <single-image-upload
               :file="fileList"
-              action="http://192.168.0.104:3000/api/public/v1/upload"
+              :action="API_UPLOAD_URL"
               @success="uploadSuccess"
               @failed="uploadFailed"
             ></single-image-upload>
@@ -162,6 +162,7 @@ import { ElMessage, ElMessageBox, type FormInstance } from 'element-plus'
 import { findAll, findOne, type IUser } from '@/api/user'
 import { timeFormat } from '@/utils/datetime'
 import { validateName, validatePass, validateEmail } from '@/common/validateRules'
+import { API_UPLOAD_URL } from '@/config'
 
 const breadList = [
   {

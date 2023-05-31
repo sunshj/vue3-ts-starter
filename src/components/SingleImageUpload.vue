@@ -17,16 +17,10 @@
 <script setup lang="ts">
 import { Upload } from '@element-plus/icons-vue'
 
-const props = defineProps({
-  file: {
-    type: Array,
-    required: true
-  },
-  action: {
-    type: String,
-    required: true
-  }
-})
+const props = defineProps<{
+  file: File[]
+  action: string
+}>()
 
 const emit = defineEmits(['success', 'failed'])
 

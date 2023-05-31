@@ -1,9 +1,10 @@
 import Axios from 'axios'
 import { ElMessage } from 'element-plus'
 import { useCancelRequestStore } from '@/stores/cancel-request'
+import { API_BASE_URL } from '@/config'
 
 // const baseURL = process.env.NODE_ENV === 'production' ? 'https://open.sunshj.top' : 'http://127.0.0.1:3000'
-const baseURL = 'https://open.sunshj.top'
+const baseURL = API_BASE_URL
 
 const axios = Axios.create({
   baseURL,
