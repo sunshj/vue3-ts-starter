@@ -1,0 +1,50 @@
+<template>
+  <el-card shadow="hover" class="custom-card">
+    <div class="custom-card__title" v-if="header">
+      <slot name="title">{{ title }}</slot>
+    </div>
+
+    <div class="custom-card__content">
+      <slot></slot>
+      <slot name="content"></slot>
+    </div>
+  </el-card>
+</template>
+
+<script setup lang="ts">
+interface IProps {
+  title?: string
+  header?: boolean
+  padding?: number
+  alignMode?: 'left' | 'right' | 'center'
+}
+
+withDefaults(defineProps<IProps>(), {
+  title: '',
+  header: true,
+  padding: 10,
+  alignMode: 'left'
+})
+</script>
+
+<style lang="scss" scoped>
+:deep(.el-card__body) {
+  padding: 0 !important;
+}
+
+.custom-card {
+  margin-bottom: 15px;
+  text-align: v-bind(alignMode);
+
+  &__title {
+    padding: 15px;
+    background-color: #f7f9fb;
+    font-size: 24px;
+    font-weight: bold;
+  }
+
+  &__content {
+    padding: calc(v-bind(padding) * 1px);
+  }
+}
+</style>
