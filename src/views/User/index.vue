@@ -4,13 +4,13 @@
 
     <custom-card :header="false">
       <el-row :gutter="20">
-        <el-col :span="18" class="type-group">
+        <el-col :span="16" :xs="12" class="type-group">
           <el-button type="primary" :icon="Plus" @click="showAddDialog()"> 添加用户 </el-button>
           <el-tooltip effect="dark" content="刷新" placement="top">
             <el-button :icon="Refresh" circle @click="getUsersList" />
           </el-tooltip>
         </el-col>
-        <el-col :span="6">
+        <el-col :span="8" :xs="12">
           <el-input
             clearable
             v-model="inputVal"
@@ -54,7 +54,7 @@
           </template>
         </el-table-column>
 
-        <el-table-column fixed="right" label="操作" width="220">
+        <el-table-column label="操作" width="200">
           <template #default="scope">
             <el-button size="small" :icon="Edit" @click="showEditDialog(scope.row.userId)">
               编辑

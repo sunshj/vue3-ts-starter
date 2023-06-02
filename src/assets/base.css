@@ -14,6 +14,19 @@ body,
   overflow: hidden;
 }
 
+.el-pagination {
+  padding-bottom: 5px;
+  overflow-x: auto;
+}
+
+.el-dialog {
+  border-radius: 6px !important;
+}
+
+html[data-mobile='mobile'] .el-dialog {
+  --el-dialog-width: 90% !important;
+}
+
 .iconfont {
   margin-right: 10px;
   font-size: 20px;

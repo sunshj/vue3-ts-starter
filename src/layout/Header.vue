@@ -1,5 +1,11 @@
 <template>
   <el-header class="layout_header">
+    <div v-if="isMobileStore.isMobile" class="mobile">
+      <span class="menu">
+        <font-awesome-icon icon="fas fa-bars" @click="sideDrawerVisible = true"></font-awesome-icon>
+        <span>菜单</span>
+      </span>
+    </div>
     <div class="left_wrapper">
       <div class="logo_title_wrap">
         <img src="@/assets/logo.svg" />
@@ -7,7 +13,12 @@
       </div>
     </div>
     <div class="right_wrapper">
-      <el-tooltip content="查看错误日志" effect="dark" placement="bottom">
+      <el-tooltip
+        v-if="!isMobileStore.isMobile"
+        content="查看错误日志"
+        effect="dark"
+        placement="bottom"
+      >
         <error-log></error-log>
       </el-tooltip>
 
@@ -38,25 +49,33 @@
       </el-dropdown>
     </div>
   </el-header>
+  <el-drawer
+    v-model="sideDrawerVisible"
+    :with-header="false"
+    direction="ltr"
+    size="200px"
+    style="padding: 0"
+  >
+    <Menu :is-collapse="false"></Menu>
+  </el-drawer>
 </template>
 
 <script setup lang="ts">
+import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { ElMessage } from 'element-plus'
 import { CaretBottom } from '@element-plus/icons-vue'
 import DarkSwitch from '../components/DarkSwitch.vue'
+import Menu from './Menu.vue'
+import { useIsMobileStore } from '@/stores/is-mobile'
 
 const router = useRouter()
+const isMobileStore = useIsMobileStore()
 
-const props = defineProps({
-  dashTitle: {
-    type: String,
-    required: true
-  },
-  userAvatar: {
-    type: String
-  }
-})
+const props = defineProps<{
+  dashTitle: string
+  userAvatar: string
+}>()
 
 function darkModeSwitchChange(val: boolean) {
   ElMessage.success(`已${val ? '开启' : '关闭'}暗黑模式`)
@@ -71,9 +90,19 @@ function logout() {
   router.push('/login')
   ElMessage.info('已退出登录')
 }
+
+const sideDrawerVisible = ref(false)
 </script>
 
 <style lang="scss" scoped>
+@import '../styles/index.scss';
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 .layout_header {
   position: fixed;
   z-index: 10;
@@ -81,11 +110,32 @@ function logout() {
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  height: 60px;
-  padding-left: 10px;
-  border-bottom: 1px solid rgb(217, 217, 217);
-  background: rgba(255, 255, 255, 0.7);
-  backdrop-filter: saturate(50%) blur(8px);
+  height: $header-height;
+  padding: 0 16px;
+
+  @include backdrop;
+
+  .mobile {
+    position: absolute;
+    top: 60px;
+    left: 0;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    width: 100vw;
+    height: $mobile-menu-height;
+    padding: 0 18px;
+    content: '';
+
+    @include backdrop;
+
+    .menu {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+    }
+  }
 
   .left_wrapper {
     .logo_title_wrap {

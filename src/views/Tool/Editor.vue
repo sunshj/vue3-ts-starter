@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="editor-tool">
     <custom-breadcrumb :bread-list="breadList"></custom-breadcrumb>
     <div class="wrapper">
       <div class="select">
@@ -13,12 +13,12 @@
           />
         </el-select>
       </div>
-      <div>
-        <code-editor
-          :value="options.find(v => v.value === optionValue)?.code"
-          :language="optionValue"
-        ></code-editor>
-      </div>
+
+      <code-editor
+        class="editor"
+        :value="options.find(v => v.value === optionValue)?.code"
+        :language="optionValue"
+      ></code-editor>
     </div>
   </div>
 </template>
@@ -77,15 +77,27 @@ echo "Hello World!";
 </script>
 
 <style lang="scss" scoped>
-.wrapper {
+.editor-tool {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  height: 100%;
 
-  .select {
+  .wrapper {
     display: flex;
-    align-items: center;
-    gap: 5px;
+    flex: 1;
+    flex-direction: column;
+    gap: 10px;
+
+    .select {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .editor {
+      flex: 1;
+      margin-bottom: 20px;
+    }
   }
 }
 </style>

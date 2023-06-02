@@ -114,4 +114,9 @@ onBeforeUnmount(() => {
 })
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.ace-editor {
+  height: 100%;
+  min-height: 400px;
+}
+</style>

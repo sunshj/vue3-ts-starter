@@ -1,9 +1,9 @@
 <template>
-  <div class="chart" :option="props.option" :id="props.id"></div>
+  <div class="__world_chart__" :id="props.id" ref="worldMapRef"></div>
 </template>
 
 <script setup lang="ts">
-import { onMounted } from 'vue'
+import { nextTick, onMounted, ref } from 'vue'
 import * as echarts from 'echarts'
 import type { EChartsOption } from 'echarts'
 import worldMapGeoJSON from '@/assets/world.json'
@@ -13,21 +13,23 @@ const props = defineProps<{
   option: EChartsOption
 }>()
 
+const worldMapRef = ref<HTMLDivElement>()
+
 function draw() {
-  const chart = echarts.init(document.getElementById(props.id) as HTMLElement)
-  chart.showLoading()
+  const worldMapChart = echarts.init(worldMapRef.value as HTMLElement)
+  worldMapChart.showLoading()
   echarts.registerMap('world', worldMapGeoJSON as any)
-  chart.hideLoading()
-  chart.setOption(props.option)
+  worldMapChart.hideLoading()
+  worldMapChart.setOption(props.option)
 }
 
 onMounted(() => {
-  draw()
+  nextTick(() => draw())
 })
 </script>
 
 <style lang="scss" scoped>
-.chart {
+.__world_chart__ {
   height: 270px;
 }
 </style>
