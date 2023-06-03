@@ -222,6 +222,8 @@ onMounted(() => {
   .login_container {
     .login_card {
       width: 95%;
+      transform: translateY(-15px);
+      transition: all 0.2s;
     }
   }
 }
