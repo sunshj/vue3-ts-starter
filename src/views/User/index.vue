@@ -162,6 +162,8 @@ import { ElMessage, ElMessageBox, type FormInstance } from 'element-plus'
 import { findAll, findOne, type IUser } from '@/api/user'
 import { timeFormat } from '@/utils/datetime'
 import { validateName, validatePass, validateEmail } from '@/common/validateRules'
+import { vThrottle } from '@/common/directives'
+
 import { API_UPLOAD_URL } from '@/config'
 
 const breadList = [

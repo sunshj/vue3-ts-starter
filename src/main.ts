@@ -11,12 +11,10 @@ import App from './App.vue'
 import router from './router'
 import './router/permission'
 import fontAwesomeIcon from './common/fontAwesomeIcon'
-import { vThrottle } from './common/directives'
 import { useErrorLogsStore } from './stores/error-logs'
 
 const app = createApp(App)
 app.component('font-awesome-icon', fontAwesomeIcon)
-app.directive('throttle', vThrottle)
 
 app.use(mavonEditor)
 app.use(createPinia())

@@ -75,6 +75,7 @@ import { User, Key, RefreshLeft } from '@element-plus/icons-vue'
 import { ElMessage as $message } from 'element-plus'
 import type { FormInstance, FormRules } from 'element-plus'
 import { validateName, validatePass } from '@/common/validateRules'
+import { vThrottle } from '@/common/directives'
 
 const router = useRouter()
 
@@ -109,7 +110,6 @@ const submitForm = async (formEl: FormInstance | undefined) => {
     loginLoading.value = true
     // 异步请求
     setTimeout(() => {
-      loginLoading.value = false
       if (rememberPassChecked.value) {
         localStorage.setItem('username', loginForm.username)
         localStorage.setItem('password', loginForm.password)
@@ -117,6 +117,7 @@ const submitForm = async (formEl: FormInstance | undefined) => {
       sessionStorage.setItem('token', Date.now().toString())
       $message.success('登录成功')
       router.push('/')
+      loginLoading.value = false
     }, 1000 + Math.random() * 2000)
   })
 }

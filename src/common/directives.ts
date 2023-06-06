@@ -1,6 +1,6 @@
-import type { DirectiveBinding } from 'vue'
+import { Directive, DirectiveBinding } from 'vue'
 
-export const vThrottle = {
+export const vThrottle: Directive = {
   created(el: HTMLElement, binding: DirectiveBinding) {
     let throttleTime = binding.value
     if (!throttleTime) {
