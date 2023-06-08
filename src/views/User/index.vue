@@ -119,7 +119,7 @@
             />
             <single-image-upload
               :file="fileList"
-              :action="API_UPLOAD_URL"
+              :action="UPLOAD_API_URL"
               @success="uploadSuccess"
               @failed="uploadFailed"
             ></single-image-upload>
@@ -164,14 +164,14 @@ import { timeFormat } from '@/utils/datetime'
 import { validateName, validatePass, validateEmail } from '@/common/validateRules'
 import { vThrottle } from '@/common/directives'
 
-import { API_UPLOAD_URL } from '@/config'
-
 const breadList = [
   {
     path: '/users',
     title: '用户管理'
   }
 ]
+
+const UPLOAD_API_URL = import.meta.env.VITE_API_UPLOAD_URL
 
 const userTotal = ref(0)
 const tableLoading = ref(true)

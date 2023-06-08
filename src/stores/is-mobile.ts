@@ -6,6 +6,7 @@ export const useIsMobileStore = defineStore('isMobile', () => {
 
   function update(val: boolean) {
     isMobile.value = val
+    if (val) document.documentElement.dataset.device = 'mobile'
   }
 
   return { isMobile, update }

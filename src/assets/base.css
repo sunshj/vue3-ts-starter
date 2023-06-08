@@ -23,7 +23,7 @@ body,
   border-radius: 6px !important;
 }
 
-html[data-mobile='mobile'] .el-dialog {
+html[data-device='mobile'] .el-dialog {
   --el-dialog-width: 90% !important;
 }
 

@@ -9,3 +9,11 @@ Vue3 插件：[Volar](https://marketplace.visualstudio.com/items?itemName=Vue.vo
 代码规范：[ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) + [CSScomb](https://marketplace.visualstudio.com/items?itemName=mrmlnc.vscode-csscomb) + [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
 
 CSS 提示：[CSS Class Intellisense]() + [SCSS IntelliSense](https://marketplace.visualstudio.com/items?itemName=mrmlnc.vscode-scss)
+
+环境变量：
+
+```dotenv
+VITE_APP_TITLE = ''
+VITE_API_BASE_URL = ''
+VITE_API_UPLOAD_URL = ''
+```
