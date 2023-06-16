@@ -22,7 +22,10 @@ const props = defineProps<{
   action: string
 }>()
 
-const emit = defineEmits(['success', 'failed'])
+const emit = defineEmits<{
+  (e: 'success', url: string): void
+  (e: 'failed', err: any): void
+}>()
 
 // 上传事件
 function uploadSuccess(res: { data: { url: string } }) {

@@ -4,9 +4,9 @@
     <div class="wrapper">
       <div class="select">
         <span>切换语言类型 > </span>
-        <el-select v-model="optionValue" placeholder="选择语言类型">
+        <el-select v-model="language" placeholder="选择语言类型">
           <el-option
-            v-for="item in options"
+            v-for="item in cases"
             :key="item.value"
             :label="item.label"
             :value="item.value"
@@ -14,24 +14,36 @@
         </el-select>
       </div>
 
-      <code-editor
+      <!-- <code-editor
         class="editor"
-        :value="options.find(v => v.value === optionValue)?.code"
-        :language="optionValue"
-      ></code-editor>
+        :value="code"
+        :language="language"
+      ></code-editor> -->
+      <monaco-editor
+        class="editor"
+        theme="vs-dark"
+        width="100%"
+        :options="defaultOptions"
+        :language="language"
+        v-model:value="code"
+        @change="onEditorChange"
+      ></monaco-editor>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
-import type { IEditorProps } from '@/components/CodeEditor.vue'
+import { computed, ref } from 'vue'
+import MonacoEditor from 'monaco-editor-vue3'
+import { defaultOptions } from '@/common/monaco'
 
-interface IOption {
+type LangType = 'javascript' | 'css' | 'html' | 'json'
+interface ICase {
   label: string
-  value: string
+  value: LangType
   code: string
 }
+
 const breadList = [
   {
     path: '/tool',
@@ -43,8 +55,8 @@ const breadList = [
   }
 ]
 
-const optionValue = ref<IEditorProps['language']>('javascript')
-const options: IOption[] = [
+const language = ref<LangType>('javascript')
+const cases: ICase[] = [
   {
     value: 'javascript',
     label: 'javascript',
@@ -67,13 +79,30 @@ const options: IOption[] = [
 }`
   },
   {
-    value: 'php',
-    label: 'php',
-    code: `<?php
-echo "Hello World!";
-?>`
+    value: 'json',
+    label: 'json',
+    code: `{"options": {
+  "colorDecorators": true,
+  "lineHeight": 24,
+  "tabSize": 2
+}}
+`
   }
 ]
+
+const code = computed({
+  get: () => {
+    return cases.find(v => v.value === language.value)!.code
+  },
+  set: (value: string) => {
+    return value
+  }
+})
+
+function onEditorChange(value: string) {
+  // eslint-disable-next-line no-console
+  console.log(value)
+}
 </script>
 
 <style lang="scss" scoped>
@@ -97,6 +126,10 @@ echo "Hello World!";
     .editor {
       flex: 1;
       margin-bottom: 20px;
+
+      :deep(.monaco-editor) {
+        width: 100% !important;
+      }
     }
   }
 }

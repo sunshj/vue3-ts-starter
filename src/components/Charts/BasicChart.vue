@@ -26,7 +26,7 @@ onMounted(() => {
 })
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .__basic_chart__ {
   width: 100%;
   height: 270px;

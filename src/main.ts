@@ -12,6 +12,7 @@ import router from './router'
 import './router/permission'
 import fontAwesomeIcon from './common/fontAwesomeIcon'
 import { useErrorLogsStore } from './stores/error-logs'
+import './common/monaco'
 
 const app = createApp(App)
 app.component('font-awesome-icon', fontAwesomeIcon)

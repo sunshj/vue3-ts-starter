@@ -4,6 +4,7 @@
 
 <script setup lang="ts">
 import { onMounted, onBeforeUnmount, ref, watchEffect, reactive } from 'vue'
+import { useVModel } from '@vueuse/core'
 import ace from 'ace-builds'
 import type { Ace } from 'ace-builds'
 // 代码语言
@@ -38,22 +39,24 @@ import 'ace-builds/src-min-noconflict/ext-themelist'
 
 export interface IEditorProps {
   id?: number
-  value?: string
+  modelValue?: string
   readonly?: boolean
   language?: 'javascript' | 'html' | 'css' | 'php'
 }
 const props = withDefaults(defineProps<IEditorProps>(), {
   id: 0,
-  value: '',
+  modelValue: '',
   readonly: false,
   language: 'javascript'
 })
 
 const emit = defineEmits<{
-  (e: 'update:value', value: string): void
+  (e: 'update:modelValue', value: string): void
 }>()
 
-let editor: Ace.Editor
+const localVal = useVModel(props, 'modelValue', emit)
+
+const editor = ref<Ace.Editor | null>(null)
 const editorForm = ref<HTMLDivElement>()
 
 const options = reactive({
@@ -79,30 +82,28 @@ const options = reactive({
 })
 
 function initialize() {
-  if (editor) {
-    editor.destroy()
-  }
+  if (editor.value) editor.value.destroy()
 
-  editor = ace.edit(editorForm.value as HTMLDivElement, options)
+  editor.value = ace.edit(editorForm.value as HTMLDivElement, options)
 
-  editor.setOptions({
+  editor.value.setOptions({
     enableSnippets: true,
     enableLiveAutocompletion: true,
     enableBasicAutocompletion: true
   })
-  editor.getSession().setUseWrapMode(true)
-  editor.on('change', () => {
-    emit('update:value', editor.getValue())
+  editor.value.getSession().setUseWrapMode(true)
+  editor.value.on('input', () => {
+    emit('update:modelValue', editor.value!.getValue())
   })
-  editor.setValue(props.value || '')
+  editor.value.setValue(localVal.value)
 }
 
 watchEffect(() => {
-  initialize()
-  editor.getSession().setValue(props.value)
-  editor.getSession().setMode(`ace/mode/${props.language}`)
-  editor.clearSelection()
-  editor.moveCursorToPosition(editor.getCursorPosition())
+  const position = (editor.value as Ace.Editor).getCursorPosition()
+  editor.value!.setValue(localVal.value)
+  editor.value!.getSession().setMode(`ace/mode/${props.language}`)
+  editor.value!.clearSelection()
+  editor.value!.moveCursorToPosition(position)
 })
 
 onMounted(() => {
@@ -110,7 +111,7 @@ onMounted(() => {
 })
 
 onBeforeUnmount(() => {
-  editor.destroy()
+  editor.value!.destroy()
 })
 </script>
 

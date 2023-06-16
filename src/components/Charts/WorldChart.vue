@@ -16,7 +16,7 @@ const props = defineProps<{
 const worldMapRef = ref<HTMLDivElement>()
 
 function draw() {
-  const worldMapChart = echarts.init(worldMapRef.value as HTMLElement)
+  const worldMapChart = echarts.init(worldMapRef.value as HTMLDivElement)
   worldMapChart.showLoading()
   echarts.registerMap('world', worldMapGeoJSON as any)
   worldMapChart.hideLoading()
