@@ -1,0 +1,42 @@
+@import './base.css';
+
+@import './iconfont.css';
+
+.el-pagination {
+    padding-bottom: 5px;
+    overflow-x: auto;
+}
+
+.el-dialog {
+    border-radius: 6px !important;
+}
+
+html[data-device='mobile'] .el-dialog {
+    --el-dialog-width: 90% !important;
+}
+
+.iconfont {
+    margin-right: 10px;
+    font-size: 20px;
+}
+
+/* fade-transform */
+.fade-transform--move,
+.fade-transform-leave-active,
+.fade-transform-enter-active {
+    transition: all 0.5s;
+}
+
+.fade-transform-leave-active {
+    position: absolute;
+}
+
+.fade-transform-enter {
+    opacity: 0;
+    transform: translateX(-30px);
+}
+
+.fade-transform-leave-to {
+    opacity: 0;
+    transform: translateX(30px);
+}

@@ -78,9 +78,6 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watchEffect } from 'vue'
-import { ElMessage as $message } from 'element-plus'
-
 const title = ref('这是卡片')
 const suggest = ref('')
 const suggestionsList = [
@@ -89,11 +86,12 @@ const suggestionsList = [
 ]
 
 watchEffect(() => {
+  // eslint-disable-next-line no-console
   console.log(suggest.value)
 })
 
 const showMessage = (value: any) => {
-  $message({
+  ElMessage({
     type: value,
     message: value,
     grouping: true

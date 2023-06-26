@@ -25,7 +25,12 @@
 
       <el-col :span="12" :xs="24">
         <custom-card align-mode="center" :header="false">
-          <world-chart id="worldChart" :option="worldChartOption"></world-chart>
+          <map-chart
+            id="worldMapChart"
+            map="world"
+            :map-geo-json="worldMapGeoJSON"
+            :option="worldChartOption"
+          ></map-chart>
         </custom-card>
       </el-col>
     </el-row>
@@ -34,6 +39,7 @@
 
 <script setup lang="ts">
 import type { EChartsOption } from 'echarts'
+import worldMapGeoJSON from '@/assets/geoJSON/world.json'
 
 const breadList = [
   {
@@ -42,7 +48,7 @@ const breadList = [
   }
 ]
 
-const pieChartOption: EChartsOption = {
+const pieChartOption: Ref<EChartsOption> = ref({
   title: {
     text: 'Traffic Sources',
     left: 'center'
@@ -78,9 +84,9 @@ const pieChartOption: EChartsOption = {
       }
     }
   ]
-}
+})
 
-const barChartOption: EChartsOption = {
+const barChartOption: Ref<EChartsOption> = ref({
   title: {
     text: 'Bar Chart',
     left: 'center'
@@ -119,9 +125,9 @@ const barChartOption: EChartsOption = {
       data: [120, 200, 150, 80, 70, 110, 130]
     }
   ]
-}
+})
 
-const lineChartOption: EChartsOption = {
+const lineChartOption: Ref<EChartsOption> = ref({
   tooltip: {
     trigger: 'axis',
     formatter: (data: any) => {
@@ -189,9 +195,9 @@ const lineChartOption: EChartsOption = {
       data: [4, 8, 6, 2, 10, 20, 30]
     }
   ]
-}
+})
 
-const worldChartOption: EChartsOption = {
+const worldChartOption: Ref<EChartsOption> = ref({
   title: {
     text: '世界地图'
   },
@@ -225,7 +231,7 @@ const worldChartOption: EChartsOption = {
       ]
     }
   ]
-}
+})
 </script>
 
 <style lang="scss" scoped></style>

@@ -54,7 +54,6 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
 import { Delete } from '@element-plus/icons-vue'
 import { useErrorLogsStore } from '@/stores/error-logs'
 

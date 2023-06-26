@@ -1,4 +1,4 @@
-import { Directive, DirectiveBinding } from 'vue'
+import type { Directive, DirectiveBinding } from 'vue'
 
 export const vThrottle: Directive = {
   created(el: HTMLElement, binding: DirectiveBinding) {

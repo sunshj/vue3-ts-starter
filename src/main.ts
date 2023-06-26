@@ -2,7 +2,7 @@ import { createApp, nextTick } from 'vue'
 import { createPinia } from 'pinia'
 
 import 'element-plus/dist/index.css'
-import './assets/base.css'
+import './assets/css/global.css'
 
 import mavonEditor from 'mavon-editor'
 import 'mavon-editor/dist/css/index.css'

@@ -3,7 +3,6 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, onBeforeUnmount, ref, watchEffect, reactive } from 'vue'
 import { useVModel } from '@vueuse/core'
 import ace from 'ace-builds'
 import type { Ace } from 'ace-builds'

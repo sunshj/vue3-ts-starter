@@ -9,7 +9,6 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watchEffect } from 'vue'
 import { useVModel } from '@vueuse/core'
 
 interface IProps {

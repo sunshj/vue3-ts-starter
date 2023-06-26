@@ -69,10 +69,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive, onMounted } from 'vue'
-import { useRouter } from 'vue-router'
 import { User, Key, RefreshLeft } from '@element-plus/icons-vue'
-import { ElMessage as $message } from 'element-plus'
 import type { FormInstance, FormRules } from 'element-plus'
 import { validateName, validatePass } from '@/common/validateRules'
 import { vThrottle } from '@/common/directives'
@@ -103,10 +100,10 @@ const submitForm = async (formEl: FormInstance | undefined) => {
   if (!formEl) return
   await formEl.validate(valid => {
     if (!valid) {
-      $message.warning('未通过校验')
+      ElMessage.warning('未通过校验')
       return
     }
-    $message.success('已通过校验')
+    ElMessage.success('已通过校验')
     loginLoading.value = true
     // 异步请求
     setTimeout(() => {
@@ -115,7 +112,7 @@ const submitForm = async (formEl: FormInstance | undefined) => {
         localStorage.setItem('password', loginForm.password)
       }
       sessionStorage.setItem('token', Date.now().toString())
-      $message.success('登录成功')
+      ElMessage.success('登录成功')
       router.push('/')
       loginLoading.value = false
     }, 1000 + Math.random() * 2000)
@@ -223,8 +220,8 @@ onMounted(() => {
   .login_container {
     .login_card {
       width: 95%;
-      transform: translateY(-15px);
       transition: all 0.2s;
+      transform: translateY(-15px);
     }
   }
 }

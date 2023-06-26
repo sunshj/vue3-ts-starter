@@ -8,8 +8,12 @@ moment.locale('zh-CN')
  * @param {*} datetime
  * @returns
  */
-export function timeFormat(datetime: string) {
-  const time = Date.parse(datetime)
+export function timeFormat(datetime: string | number) {
+  const time =
+    typeof datetime === 'number'
+      ? parseInt(datetime.toString().padEnd(13, '0'), 10)
+      : Date.parse(datetime)
+
   const currentDiff = Date.now() - time
   if (currentDiff < 3600000) {
     return moment(time).fromNow()

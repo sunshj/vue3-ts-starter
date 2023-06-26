@@ -43,7 +43,6 @@
 </template>
 
 <script setup lang="ts">
-import { onBeforeMount } from 'vue'
 import { useActivePathStore } from '../stores/active-path'
 import { routes } from '@/router'
 

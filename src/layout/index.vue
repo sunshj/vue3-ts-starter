@@ -29,7 +29,6 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive, onBeforeMount, computed, onMounted } from 'vue'
 import Header from './Header.vue'
 import Menu from './Menu.vue'
 import { useIsMobileStore } from '@/stores/is-mobile'

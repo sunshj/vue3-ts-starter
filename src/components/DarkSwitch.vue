@@ -1,43 +1,25 @@
 <template>
   <el-switch
-    v-model="isDark"
+    v-model="darkModeState.isDark"
     active-color="#2F2F2F"
     inactive-color="#F1F1F1"
     @change="toggleDarkMode"
-    @click="darkSwitchClick"
   ></el-switch>
 </template>
 
 <script setup lang="ts">
-import { onBeforeMount, onMounted, ref } from 'vue'
-import { disableDark, enableDark } from '@/utils/dark'
+import { useDarkMode, darkModeState } from '@/common/composable'
+
+const { toggleMode } = useDarkMode()
 
 const emit = defineEmits<{
   (e: 'change', value: boolean): void
 }>()
 
-const isDark = ref(false)
-
-const toggleDarkMode = () => {
-  if (isDark.value) {
-    enableDark()
-  } else {
-    disableDark()
-  }
-  sessionStorage.setItem('darkMode', isDark.value.toString())
+function toggleDarkMode() {
+  toggleMode(darkModeState.isDark)
+  emit('change', darkModeState.isDark)
 }
-
-const darkSwitchClick = () => {
-  emit('change', isDark.value)
-}
-
-onBeforeMount(() => {
-  isDark.value = sessionStorage.getItem('darkMode') === 'true'
-})
-
-onMounted(() => {
-  toggleDarkMode()
-})
 </script>
 
 <style lang="scss" scoped>

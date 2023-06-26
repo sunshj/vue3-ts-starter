@@ -19,8 +19,6 @@
 <script></script>
 
 <script setup lang="ts">
-import { reactive } from 'vue'
-
 const breadList = [
   {
     path: '/tool',

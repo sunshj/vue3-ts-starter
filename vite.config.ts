@@ -10,6 +10,13 @@ export default defineConfig({
   plugins: [
     vue(),
     AutoImport({
+      imports: ['vue', 'vue-router'],
+      dts: true,
+      eslintrc: {
+        enabled: true,
+        filepath: './.eslintrc-auto-import.json',
+        globalsPropValue: true
+      },
       resolvers: [ElementPlusResolver()]
     }),
     Components({

@@ -8,7 +8,7 @@
     </div>
     <div class="right_wrapper">
       <el-tooltip
-        v-if="!isMobileStore.isMobile"
+        v-if="!isMobileStore.isMobile && errorLogsStore.logs.length"
         content="查看错误日志"
         effect="dark"
         placement="bottom"
@@ -56,16 +56,15 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
-import { useRouter, onBeforeRouteUpdate } from 'vue-router'
-import { ElMessage } from 'element-plus'
 import { CaretBottom } from '@element-plus/icons-vue'
 import DarkSwitch from '../components/DarkSwitch.vue'
 import Menu from './Menu.vue'
 import { useIsMobileStore } from '@/stores/is-mobile'
+import { useErrorLogsStore } from '@/stores/error-logs'
 
 const router = useRouter()
 const isMobileStore = useIsMobileStore()
+const errorLogsStore = useErrorLogsStore()
 
 const props = defineProps<{
   dashTitle: string
