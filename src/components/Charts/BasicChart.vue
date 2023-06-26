@@ -4,27 +4,24 @@
 
 <script setup lang="ts">
 import * as echarts from 'echarts'
-import type { ECharts, EChartsOption } from 'echarts'
+import type { EChartsOption } from 'echarts'
 
 const props = defineProps<{
   id: string
   option: EChartsOption
 }>()
 
-const basicChart = ref<ECharts | null>(null)
-
-function draw() {
-  basicChart.value?.showLoading()
-  basicChart.value?.setOption(props.option)
-  basicChart.value?.hideLoading()
+function draw(option: EChartsOption) {
+  const dom = document.getElementById(props.id) as HTMLDivElement
+  if (dom) echarts.dispose(dom)
+  const basicChart = echarts.init(dom)
+  basicChart.showLoading()
+  basicChart.setOption(option)
+  basicChart.hideLoading()
 }
 
 watchEffect(() => {
-  nextTick(() => draw())
-})
-
-onMounted(() => {
-  basicChart.value = echarts.init(document.getElementById(props.id) as HTMLDivElement)
+  nextTick(() => draw(props.option))
 })
 </script>
 
