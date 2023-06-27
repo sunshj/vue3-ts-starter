@@ -3,25 +3,22 @@
 </template>
 
 <script setup lang="ts">
-import * as echarts from 'echarts'
 import type { EChartsOption } from 'echarts'
+import { useECharts } from '@/common/composable'
 
 const props = defineProps<{
   id: string
   option: EChartsOption
 }>()
 
-function draw(option: EChartsOption) {
-  const dom = document.getElementById(props.id) as HTMLDivElement
-  if (dom) echarts.dispose(dom)
-  const basicChart = echarts.init(dom)
-  basicChart.showLoading()
-  basicChart.setOption(option)
-  basicChart.hideLoading()
-}
+const dom = ref<HTMLElement | null>(null)
 
-watchEffect(() => {
-  nextTick(() => draw(props.option))
+watchPostEffect(() => {
+  if (!dom.value) dom.value = document.getElementById(props.id)
+  const { echartsInstance, setOptions } = useECharts(dom.value as HTMLElement)
+  echartsInstance.showLoading()
+  setOptions(props.option)
+  echartsInstance.hideLoading()
 })
 </script>
 

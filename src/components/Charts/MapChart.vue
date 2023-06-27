@@ -1,10 +1,10 @@
 <template>
-  <div class="__map_chart__" :id="props.id"></div>
+  <div class="__map_chart__" :id="props.id" ref="mapChartRef"></div>
 </template>
 
 <script setup lang="ts">
-import * as echarts from 'echarts'
-import type { ECharts, EChartsOption } from 'echarts'
+import type { EChartsOption } from 'echarts'
+import { useECharts } from '@/common/composable/useECharts'
 
 const props = defineProps<{
   id: string
@@ -13,21 +13,15 @@ const props = defineProps<{
   option: EChartsOption
 }>()
 
-const mapChart = ref<ECharts | null>(null)
+const dom = ref<HTMLElement | null>(null)
 
-function draw() {
-  mapChart.value?.showLoading()
-  mapChart.value?.setOption(props.option)
-  mapChart.value?.hideLoading()
-}
-
-watchEffect(() => {
-  nextTick(() => draw())
-})
-
-onMounted(() => {
-  mapChart.value = echarts.init(document.getElementById(props.id) as HTMLDivElement)
-  echarts.registerMap(props.map, props.mapGeoJson as any)
+watchPostEffect(() => {
+  if (!dom.value) dom.value = document.getElementById(props.id)
+  const { echartsInstance, setOptions, registerMap } = useECharts(dom.value as HTMLElement)
+  registerMap(props.map, props.mapGeoJson)
+  echartsInstance.showLoading()
+  setOptions(props.option)
+  echartsInstance.hideLoading()
 })
 </script>
 
