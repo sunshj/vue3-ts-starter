@@ -2,7 +2,7 @@ import { enable, disable } from 'darkreader'
 
 export const darkModeState = reactive({ isDark: false, taskStartTime: 0, taskEndTime: 0 })
 
-export function useDarkMode() {
+export default function useDarkMode() {
   function updateTaskTime(startTime: number, endTime: number) {
     darkModeState.taskStartTime = startTime
     darkModeState.taskEndTime = endTime

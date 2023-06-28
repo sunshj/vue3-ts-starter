@@ -4,20 +4,20 @@
 
 <script setup lang="ts">
 import type { EChartsOption } from 'echarts'
-import { useECharts } from '@/common/composable'
+import useECharts from '@/composables/useECharts'
 
 const props = defineProps<{
   id: string
   option: EChartsOption
 }>()
 
-const dom = ref<HTMLElement | null>(null)
+const dom = ref<HTMLDivElement | null>(null)
 
 watchPostEffect(() => {
-  if (!dom.value) dom.value = document.getElementById(props.id)
-  const { echartsInstance, setOptions } = useECharts(dom.value as HTMLElement)
+  if (!dom.value) dom.value = document.getElementById(props.id) as HTMLDivElement
+  const { echartsInstance } = useECharts(dom.value)
   echartsInstance.showLoading()
-  setOptions(props.option)
+  echartsInstance.setOption(props.option)
   echartsInstance.hideLoading()
 })
 </script>

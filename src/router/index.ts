@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHistory, type RouteRecordRaw } from 'vue-router'
 
 const Layout = () => import('@/layout/index.vue')
 const Home = () => import('@/views/Home/index.vue')
@@ -10,7 +10,7 @@ const EditorTool = () => import('@/views/Tool/Editor.vue')
 const MarkdownTool = () => import('@/views/Tool/Markdown.vue')
 const ErrorTool = () => import('@/views/Tool/Error.vue')
 
-export const routes = [
+export const routes: RouteRecordRaw[] = [
   {
     path: '/',
     redirect: '/index'
@@ -47,7 +47,9 @@ export const routes = [
       {
         path: '/profile',
         component: UserProfile,
-        hidden: true
+        meta: {
+          hidden: true
+        }
       },
       {
         path: '/tool',

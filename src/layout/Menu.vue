@@ -14,8 +14,8 @@
       <template v-if="item.children && item.children.length > 0">
         <el-sub-menu :index="item.path" :key="item.path">
           <template #title>
-            <i class="iconfont" :class="item.meta.icon"></i>
-            <span>{{ item.meta.title }}</span>
+            <i class="iconfont" :class="item.meta?.icon"></i>
+            <span>{{ item.meta?.title }}</span>
           </template>
           <el-menu-item
             :index="item.path + '/' + subItem.path"
@@ -23,8 +23,8 @@
             :key="subItem.path"
           >
             <template #title>
-              <i class="iconfont" :class="subItem.meta.icon"></i>
-              <span>{{ subItem.meta.title }}</span>
+              <i class="iconfont" :class="subItem.meta?.icon"></i>
+              <span>{{ subItem.meta?.title }}</span>
             </template>
           </el-menu-item>
         </el-sub-menu>
@@ -50,7 +50,7 @@ const activePathStore = useActivePathStore()
 
 const props = defineProps<{ isCollapse: boolean }>()
 
-const menusList = routes[1].children?.filter(r => !r.hidden)
+const menusList = routes[1].children?.filter(r => !r.meta?.hidden)
 
 onBeforeMount(() => {
   activePathStore.update(sessionStorage.getItem('activePath') as string)

@@ -128,19 +128,24 @@ const barChartOption: Ref<EChartsOption> = ref({
 })
 
 const lineChartOption: Ref<EChartsOption> = ref({
+  title: {
+    text: '网速模拟'
+  },
   tooltip: {
     trigger: 'axis',
     formatter: (data: any) => {
-      return `
-            ${data[0].name}<br>
-             ${data[0].marker}<b>上行速度</b>：${data[0].value} KB/s<br>
-             ${data[1].marker}<b>下行速度</b>：${data[1].value} KB/s</b>
-            `
+      if ((data as any[]).length === 1)
+        return `
+        ${data[0].name}<br>
+        ${data[0].marker}<b>${data[0].seriesName}速度</b>：${data[0].value} KB/s<br>`
+
+      return `${data[0].name}<br>
+      ${data[0].marker}<b>${data[0].seriesName}速度</b>：${data[0].value} KB/s<br>
+      ${data[1].marker}<b>${data[1].seriesName}速度</b>：${data[1].value} KB/s</b> `
     }
   },
   legend: {
-    data: ['上行', '下行'],
-    selectedMode: false
+    data: ['上行', '下行']
   },
   grid: {
     left: '3%',
@@ -152,7 +157,7 @@ const lineChartOption: Ref<EChartsOption> = ref({
     {
       type: 'category',
       boundaryGap: false,
-      data: ['00:01', '00:02', '00:03', '00:04', '00:05', '00:06', '00:07']
+      data: []
     }
   ],
   yAxis: [
@@ -176,7 +181,7 @@ const lineChartOption: Ref<EChartsOption> = ref({
       emphasis: {
         focus: 'series'
       },
-      data: [12, 20, 30, 40, 50, 34, 20]
+      data: []
     },
     {
       name: '下行',
@@ -192,7 +197,7 @@ const lineChartOption: Ref<EChartsOption> = ref({
       emphasis: {
         focus: 'series'
       },
-      data: [4, 8, 6, 2, 10, 20, 30]
+      data: []
     }
   ]
 })
@@ -231,6 +236,20 @@ const worldChartOption: Ref<EChartsOption> = ref({
       ]
     }
   ]
+})
+
+const randomNetworkSpeed = (minSpeed: number, maxSpeed: number) => {
+  return parseFloat((Math.random() * (maxSpeed - minSpeed) + minSpeed).toFixed(2))
+}
+
+watchEffect(onCleanUp => {
+  const interval = setInterval(() => {
+    ;(lineChartOption.value.xAxis as any[])[0].data.push(new Date().toTimeString())
+    ;(lineChartOption.value.series as any[])[0].data.push(randomNetworkSpeed(1, 200))
+    ;(lineChartOption.value.series as any[])[1].data.push(randomNetworkSpeed(10, 1000))
+  }, 2000)
+
+  onCleanUp(() => clearInterval(interval))
 })
 </script>
 

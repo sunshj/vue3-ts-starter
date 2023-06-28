@@ -14,11 +14,7 @@
         </el-select>
       </div>
 
-      <!-- <code-editor
-        class="editor"
-        :value="code"
-        :language="language"
-      ></code-editor> -->
+      <!-- <ace-editor class="editor" :value="code" :language="language"></ace-editor> -->
       <monaco-editor
         class="editor"
         theme="vs-dark"

@@ -8,7 +8,7 @@
 </template>
 
 <script setup lang="ts">
-import { useDarkMode, darkModeState } from '@/common/composable'
+import useDarkMode, { darkModeState } from '@/composables/useDarkMode'
 
 const { toggleMode } = useDarkMode()
 

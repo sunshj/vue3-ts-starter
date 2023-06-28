@@ -9,9 +9,9 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    AceEditor: typeof import('./src/components/AceEditor.vue')['default']
     AutoComplete: typeof import('./src/components/AutoComplete.vue')['default']
     BasicChart: typeof import('./src/components/Charts/BasicChart.vue')['default']
-    CodeEditor: typeof import('./src/components/CodeEditor.vue')['default']
     CustomBreadcrumb: typeof import('./src/components/CustomBreadcrumb.vue')['default']
     CustomCard: typeof import('./src/components/CustomCard.vue')['default']
     DarkSwitch: typeof import('./src/components/DarkSwitch.vue')['default']
@@ -61,7 +61,6 @@ declare module '@vue/runtime-core' {
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     SingleImageUpload: typeof import('./src/components/SingleImageUpload.vue')['default']
-    WorldChart: typeof import('./src/components/Charts/WorldChart.vue')['default']
   }
   export interface ComponentCustomProperties {
     vLoading: typeof import('element-plus/es')['ElLoadingDirective']

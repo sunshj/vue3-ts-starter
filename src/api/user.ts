@@ -23,10 +23,10 @@ type FindOneResData = IResData & {
   data: { data: IUser }
 }
 
-export const findAll = async (pagenum: number, pagesize: number, query: string) => {
+export const findAll = async (pageNum: number, pagesize: number, query: string) => {
   const encodeQuery = encodeURIComponent(query)
   const { data: res } = (await axios.get(
-    `/user?page=${pagenum}&size=${pagesize}&query=${encodeQuery}`
+    `/user?page=${pageNum}&size=${pagesize}&query=${encodeQuery}`
   )) as FindAllResData
 
   if (res.code !== 200) ElMessage.error(res.data as unknown as string)

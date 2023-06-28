@@ -4,7 +4,7 @@
 
 <script setup lang="ts">
 import type { EChartsOption } from 'echarts'
-import { useECharts } from '@/common/composable/useECharts'
+import useECharts from '@/composables/useECharts'
 
 const props = defineProps<{
   id: string
@@ -13,14 +13,15 @@ const props = defineProps<{
   option: EChartsOption
 }>()
 
-const dom = ref<HTMLElement | null>(null)
+const dom = ref<HTMLDivElement | null>(null)
 
 watchPostEffect(() => {
-  if (!dom.value) dom.value = document.getElementById(props.id)
-  const { echartsInstance, setOptions, registerMap } = useECharts(dom.value as HTMLElement)
-  registerMap(props.map, props.mapGeoJson)
+  if (!dom.value) dom.value = document.getElementById(props.id) as HTMLDivElement
+  const { echartsInstance } = useECharts(dom.value, echarts => {
+    echarts.registerMap(props.map, props.mapGeoJson)
+  })
   echartsInstance.showLoading()
-  setOptions(props.option)
+  echartsInstance.setOption(props.option)
   echartsInstance.hideLoading()
 })
 </script>
