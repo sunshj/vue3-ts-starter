@@ -10,12 +10,12 @@ import type { Ace } from 'ace-builds'
 import 'ace-builds/src-min-noconflict/mode-html'
 import 'ace-builds/src-min-noconflict/mode-css'
 import 'ace-builds/src-min-noconflict/mode-javascript'
-import 'ace-builds/src-min-noconflict/mode-php'
+import 'ace-builds/src-min-noconflict/mode-json'
 // 代码提示
 import 'ace-builds/src-min-noconflict/snippets/html'
 import 'ace-builds/src-min-noconflict/snippets/css'
 import 'ace-builds/src-min-noconflict/snippets/javascript'
-import 'ace-builds/src-min-noconflict/snippets/php'
+import 'ace-builds/src-min-noconflict/snippets/json'
 // 主题
 import 'ace-builds/src-min-noconflict/theme-monokai'
 // 扩展
@@ -40,7 +40,7 @@ export interface IEditorProps {
   id?: number
   modelValue?: string
   readonly?: boolean
-  language?: 'javascript' | 'html' | 'css' | 'php'
+  language?: 'javascript' | 'html' | 'css' | 'json'
 }
 const props = withDefaults(defineProps<IEditorProps>(), {
   id: 0,

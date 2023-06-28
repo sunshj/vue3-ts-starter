@@ -1,5 +1,4 @@
 /// <reference types="vite/client" />
-import 'vue-router'
 
 interface ImportMetaEnv {
   readonly VITE_APP_TITLE: string
@@ -14,12 +13,4 @@ interface ImportMeta {
 declare module 'monaco-editor-vue3'
 declare interface Window {
   MonacoEnvironment: any
-}
-
-declare module 'vue-router' {
-  interface RouteMeta {
-    title?: string
-    icon?: string
-    hidden?: boolean
-  }
 }
