@@ -73,7 +73,12 @@
       </el-col>
     </el-row>
 
-    <auto-complete trigger v-model="suggest" :suggestions="suggestionsList"></auto-complete>
+    <tilt-card width="240px" height="320px">
+      <template #window>
+        <h3>Tilt Card</h3>
+        <auto-complete trigger v-model="suggest" :suggestions="suggestionsList"></auto-complete>
+      </template>
+    </tilt-card>
   </div>
 </template>
 

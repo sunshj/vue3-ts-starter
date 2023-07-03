@@ -10,6 +10,8 @@ Vue3 插件：[Volar](https://marketplace.visualstudio.com/items?itemName=Vue.vo
 
 CSS 提示：[CSS Class Intellisense]() + [SCSS IntelliSense](https://marketplace.visualstudio.com/items?itemName=mrmlnc.vscode-scss)
 
+其他插件：[Goto definition alias](https://marketplace.visualstudio.com/items?itemName=antfu.goto-alias)
+
 环境变量：
 
 ```dotenv

@@ -61,6 +61,7 @@ declare module '@vue/runtime-core' {
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     SingleImageUpload: typeof import('./src/components/SingleImageUpload.vue')['default']
+    TiltCard: typeof import('./src/components/TiltCard.vue')['default']
   }
   export interface ComponentCustomProperties {
     vLoading: typeof import('element-plus/es')['ElLoadingDirective']
