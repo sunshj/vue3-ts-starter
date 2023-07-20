@@ -13,10 +13,6 @@ const ErrorTool = () => import('@/views/Tool/Error.vue')
 export const routes: RouteRecordRaw[] = [
   {
     path: '/',
-    redirect: '/index'
-  },
-  {
-    path: '/index',
     component: Layout,
     redirect: '/home',
     children: [

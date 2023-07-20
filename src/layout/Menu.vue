@@ -50,7 +50,7 @@ const activePathStore = useActivePathStore()
 
 const props = defineProps<{ isCollapse: boolean }>()
 
-const menusList = routes[1].children?.filter(r => !r.meta?.hidden)
+const menusList = routes[0].children?.filter(r => !r.meta?.hidden)
 
 onBeforeMount(() => {
   activePathStore.update(sessionStorage.getItem('activePath') as string)

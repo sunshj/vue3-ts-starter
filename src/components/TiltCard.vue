@@ -64,8 +64,8 @@ onBeforeUnmount(() => {
     margin: 3em auto;
     perspective: 300px;
     .card {
-      width: v-bind(width);
-      height: v-bind(height);
+      width: v-bind('props.width');
+      height: v-bind('props.height');
       background: #fff;
       border-radius: 5px;
       border: 1px solid #cdcdcd;
