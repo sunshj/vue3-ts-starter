@@ -92,7 +92,7 @@ onBeforeRouteUpdate(() => {
 </script>
 
 <style lang="scss" scoped>
-@import '../styles/index.scss';
+@import '../../styles/index.scss';
 
 * {
   box-sizing: border-box;
