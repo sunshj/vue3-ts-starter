@@ -4,9 +4,6 @@ import { createPinia } from 'pinia'
 import 'element-plus/dist/index.css'
 import './assets/css/global.css'
 
-import mavonEditor from 'mavon-editor'
-import 'mavon-editor/dist/css/index.css'
-
 import App from './App.vue'
 import router from './router'
 import './router/permission'
@@ -17,7 +14,6 @@ import './common/monaco'
 const app = createApp(App)
 app.component('font-awesome-icon', fontAwesomeIcon)
 
-app.use(mavonEditor)
 app.use(createPinia())
 app.use(router)
 

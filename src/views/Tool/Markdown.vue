@@ -3,10 +3,10 @@
     <custom-breadcrumb :bread-list="breadList"></custom-breadcrumb>
 
     <h2>基础使用</h2>
-    <mavon-editor v-model="editor.value" :boxShadow="false" defaultOpen="preview" />
+    <md-editor v-model="editor.value" :boxShadow="false" defaultOpen="preview" />
 
     <h2>仅预览</h2>
-    <mavon-editor
+    <md-editor
       v-model="editor.value"
       :boxShadow="false"
       :subfield="false"
@@ -16,9 +16,16 @@
   </div>
 </template>
 
-<script></script>
-
 <script setup lang="ts">
+import MavonEditor from 'mavon-editor'
+import 'mavon-editor/dist/css/index.css'
+
+defineOptions({
+  components: {
+    'md-editor': MavonEditor.mavonEditor
+  }
+})
+
 const breadList = [
   {
     path: '/tool',
