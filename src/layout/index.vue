@@ -17,7 +17,7 @@
         </div>
       </el-aside>
       <!-- main -->
-      <el-main class="layout_main" :class="isMobileStore.isMobile ? 'mobile' : ''">
+      <el-main class="layout_main" :class="configStore.isMobile ? 'mobile' : ''">
         <router-view v-slot="{ Component, route }">
           <transition name="fade-transform" mode="out-in">
             <component :is="Component" :key="route.path" />
@@ -29,11 +29,11 @@
 </template>
 
 <script setup lang="ts">
-import Header from './Header.vue'
-import Menu from './Menu.vue'
-import { useIsMobileStore } from '@/stores/is-mobile'
+import Header from './components/Header.vue'
+import Menu from './components/Menu.vue'
+import { useConfigStore } from '@/stores'
 
-const isMobileStore = useIsMobileStore()
+const configStore = useConfigStore()
 
 const dashHeader = reactive({
   title: '这是网站的标题',
@@ -64,7 +64,7 @@ onBeforeMount(() => {
 
 onMounted(() => {
   if (Reflect.has(window, 'ontouchstart')) {
-    isMobileStore.update(true)
+    configStore.setIsMobile(true)
     mobileOptimization()
   }
 })

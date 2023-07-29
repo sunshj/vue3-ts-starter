@@ -6,7 +6,7 @@
     router
     text-color="#000"
     active-text-color="#000"
-    :default-active="activePathStore.currentPath"
+    :default-active="configStore.currentPath"
   >
     <!-- 菜单项 -->
     <template v-for="item in menusList">
@@ -43,17 +43,17 @@
 </template>
 
 <script setup lang="ts">
-import { useActivePathStore } from '../stores/active-path'
+import { useConfigStore } from '@/stores'
 import { routes } from '@/router'
 
-const activePathStore = useActivePathStore()
+const configStore = useConfigStore()
 
 const props = defineProps<{ isCollapse: boolean }>()
 
 const menusList = routes[0].children?.filter(r => !r.meta?.hidden)
 
 onBeforeMount(() => {
-  activePathStore.update(sessionStorage.getItem('activePath') as string)
+  configStore.setCurrentPath(sessionStorage.getItem('activePath') as string)
 })
 </script>
 

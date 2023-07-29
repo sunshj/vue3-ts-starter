@@ -1,6 +1,6 @@
 import Axios from 'axios'
 import { ElMessage } from 'element-plus'
-import { useCancelRequestStore } from '@/stores/cancel-request'
+import { useCancelRequestStore } from '@/stores/useCancelRequestStore'
 
 const baseURL = import.meta.env.VITE_API_BASE_URL
 

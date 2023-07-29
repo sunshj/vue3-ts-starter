@@ -8,7 +8,7 @@
     </div>
     <div class="right_wrapper">
       <el-tooltip
-        v-if="!isMobileStore.isMobile && errorLogsStore.logs.length"
+        v-if="!configStore.isMobile && errorLogsStore.logs.length"
         content="查看错误日志"
         effect="dark"
         placement="bottom"
@@ -44,7 +44,7 @@
     </div>
   </el-header>
 
-  <div v-if="isMobileStore.isMobile" class="mobile">
+  <div v-if="configStore.isMobile" class="mobile">
     <span class="menu" @click="sideDrawerVisible = true">
       <font-awesome-icon icon="fas fa-bars"></font-awesome-icon>
       <span>菜单</span>
@@ -57,13 +57,12 @@
 
 <script setup lang="ts">
 import { CaretBottom } from '@element-plus/icons-vue'
-import DarkSwitch from '../components/DarkSwitch.vue'
+import DarkSwitch from '@/components/DarkSwitch.vue'
 import Menu from './Menu.vue'
-import { useIsMobileStore } from '@/stores/is-mobile'
-import { useErrorLogsStore } from '@/stores/error-logs'
+import { useConfigStore, useErrorLogsStore } from '@/stores'
 
 const router = useRouter()
-const isMobileStore = useIsMobileStore()
+const configStore = useConfigStore()
 const errorLogsStore = useErrorLogsStore()
 
 const props = defineProps<{
@@ -192,3 +191,4 @@ onBeforeRouteUpdate(() => {
   }
 }
 </style>
+@/stores/useErrorLogsStore

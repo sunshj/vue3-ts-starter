@@ -10,31 +10,23 @@ export interface IUser {
   userRole: number
 }
 
-type FindAllResData = IResData & {
-  data: {
-    data: {
-      result: IUser[]
-      total: number
-    }
-  }
-}
-
-type FindOneResData = IResData & {
-  data: { data: IUser }
+type FindAllResData = {
+  result: IUser[]
+  total: number
 }
 
 export const findAll = async (pageNum: number, pagesize: number, query: string) => {
   const encodeQuery = encodeURIComponent(query)
-  const { data: res } = (await axios.get(
+  const { data: res } = await axios.get<IResData<FindAllResData | string>>(
     `/user?page=${pageNum}&size=${pagesize}&query=${encodeQuery}`
-  )) as FindAllResData
+  )
 
-  if (res.code !== 200) ElMessage.error(res.data as unknown as string)
-  return res.data
+  if (res.code !== 200) ElMessage.error(res.data as string)
+  return res.data as FindAllResData
 }
 
 export const findOne = async (id: number) => {
-  const { data: res } = (await axios.get(`/user/${id}`)) as FindOneResData
-  if (res.code !== 200) ElMessage.error(res.data as unknown as string)
-  return res.data
+  const { data: res } = await axios.get<IResData<IUser | string>>(`/user/${id}`)
+  if (res.code !== 200) ElMessage.error(res.data as string)
+  return res.data as IUser
 }

@@ -55,7 +55,7 @@
 
 <script setup lang="ts">
 import { Delete } from '@element-plus/icons-vue'
-import { useErrorLogsStore } from '@/stores/error-logs'
+import { useErrorLogsStore } from '@/stores'
 
 const errorLogsStore = useErrorLogsStore()
 
@@ -75,3 +75,4 @@ function clearAll() {
   font-weight: bold;
 }
 </style>
+@/stores/useErrorLogsStore

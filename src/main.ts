@@ -8,7 +8,7 @@ import App from './App.vue'
 import router from './router'
 import './router/permission'
 import fontAwesomeIcon from './common/fontAwesomeIcon'
-import { useErrorLogsStore } from './stores/error-logs'
+import { useErrorLogsStore } from './stores'
 import './common/monaco'
 
 const app = createApp(App)
