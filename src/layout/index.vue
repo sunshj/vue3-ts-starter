@@ -10,9 +10,8 @@
         <Menu :is-collapse="isCollapse"></Menu>
         <!-- 底部控制侧边栏折叠区域 -->
         <div class="toggle_collapse" @click="toggleCollapse">
-          <i
-            :class="['iconfont', isCollapse ? 'icon-arrow-double-right' : 'icon-arrow-double-left']"
-          ></i>
+          <i-menu-double-arrow-right v-if="isCollapse" />
+          <i-menu-double-arrow-left v-else />
           <span>{{ isCollapse ? '' : '折叠边栏' }}</span>
         </div>
       </el-aside>
@@ -91,19 +90,19 @@ onMounted(() => {
       z-index: 99;
       display: flex;
       align-items: center;
+      gap: 10px;
       width: inherit;
-      padding: 4px 0 4px 20px;
+      padding: 18px 0 18px 20px;
       overflow: hidden;
       border-top: 1px solid rgb(217, 217, 217);
       background-color: #fff;
-      line-height: 48px;
       cursor: pointer;
 
-      &:hover i {
+      &:hover svg {
         transform: scale(1.15);
       }
 
-      i {
+      svg {
         color: #0051c3;
         font-size: 20px;
         transition: transform 0.15s ease-in-out;
@@ -111,6 +110,7 @@ onMounted(() => {
 
       span {
         font-size: 14px;
+        line-height: 20px;
       }
     }
   }

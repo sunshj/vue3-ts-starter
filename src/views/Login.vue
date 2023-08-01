@@ -32,7 +32,7 @@
           :loading="loginLoading"
           v-throttle
         >
-          <font-awesome-icon icon="arrow-right-to-bracket" />
+          <i-fa6-solid-arrow-right-to-bracket />
           <span style="margin-left: 5px">登入</span>
         </el-button>
       </el-form>

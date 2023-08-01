@@ -22,7 +22,7 @@
 
       <el-tooltip content="前往仓库" effect="dark" placement="bottom">
         <a href="https://github.com/sunshj/vue3-ts-starter" target="_blank">
-          <font-awesome-icon class="github_icon" icon="fab fa-github" />
+          <i-fa6-brands-github class="github_icon" />
         </a>
       </el-tooltip>
 
@@ -46,7 +46,7 @@
 
   <div v-if="configStore.isMobile" class="mobile">
     <span class="menu" @click="sideDrawerVisible = true">
-      <font-awesome-icon icon="fas fa-bars"></font-awesome-icon>
+      <i-fa6-solid-bars />
       <span>菜单</span>
     </span>
   </div>

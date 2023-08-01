@@ -6,7 +6,7 @@
       @click="dialogTableVisible = true"
     >
       <el-button style="padding: 8px 10px" type="danger">
-        <font-awesome-icon icon="fas fa-bug"></font-awesome-icon>
+        <i-fa6-solid-bug />
       </el-button>
     </el-badge>
 
@@ -75,4 +75,3 @@ function clearAll() {
   font-weight: bold;
 }
 </style>
-@/stores/useErrorLogsStore

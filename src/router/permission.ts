@@ -1,12 +1,14 @@
 import router from '.'
 import { useConfigStore, useCancelRequestStore } from '../stores'
 
+const allowPath = ['/login']
+
 // 路由守卫
 router.beforeEach((to, _from, next) => {
   const configStore = useConfigStore()
   const cancelRequestStore = useCancelRequestStore()
 
-  if (to.path === '/login') return next()
+  if (allowPath.includes(to.path)) return next()
   // 获取token
   const token = sessionStorage.getItem('token')
   // 手动判断token是否存在且有效

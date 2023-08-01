@@ -21,7 +21,7 @@ export const routes: RouteRecordRaw[] = [
         component: Home,
         meta: {
           title: '首页',
-          icon: 'icon-shouye'
+          icon: 'i-menu-home'
         }
       },
       {
@@ -29,7 +29,7 @@ export const routes: RouteRecordRaw[] = [
         component: Users,
         meta: {
           title: '用户管理',
-          icon: 'icon-kehuguanli'
+          icon: 'i-menu-customer'
         }
       },
       {
@@ -37,7 +37,7 @@ export const routes: RouteRecordRaw[] = [
         component: Charts,
         meta: {
           title: '图表统计',
-          icon: 'icon-shujuzhongxin'
+          icon: 'i-menu-chart'
         }
       },
       {
@@ -52,7 +52,7 @@ export const routes: RouteRecordRaw[] = [
         redirect: '/tool/editor',
         meta: {
           title: '系统工具',
-          icon: 'icon-guanli'
+          icon: 'i-menu-setting'
         },
         children: [
           {
@@ -60,7 +60,7 @@ export const routes: RouteRecordRaw[] = [
             component: EditorTool,
             meta: {
               title: '代码编辑',
-              icon: 'icon-code'
+              icon: 'i-menu-code'
             }
           },
           {
@@ -68,7 +68,7 @@ export const routes: RouteRecordRaw[] = [
             component: MarkdownTool,
             meta: {
               title: 'Markdown',
-              icon: 'icon-shijianmoban'
+              icon: 'i-menu-md'
             }
           },
           {
@@ -76,7 +76,7 @@ export const routes: RouteRecordRaw[] = [
             component: ErrorTool,
             meta: {
               title: '错误日志',
-              icon: 'icon-error'
+              icon: 'i-menu-error'
             }
           }
         ]

@@ -7,13 +7,10 @@ import './assets/css/global.css'
 import App from './App.vue'
 import router from './router'
 import './router/permission'
-import fontAwesomeIcon from './common/fontAwesomeIcon'
 import { useErrorLogsStore } from './stores'
 import './common/monaco'
 
 const app = createApp(App)
-app.component('font-awesome-icon', fontAwesomeIcon)
-
 app.use(createPinia())
 app.use(router)
 

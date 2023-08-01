@@ -38,7 +38,6 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
 import { RefreshLeft } from '@element-plus/icons-vue'
 
 interface Props {
@@ -71,6 +70,7 @@ function resetForm() {
   width: 100%;
   height: 100%;
   background-color: #e8eaf2;
+
   .card {
     z-index: 2;
     display: flex;
@@ -80,6 +80,7 @@ function resetForm() {
     max-width: 450px;
     margin: auto;
     box-shadow: 0 4px 4px #b1bdd4;
+
     .card_content {
       display: flex;
       flex: 1;
@@ -92,15 +93,18 @@ function resetForm() {
       .card_title {
         margin-bottom: 15px;
         text-align: center;
+
         .title {
           font-size: 36px;
         }
+
         .subtitle {
           margin-top: 5px;
           color: #6c757d;
           font-size: 14px;
         }
       }
+
       .form_container {
         width: 100%;
 
