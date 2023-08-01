@@ -10,6 +10,7 @@ export {}
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     AceEditor: typeof import('./src/components/AceEditor.vue')['default']
+    ActionFormCard: typeof import('./src/components/ActionFormCard.vue')['default']
     AutoComplete: typeof import('./src/components/AutoComplete.vue')['default']
     BasicChart: typeof import('./src/components/Charts/BasicChart.vue')['default']
     CustomBreadcrumb: typeof import('./src/components/CustomBreadcrumb.vue')['default']
@@ -39,7 +40,6 @@ declare module '@vue/runtime-core' {
     ElIcon: typeof import('element-plus/es')['ElIcon']
     ElImage: typeof import('element-plus/es')['ElImage']
     ElInput: typeof import('element-plus/es')['ElInput']
-    ElLink: typeof import('element-plus/es')['ElLink']
     ElMain: typeof import('element-plus/es')['ElMain']
     ElMenu: typeof import('element-plus/es')['ElMenu']
     ElMenuItem: typeof import('element-plus/es')['ElMenuItem']

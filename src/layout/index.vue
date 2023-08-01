@@ -71,8 +71,6 @@ onMounted(() => {
 </script>
 
 <style lang="scss" scoped>
-@import '../styles/index.scss';
-
 .layout_container {
   height: 100%;
 
