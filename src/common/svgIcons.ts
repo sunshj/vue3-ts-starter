@@ -44,6 +44,6 @@ const svgIcons = [
 export const svgIconsMap = svgIcons.reduce((map, { name, icon }) => {
   map.set(name, icon)
   return map
-}, new Map())
+}, new Map<string, Component>())
 
 export type SvgIconsEnum = (typeof svgIcons)[number]['name']

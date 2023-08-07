@@ -15,7 +15,7 @@
         <el-sub-menu :index="item.path" :key="item.path">
           <template #title>
             <el-icon :size="24">
-              <component :is="svgIconsMap.get(item.meta?.icon)"></component
+              <component :is="svgIconsMap.get(item.meta?.icon!)"></component
             ></el-icon>
             <span>{{ item.meta?.title }}</span>
           </template>
@@ -25,7 +25,7 @@
             :key="subItem.path"
           >
             <template #title>
-              <component :is="svgIconsMap.get(subItem.meta?.icon)"></component>
+              <component :is="svgIconsMap.get(subItem.meta?.icon!)"></component>
               <span>{{ subItem.meta?.title }}</span>
             </template>
           </el-menu-item>
@@ -34,7 +34,7 @@
       <!-- 没有子菜单直接作为一级菜单 -->
       <template v-else>
         <el-menu-item :index="item.path" :key="item.path">
-          <component :is="svgIconsMap.get(item.meta?.icon)"></component>
+          <component :is="svgIconsMap.get(item.meta?.icon!)"></component>
           <template #title>
             <span>{{ item.meta?.title }}</span>
           </template>
@@ -83,4 +83,3 @@ onBeforeMount(() => {
   }
 }
 </style>
-@/assets/icons/svgIconsMap @/common/svgIconsMap

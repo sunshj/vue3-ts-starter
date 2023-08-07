@@ -36,7 +36,7 @@ export default defineConfig({
       customCollections: {
         menu: FileSystemIconLoader('./src/assets/icons/svg')
       },
-      iconCustomizer(collection, icon, props) {
+      iconCustomizer(collection, _icon, props) {
         if (collection === 'menu') {
           props.width = '20px'
           props.height = '20px'
@@ -54,6 +54,9 @@ export default defineConfig({
         additionalData: `@import "@/styles/index.scss";`
       }
     }
+  },
+  esbuild: {
+    drop: ['console', 'debugger']
   },
   resolve: {
     alias: {
