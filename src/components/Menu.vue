@@ -11,7 +11,7 @@
     <!-- 菜单项 -->
     <template v-for="item in menusList">
       <!-- 有子菜单时渲染submenu -->
-      <template v-if="item.children && item.children.length > 0">
+      <template v-if="item.children?.length">
         <el-sub-menu :index="item.path" :key="item.path">
           <template #title>
             <el-icon :size="24">
@@ -45,15 +45,17 @@
 </template>
 
 <script setup lang="ts">
+import { routes } from 'vue-router/auto/routes'
 import { useConfigStore } from '@/stores'
-import { routes } from '@/router'
 import { svgIconsMap } from '@/common/svgIcons'
 
 const configStore = useConfigStore()
 
 const props = defineProps<{ isCollapse: boolean }>()
 
-const menusList = routes[0].children?.filter(r => !r.meta?.hidden)
+const menusList = routes
+  .filter(r => r.meta?.isMenuitem)
+  .sort((a, b) => (a.meta?.menuitemOrder as number) - (b.meta?.menuitemOrder as number))
 
 onBeforeMount(() => {
   configStore.setCurrentPath(sessionStorage.getItem('activePath') as string)

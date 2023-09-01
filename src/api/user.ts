@@ -2,7 +2,7 @@ import axios from '@/utils/axios'
 import { IResData } from './types'
 
 export interface IUser {
-  userId?: number
+  userId: number
   userName: string
   userPass: string
   userEmail: string

@@ -88,6 +88,10 @@ const submitForm = async () => {
         localStorage.setItem('password', loginForm.password)
       }
       sessionStorage.setItem('token', Date.now().toString())
+      sessionStorage.setItem(
+        'userInfo',
+        JSON.stringify({ userName: loginForm.username, loginTime: Date.now() })
+      )
       ElMessage.success('登录成功')
       router.push('/')
       loginLoading.value = false
@@ -202,3 +206,8 @@ onMounted(() => {
   }
 }
 </style>
+
+<route lang="yaml">
+meta:
+  layout: empty
+</route>

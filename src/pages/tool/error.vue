@@ -23,3 +23,10 @@ function showMessage() {
 </script>
 
 <style lang="scss" scoped></style>
+
+<route lang="yaml">
+meta:
+  title: '错误日志'
+  icon: 'i-menu-error'
+  isMenuitem: true
+</route>

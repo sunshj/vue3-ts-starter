@@ -39,17 +39,17 @@ const breadList = [
 
 const editor = reactive({
   value: `
-## 任务列表
+  ## 任务列表
+    
+    - [x] 已完成任务
+    - [ ] 未完成任务
   
-  - [x] 已完成任务
-  - [ ] 未完成任务
-
-  ## 数学公式
-  $$ 1+1=2 $$
-  
-## 引用
-> 这是Markdown的简单语法
-`
+    ## 数学公式
+    $$ 1+1=2 $$
+    
+  ## 引用
+  > 这是Markdown的简单语法
+  `
 })
 </script>
 
@@ -62,3 +62,10 @@ h2 {
   z-index: auto;
 }
 </style>
+
+<route lang="yaml">
+meta:
+  title: 'Markdown'
+  icon: 'i-menu-md'
+  isMenuitem: true
+</route>

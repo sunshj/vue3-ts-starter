@@ -197,7 +197,7 @@ const userDialog = reactive({
 })
 
 const fileList = ref([])
-const userInfo = reactive<IUser>({
+const userInfo = reactive<Omit<IUser, 'userId'>>({
   userName: '',
   userPass: '',
   userEmail: '',
@@ -348,3 +348,11 @@ onMounted(() => {
   width: 100%;
 }
 </style>
+
+<route lang="yaml">
+meta:
+  title: '用户管理'
+  icon: 'i-menu-customer'
+  isMenuitem: true
+  menuitemOrder: 1
+</route>

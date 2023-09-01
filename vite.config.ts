@@ -4,17 +4,25 @@ import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
+import VueRouter from 'unplugin-vue-router/vite'
+import { VueRouterAutoImports } from 'unplugin-vue-router'
 import Icons from 'unplugin-icons/vite'
 import IconsResolver from 'unplugin-icons/resolver'
 import { FileSystemIconLoader } from 'unplugin-icons/loaders'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
+import Layouts from 'vite-plugin-vue-meta-layouts'
 
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
+    VueRouter({
+      exclude: ['**/components/**.vue'],
+      routeBlockLang: 'yaml'
+    }),
     vue(),
+    Layouts(),
     AutoImport({
-      imports: ['vue', 'vue-router', '@vueuse/core'],
+      imports: ['vue', VueRouterAutoImports, { 'vue-router/auto': ['useLink'] }, '@vueuse/core'],
       dts: true,
       eslintrc: {
         enabled: true,

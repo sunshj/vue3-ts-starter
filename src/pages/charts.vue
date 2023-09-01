@@ -136,12 +136,12 @@ const lineChartOption: Ref<EChartsOption> = ref({
     formatter: (data: any) => {
       if ((data as any[]).length === 1)
         return `
-        ${data[0].name}<br>
-        ${data[0].marker}<b>${data[0].seriesName}速度</b>：${data[0].value} KB/s<br>`
+          ${data[0].name}<br>
+          ${data[0].marker}<b>${data[0].seriesName}速度</b>：${data[0].value} KB/s<br>`
 
       return `${data[0].name}<br>
-      ${data[0].marker}<b>${data[0].seriesName}速度</b>：${data[0].value} KB/s<br>
-      ${data[1].marker}<b>${data[1].seriesName}速度</b>：${data[1].value} KB/s</b> `
+        ${data[0].marker}<b>${data[0].seriesName}速度</b>：${data[0].value} KB/s<br>
+        ${data[1].marker}<b>${data[1].seriesName}速度</b>：${data[1].value} KB/s</b> `
     }
   },
   legend: {
@@ -242,15 +242,29 @@ const randomNetworkSpeed = (minSpeed: number, maxSpeed: number) => {
   return parseFloat((Math.random() * (maxSpeed - minSpeed) + minSpeed).toFixed(2))
 }
 
-watchEffect(onCleanUp => {
-  const interval = setInterval(() => {
+const interval = ref(0)
+
+onMounted(() => {
+  const updateLineChartOption = () => {
     ;(lineChartOption.value.xAxis as any[])[0].data.push(new Date().toTimeString())
     ;(lineChartOption.value.series as any[])[0].data.push(randomNetworkSpeed(1, 200))
     ;(lineChartOption.value.series as any[])[1].data.push(randomNetworkSpeed(10, 1000))
-  }, 2000)
+  }
+  updateLineChartOption()
+  interval.value = setInterval(updateLineChartOption, 2000)
+})
 
-  onCleanUp(() => clearInterval(interval))
+onBeforeUnmount(() => {
+  clearInterval(interval.value)
 })
 </script>
 
 <style lang="scss" scoped></style>
+
+<route lang="yaml">
+meta:
+  title: '图表统计'
+  icon: 'i-menu-chart'
+  isMenuitem: true
+  menuitemOrder: 2
+</route>

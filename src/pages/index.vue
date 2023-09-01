@@ -100,3 +100,11 @@ const showMessage = (value: any) => {
 </script>
 
 <style lang="scss" scoped></style>
+
+<route lang="yaml">
+meta:
+  title: '首页'
+  icon: 'i-menu-home'
+  isMenuitem: true
+  menuitemOrder: 0
+</route>

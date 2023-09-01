@@ -283,6 +283,8 @@
     "watchWithFilter": true,
     "whenever": true,
     "ElMessage": true,
-    "ElMessageBox": true
+    "ElMessageBox": true,
+    "defineLoader": true,
+    "definePage": true
   }
 }

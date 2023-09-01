@@ -55,32 +55,32 @@ const cases: ICase[] = [
     value: 'javascript',
     label: 'javascript',
     code: `function test(){
-    console.log("test")
-}`
+      console.log("test")
+  }`
   },
   {
     value: 'html',
     label: 'html',
     code: `<body>
-  <div id="app"></div>
-</body>`
+    <div id="app"></div>
+  </body>`
   },
   {
     value: 'css',
     label: 'css',
     code: `#app {
-  background-color: red;
-}`
+    background-color: red;
+  }`
   },
   {
     value: 'json',
     label: 'json',
     code: `{"options": {
-  "colorDecorators": true,
-  "lineHeight": 24,
-  "tabSize": 2
-}}
-`
+    "colorDecorators": true,
+    "lineHeight": 24,
+    "tabSize": 2
+  }}
+  `
   }
 ]
 
@@ -128,3 +128,10 @@ function onEditorChange(value: string) {
   }
 }
 </style>
+
+<route lang="yaml">
+meta:
+  title: '代码编辑'
+  icon: 'i-menu-code'
+  isMenuitem: true
+</route>

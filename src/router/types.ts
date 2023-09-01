@@ -5,6 +5,7 @@ declare module 'vue-router' {
   interface RouteMeta {
     title?: string
     icon?: SvgIconsEnum
-    hidden?: boolean
+    isMenuitem?: boolean
+    menuitemOrder?: number
   }
 }

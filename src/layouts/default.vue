@@ -28,8 +28,8 @@
 </template>
 
 <script setup lang="ts">
-import Header from './components/Header.vue'
-import Menu from './components/Menu.vue'
+import Header from '@/components/Header.vue'
+import Menu from '@/components/Menu.vue'
 import { useConfigStore } from '@/stores'
 
 const configStore = useConfigStore()
