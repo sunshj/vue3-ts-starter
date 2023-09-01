@@ -86,6 +86,10 @@ function logout() {
 
 const sideDrawerVisible = ref(false)
 
+onBeforeRouteLeave(() => {
+  sideDrawerVisible.value = false
+})
+
 onBeforeRouteUpdate(() => {
   sideDrawerVisible.value = false
 })

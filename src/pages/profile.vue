@@ -1,23 +1,19 @@
 <template>
-  <el-page-header @back="goBack" content="个人中心" style="margin-bottom: 15px">
-    <template #title>返回</template>
-  </el-page-header>
-  <custom-card title="登录信息">
-    <div class="login-info">
-      <div>用户名：{{ userInfo.userName }}</div>
-      <div>登录时间：{{ timeFormat(userInfo.loginTime) }}</div>
-    </div>
-  </custom-card>
+  <div>
+    <el-page-header @back="$router.back()" content="个人中心" style="margin-bottom: 15px">
+      <template #title>返回</template>
+    </el-page-header>
+    <custom-card :padding="15" title="登录信息">
+      <div class="login-info">
+        <div>用户名：{{ userInfo.userName }}</div>
+        <div>登录时间：{{ timeFormat(userInfo.loginTime) }}</div>
+      </div>
+    </custom-card>
+  </div>
 </template>
 
 <script setup lang="ts">
 import { timeFormat } from '@/utils'
-
-const router = useRouter()
-
-function goBack() {
-  router.back()
-}
 
 const userInfo = ref({
   userName: '',
