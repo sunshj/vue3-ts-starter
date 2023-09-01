@@ -11,7 +11,6 @@
   "dependencies": {
     "@element-plus/icons-vue": "^2.1.0",
     "@vueuse/core": "^10.1.2",
-    "ace-builds": "^1.22.0",
     "axios": "^1.4.0",
     "darkreader": "^4.9.58",
     "echarts": "^5.4.2",
