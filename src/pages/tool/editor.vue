@@ -16,11 +16,9 @@
 
       <monaco-editor
         class="editor"
+        v-model="code"
         theme="vs-dark"
-        width="100%"
-        :options="defaultOptions"
         :language="language"
-        v-model:value="code"
         @change="onEditorChange"
       ></monaco-editor>
     </div>
@@ -28,9 +26,6 @@
 </template>
 
 <script setup lang="ts">
-import MonacoEditor from 'monaco-editor-vue3'
-import { defaultOptions } from '@/common/monaco'
-
 type LangType = 'javascript' | 'css' | 'html' | 'json'
 interface ICase {
   label: string

@@ -66,6 +66,7 @@ declare module '@vue/runtime-core' {
     IMenuDoubleArrowRight: typeof import('~icons/menu/double-arrow-right')['default']
     MapChart: typeof import('./src/components/Charts/MapChart.vue')['default']
     Menu: typeof import('./src/components/Menu.vue')['default']
+    MonacoEditor: typeof import('./src/components/MonacoEditor.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     SingleImageUpload: typeof import('./src/components/SingleImageUpload.vue')['default']

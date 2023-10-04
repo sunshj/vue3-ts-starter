@@ -17,7 +17,7 @@ const dom = ref<HTMLDivElement | null>(null)
 
 watchPostEffect(() => {
   if (!dom.value) dom.value = document.getElementById(props.id) as HTMLDivElement
-  const { echartsInstance } = useECharts(dom.value, echarts => {
+  const { echartsInstance } = useECharts(dom.value as HTMLDivElement, echarts => {
     echarts.registerMap(props.map, props.mapGeoJson)
   })
   echartsInstance.showLoading()

@@ -17,7 +17,18 @@ export default defineConfig({
   plugins: [
     VueRouter({
       exclude: ['**/components/**.vue'],
-      routeBlockLang: 'yaml'
+      routeBlockLang: 'yaml',
+      importMode(filepath) {
+        const lazyLoadPages = [
+          '/login.vue',
+          '/index.vue',
+          '/tool.vue',
+          '/charts.vue',
+          '/profile.vue'
+        ]
+        if (lazyLoadPages.includes(filepath.split('pages/')[1])) return 'async'
+        return 'sync'
+      }
     }),
     vue(),
     Layouts(),
@@ -56,6 +67,15 @@ export default defineConfig({
       }
     })
   ],
+  optimizeDeps: {
+    include: [
+      'monaco-editor/esm/vs/editor/editor.worker',
+      'monaco-editor/esm/vs/language/json/json.worker',
+      'monaco-editor/esm/vs/language/css/css.worker',
+      'monaco-editor/esm/vs/language/html/html.worker',
+      'monaco-editor/esm/vs/language/typescript/ts.worker'
+    ]
+  },
   css: {
     preprocessorOptions: {
       scss: {
@@ -65,6 +85,17 @@ export default defineConfig({
   },
   esbuild: {
     drop: ['console', 'debugger']
+  },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks(id) {
+          if (id.includes('node_modules/monaco-editor')) {
+            return 'monaco-editor'
+          }
+        }
+      }
+    }
   },
   resolve: {
     alias: {

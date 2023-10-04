@@ -9,8 +9,3 @@ interface ImportMetaEnv {
 interface ImportMeta {
   readonly env: ImportMetaEnv
 }
-
-declare module 'monaco-editor-vue3'
-declare interface Window {
-  MonacoEnvironment: any
-}

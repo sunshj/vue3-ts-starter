@@ -285,6 +285,10 @@
     "ElMessage": true,
     "ElMessageBox": true,
     "defineLoader": true,
-    "definePage": true
+    "definePage": true,
+    "ExtractDefaultPropTypes": true,
+    "ExtractPropTypes": true,
+    "ExtractPublicPropTypes": true,
+    "WritableComputedRef": true
   }
 }
