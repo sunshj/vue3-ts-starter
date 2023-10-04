@@ -19,14 +19,8 @@ export default defineConfig({
       exclude: ['**/components/**.vue'],
       routeBlockLang: 'yaml',
       importMode(filepath) {
-        const lazyLoadPages = [
-          '/login.vue',
-          '/index.vue',
-          '/tool.vue',
-          '/charts.vue',
-          '/profile.vue'
-        ]
-        if (lazyLoadPages.includes(filepath.split('pages/')[1])) return 'async'
+        const lazyLoadPages = ['/login.vue', '/index.vue', '/charts.vue']
+        if (lazyLoadPages.includes(filepath.split('src/pages')[1])) return 'async'
         return 'sync'
       }
     }),
