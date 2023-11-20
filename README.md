@@ -19,3 +19,11 @@ VITE_APP_TITLE = ''
 VITE_API_BASE_URL = ''
 VITE_API_UPLOAD_URL = ''
 ```
+
+## Docker Build
+
+```bash
+docker buildx build . -t dash-frontend:latest
+
+docker run --rm -it -p 8080:80 dash-frontend:latest
+```

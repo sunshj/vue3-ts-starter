@@ -158,7 +158,7 @@
 <script setup lang="ts">
 import { Search, Refresh, Edit, Delete, Plus } from '@element-plus/icons-vue'
 import { type FormInstance } from 'element-plus'
-import { findAll, findOne, type IUser } from '@/api/user'
+import { ApiGetUser, ApiGetUserList, type IUser } from '@/api/user'
 import { timeFormat } from '@/utils'
 import { validateName, validatePass, validateEmail } from '@/common/validateRules'
 import { vThrottle } from '@/common/directives'
@@ -181,9 +181,11 @@ const inputVal = ref('')
 
 async function getUsersList() {
   tableLoading.value = true
-  const res = await findAll(currentPage.value, pageSize.value, inputVal.value).finally(() => {
-    tableLoading.value = false
-  })
+  const res = await ApiGetUserList(currentPage.value, pageSize.value, inputVal.value).finally(
+    () => {
+      tableLoading.value = false
+    }
+  )
   userList.value = res.result
   userTotal.value = res.total
 }
@@ -237,7 +239,7 @@ function showAddDialog() {
 async function showEditDialog(id: number) {
   userDialog.show = true
   userDialog.isAdd = false
-  const res = await findOne(id)
+  const res = await ApiGetUser(id)
   userInfo.userName = res.userName
   userInfo.userEmail = res.userEmail
   userInfo.userAvatar = res.userAvatar
