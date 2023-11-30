@@ -1,7 +1,6 @@
 import { createApp, nextTick } from 'vue'
 import { createPinia } from 'pinia'
 
-import 'element-plus/dist/index.css'
 import './assets/css/global.css'
 
 import App from './App.vue'
