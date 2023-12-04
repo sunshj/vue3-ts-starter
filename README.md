@@ -12,14 +12,6 @@ CSS 提示：[CSS Class Intellisense]() + [SCSS IntelliSense](https://marketplac
 
 其他插件：[Goto definition alias](https://marketplace.visualstudio.com/items?itemName=antfu.goto-alias)
 
-环境变量：
-
-```dotenv
-VITE_APP_TITLE = ''
-VITE_API_BASE_URL = ''
-VITE_API_UPLOAD_URL = ''
-```
-
 ## Docker Build
 
 ```bash
