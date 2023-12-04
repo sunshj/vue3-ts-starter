@@ -1,4 +1,4 @@
-import axios from '@/utils/axios'
+import { axios } from '@/utils'
 import { GetUser, GetUserList } from './types'
 
 export * from './types'
