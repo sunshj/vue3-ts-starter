@@ -20,6 +20,14 @@
 import MavonEditor from 'mavon-editor'
 import 'mavon-editor/dist/css/index.css'
 
+definePage({
+  meta: {
+    title: 'Markdown',
+    icon: 'i-menu-md',
+    isMenuitem: true
+  }
+})
+
 defineOptions({
   components: {
     'md-editor': MavonEditor.mavonEditor
@@ -62,10 +70,3 @@ h2 {
   z-index: auto;
 }
 </style>
-
-<route lang="yaml">
-meta:
-  title: 'Markdown'
-  icon: 'i-menu-md'
-  isMenuitem: true
-</route>

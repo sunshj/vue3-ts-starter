@@ -41,6 +41,15 @@
 import type { EChartsOption } from 'echarts'
 import worldMapGeoJSON from '@/assets/geoJSON/world.json'
 
+definePage({
+  meta: {
+    title: '图表统计',
+    icon: 'i-menu-chart',
+    isMenuitem: true,
+    menuitemOrder: 2
+  }
+})
+
 const breadList = [
   {
     path: '/charts',
@@ -258,13 +267,3 @@ onBeforeUnmount(() => {
   clearInterval(interval.value)
 })
 </script>
-
-<style lang="scss" scoped></style>
-
-<route lang="yaml">
-meta:
-  title: '图表统计'
-  icon: 'i-menu-chart'
-  isMenuitem: true
-  menuitemOrder: 2
-</route>

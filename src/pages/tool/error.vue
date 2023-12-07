@@ -6,6 +6,14 @@
 </template>
 
 <script setup lang="ts">
+definePage({
+  meta: {
+    title: '错误日志',
+    icon: 'i-menu-error',
+    isMenuitem: true
+  }
+})
+
 const breadList = [
   {
     path: '/tool',
@@ -21,12 +29,3 @@ function showMessage() {
   throw new TypeError('测试ERROR捕获')
 }
 </script>
-
-<style lang="scss" scoped></style>
-
-<route lang="yaml">
-meta:
-  title: '错误日志'
-  icon: 'i-menu-error'
-  isMenuitem: true
-</route>

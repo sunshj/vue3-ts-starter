@@ -78,6 +78,15 @@
 </template>
 
 <script setup lang="ts">
+definePage({
+  meta: {
+    title: '首页',
+    icon: 'i-menu-home',
+    isMenuitem: true,
+    menuitemOrder: 0
+  }
+})
+
 const title = ref('这是卡片')
 const suggest = ref('')
 const suggestionsList = [
@@ -98,13 +107,3 @@ const showMessage = (value: any) => {
   })
 }
 </script>
-
-<style lang="scss" scoped></style>
-
-<route lang="yaml">
-meta:
-  title: '首页'
-  icon: 'i-menu-home'
-  isMenuitem: true
-  menuitemOrder: 0
-</route>

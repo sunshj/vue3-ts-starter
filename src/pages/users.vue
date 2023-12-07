@@ -163,6 +163,15 @@ import { timeFormat } from '@/utils'
 import { validateName, validatePass, validateEmail } from '@/common/validateRules'
 import { vThrottle } from '@/common/directives'
 
+definePage({
+  meta: {
+    title: '用户管理',
+    icon: 'i-menu-customer',
+    isMenuitem: true,
+    menuitemOrder: 1
+  }
+})
+
 const breadList = [
   {
     path: '/users',
@@ -350,11 +359,3 @@ onMounted(() => {
   width: 100%;
 }
 </style>
-
-<route lang="yaml">
-meta:
-  title: '用户管理'
-  icon: 'i-menu-customer'
-  isMenuitem: true
-  menuitemOrder: 1
-</route>

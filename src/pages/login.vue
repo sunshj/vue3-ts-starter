@@ -50,6 +50,12 @@ import { validateName, validatePass } from '@/common/validateRules'
 import { vThrottle } from '@/common/directives'
 import ActionFormCard from '@/components/ActionFormCard.vue'
 
+definePage({
+  meta: {
+    layout: 'empty'
+  }
+})
+
 const router = useRouter()
 
 const loginFormRef = ref<FormInstance>()
@@ -206,8 +212,3 @@ onMounted(() => {
   }
 }
 </style>
-
-<route lang="yaml">
-meta:
-  layout: empty
-</route>

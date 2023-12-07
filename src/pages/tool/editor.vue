@@ -26,6 +26,14 @@
 </template>
 
 <script setup lang="ts">
+definePage({
+  meta: {
+    title: '代码编辑',
+    icon: 'i-menu-code',
+    isMenuitem: true
+  }
+})
+
 type LangType = 'javascript' | 'css' | 'html' | 'json'
 interface ICase {
   label: string
@@ -123,10 +131,3 @@ function onEditorChange(value: string) {
   }
 }
 </style>
-
-<route lang="yaml">
-meta:
-  title: '代码编辑'
-  icon: 'i-menu-code'
-  isMenuitem: true
-</route>

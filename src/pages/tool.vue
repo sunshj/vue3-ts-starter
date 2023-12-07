@@ -4,14 +4,12 @@
 
 <script setup lang="ts">
 definePage({
-  redirect: '/tool/editor'
+  redirect: '/tool/editor',
+  meta: {
+    title: '系统工具',
+    icon: 'i-menu-setting',
+    isMenuitem: true,
+    menuitemOrder: 3
+  }
 })
 </script>
-
-<route lang="yaml">
-meta:
-  title: '系统工具'
-  icon: 'i-menu-setting'
-  isMenuitem: true
-  menuitemOrder: 3
-</route>

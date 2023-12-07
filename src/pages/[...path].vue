@@ -2,11 +2,10 @@
   <div></div>
 </template>
 
-<script setup lang="ts"></script>
-
-<style lang="scss" scoped></style>
-
-<route lang="yaml">
-meta:
-  layout: 404
-</route>
+<script setup lang="ts">
+definePage({
+  meta: {
+    layout: '404'
+  }
+})
+</script>

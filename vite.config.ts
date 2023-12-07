@@ -10,14 +10,13 @@ import Icons from 'unplugin-icons/vite'
 import IconsResolver from 'unplugin-icons/resolver'
 import { FileSystemIconLoader } from 'unplugin-icons/loaders'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
-import Layouts from 'vite-plugin-vue-meta-layouts'
+import Layouts from 'vite-plugin-vue-layouts'
 
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
     VueRouter({
       exclude: ['**/components/**.vue'],
-      routeBlockLang: 'yaml',
       importMode(filepath) {
         const lazyLoadPages = ['/login.vue', '/index.vue', '/charts.vue']
         if (lazyLoadPages.includes(filepath.split('src/pages')[1])) return 'async'
