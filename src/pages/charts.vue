@@ -1,17 +1,17 @@
 <template>
   <div>
-    <custom-breadcrumb :bread-list="breadList"></custom-breadcrumb>
+    <custom-breadcrumb :bread-list="breadList" />
 
     <el-row :gutter="20">
       <el-col :span="12" :xs="24">
         <custom-card align-mode="center" :header="false">
-          <basic-chart :option="pieChartOption" id="pieChart"></basic-chart>
+          <basic-chart id="pieChart" :option="pieChartOption" />
         </custom-card>
       </el-col>
 
       <el-col :span="12" :xs="24">
         <custom-card align-mode="center" :header="false">
-          <basic-chart :option="barChartOption" id="barChart"></basic-chart>
+          <basic-chart id="barChart" :option="barChartOption" />
         </custom-card>
       </el-col>
     </el-row>
@@ -19,7 +19,7 @@
     <el-row :gutter="20">
       <el-col :span="12" :xs="24">
         <custom-card align-mode="center" :header="false">
-          <basic-chart :option="lineChartOption" id="lineChart"></basic-chart>
+          <basic-chart id="lineChart" :option="lineChartOption" />
         </custom-card>
       </el-col>
 
@@ -30,7 +30,7 @@
             map="world"
             :map-geo-json="worldMapGeoJSON"
             :option="worldChartOption"
-          ></map-chart>
+          />
         </custom-card>
       </el-col>
     </el-row>
@@ -38,8 +38,8 @@
 </template>
 
 <script setup lang="ts">
-import type { EChartsOption } from 'echarts'
 import worldMapGeoJSON from '@/assets/geoJSON/world.json'
+import type { EChartsOption } from 'echarts'
 
 definePage({
   meta: {
@@ -248,7 +248,7 @@ const worldChartOption: Ref<EChartsOption> = ref({
 })
 
 const randomNetworkSpeed = (minSpeed: number, maxSpeed: number) => {
-  return parseFloat((Math.random() * (maxSpeed - minSpeed) + minSpeed).toFixed(2))
+  return Number.parseFloat((Math.random() * (maxSpeed - minSpeed) + minSpeed).toFixed(2))
 }
 
 const interval = ref(0)

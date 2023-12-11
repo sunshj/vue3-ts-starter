@@ -1,13 +1,13 @@
 <template>
   <el-container class="layout_container">
     <!-- header -->
-    <Header :dash-title="dashHeader.title" :user-avatar="dashHeader.userAvatarUrl"></Header>
+    <Header :dash-title="dashHeader.title" :user-avatar="dashHeader.userAvatarUrl" />
     <!-- main container -->
     <el-container>
       <!-- left aside -->
       <el-aside :width="isCollapse ? '64px' : '200px'" class="layout_aside">
         <!-- 导航菜单 -->
-        <Menu :is-collapse="isCollapse"></Menu>
+        <Menu :is-collapse="isCollapse" />
         <!-- 底部控制侧边栏折叠区域 -->
         <div class="toggle_collapse" @click="toggleCollapse">
           <i-menu-double-arrow-right v-if="isCollapse" />

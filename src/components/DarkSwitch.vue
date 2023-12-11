@@ -4,11 +4,11 @@
     active-color="#2F2F2F"
     inactive-color="#F1F1F1"
     @change="toggleDarkMode"
-  ></el-switch>
+  />
 </template>
 
 <script setup lang="ts">
-import useDarkMode, { darkModeState } from '@/composables/useDarkMode'
+import useDarkMode, { darkModeState } from '@/composables/dark'
 
 const { toggleMode } = useDarkMode()
 

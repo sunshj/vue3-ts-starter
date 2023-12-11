@@ -1,5 +1,5 @@
 import { axios } from '@/utils'
-import { GetUser, GetUserList } from './types'
+import type { GetUser, GetUserList } from './types'
 
 export * from './types'
 

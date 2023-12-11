@@ -1,6 +1,6 @@
 <template>
   <div>
-    <custom-breadcrumb :bread-list="breadList"></custom-breadcrumb>
+    <custom-breadcrumb :bread-list="breadList" />
     <el-button type="danger" @click="showMessage()">测试ERROR捕获</el-button>
   </div>
 </template>

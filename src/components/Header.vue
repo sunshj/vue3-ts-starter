@@ -8,16 +8,16 @@
     </div>
     <div class="right_wrapper">
       <el-tooltip
-        v-if="!configStore.isMobile && errorLogsStore.logs.length"
+        v-if="!configStore.isMobile && errorLogsStore.logs.length > 0"
         content="查看错误日志"
         effect="dark"
         placement="bottom"
       >
-        <error-log></error-log>
+        <error-log />
       </el-tooltip>
 
       <el-tooltip content="切换夜间模式" effect="dark" placement="bottom">
-        <dark-switch @change="darkModeSwitchChange"></dark-switch>
+        <dark-switch @change="darkModeSwitchChange" />
       </el-tooltip>
 
       <el-tooltip content="前往仓库" effect="dark" placement="bottom">
@@ -51,15 +51,15 @@
     </span>
   </div>
   <el-drawer v-model="sideDrawerVisible" :with-header="false" direction="ltr" size="200px">
-    <Menu :is-collapse="false"></Menu>
+    <Menu :is-collapse="false" />
   </el-drawer>
 </template>
 
 <script setup lang="ts">
 import { CaretBottom } from '@element-plus/icons-vue'
 import DarkSwitch from '@/components/DarkSwitch.vue'
-import Menu from './Menu.vue'
 import { useConfigStore, useErrorLogsStore } from '@/stores'
+import Menu from './Menu.vue'
 
 const router = useRouter()
 const configStore = useConfigStore()

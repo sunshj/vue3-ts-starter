@@ -11,14 +11,14 @@
           </div>
         </header>
         <div class="form_container">
-          <slot></slot>
-          <slot name="form"></slot>
+          <slot />
+          <slot name="form" />
         </div>
       </div>
       <div class="card_footer">
-        <slot name="action"></slot>
+        <slot name="action" />
         <div v-if="clearable" class="clear_form_popover">
-          <el-popover placement="top" :width="160" v-model:visible="popoverVisible" trigger="hover">
+          <el-popover v-model:visible="popoverVisible" placement="top" :width="160" trigger="hover">
             <p>确认清空输入框？</p>
             <div style="text-align: right; margin: 0">
               <el-button size="small" text @click="popoverVisible = false">取消</el-button>

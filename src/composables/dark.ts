@@ -1,4 +1,4 @@
-import { enable, disable } from 'darkreader'
+import { disable, enable } from 'darkreader'
 
 export const darkModeState = reactive({ isDark: false })
 

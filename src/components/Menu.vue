@@ -12,20 +12,18 @@
     <template v-for="item in menusList">
       <!-- 有子菜单时渲染submenu -->
       <template v-if="item.children?.length">
-        <el-sub-menu :index="item.path" :key="item.path">
+        <el-sub-menu :key="item.path" :index="item.path">
           <template #title>
-            <el-icon :size="24">
-              <component :is="svgIconsMap.get(item.meta?.icon!)"></component
-            ></el-icon>
+            <el-icon :size="24"> <component :is="svgIconsMap.get(item.meta?.icon!)" /></el-icon>
             <span>{{ item.meta?.title }}</span>
           </template>
           <el-menu-item
-            :index="item.path + '/' + subItem.path"
             v-for="subItem in item.children"
             :key="subItem.path"
+            :index="`${item.path}/${subItem.path}`"
           >
             <template #title>
-              <component :is="svgIconsMap.get(subItem.meta?.icon!)"></component>
+              <component :is="svgIconsMap.get(subItem.meta?.icon!)" />
               <span>{{ subItem.meta?.title }}</span>
             </template>
           </el-menu-item>
@@ -33,8 +31,8 @@
       </template>
       <!-- 没有子菜单直接作为一级菜单 -->
       <template v-else>
-        <el-menu-item :index="item.path" :key="item.path">
-          <component :is="svgIconsMap.get(item.meta?.icon!)"></component>
+        <el-menu-item :key="item.path" :index="item.path">
+          <component :is="svgIconsMap.get(item.meta?.icon!)" />
           <template #title>
             <span>{{ item.meta?.title }}</span>
           </template>
@@ -47,7 +45,7 @@
 <script setup lang="ts">
 import { routes } from 'vue-router/auto/routes'
 import { useConfigStore } from '@/stores'
-import { svgIconsMap } from '@/common/svgIcons'
+import { svgIconsMap } from '@/common/svg-icons'
 
 const configStore = useConfigStore()
 
@@ -85,3 +83,4 @@ onBeforeMount(() => {
   }
 }
 </style>
+@/common/svg-icons

@@ -13,7 +13,6 @@ const axios = Axios.create({
 axios.interceptors.request.use(
   config => {
     const cancelRequestStore = useCancelRequestStore()
-    // eslint-disable-next-line no-param-reassign
     config.cancelToken = new Axios.CancelToken(cancel => {
       cancelRequestStore.add(cancel)
     })

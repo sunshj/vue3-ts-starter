@@ -1,10 +1,10 @@
 <template>
-  <div class="__basic_chart__" :id="props.id"></div>
+  <div :id="props.id" class="__basic_chart__" />
 </template>
 
 <script setup lang="ts">
+import useECharts from '@/composables/echarts'
 import type { EChartsOption } from 'echarts'
-import useECharts from '@/composables/useECharts'
 
 const props = defineProps<{
   id: string

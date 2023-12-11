@@ -1,17 +1,17 @@
 <template>
   <div>
-    <custom-breadcrumb :bread-list="breadList"></custom-breadcrumb>
+    <custom-breadcrumb :bread-list="breadList" />
 
     <h2>基础使用</h2>
-    <md-editor v-model="editor.value" :boxShadow="false" defaultOpen="preview" />
+    <md-editor v-model="editor.value" :box-shadow="false" default-open="preview" />
 
     <h2>仅预览</h2>
     <md-editor
       v-model="editor.value"
-      :boxShadow="false"
+      :box-shadow="false"
       :subfield="false"
-      defaultOpen="preview"
-      :toolbarsFlag="false"
+      default-open="preview"
+      :toolbars-flag="false"
     />
   </div>
 </template>

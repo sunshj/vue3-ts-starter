@@ -1,6 +1,6 @@
 <template>
   <div>
-    <custom-breadcrumb></custom-breadcrumb>
+    <custom-breadcrumb />
     <el-row :gutter="20">
       <el-col :span="12" :xs="24">
         <custom-card :title="title">
@@ -73,7 +73,7 @@
       </el-col>
     </el-row>
 
-    <auto-complete trigger v-model="suggest" :suggestions="suggestionsList"></auto-complete>
+    <auto-complete v-model="suggest" trigger :suggestions="suggestionsList" />
   </div>
 </template>
 
@@ -95,7 +95,6 @@ const suggestionsList = [
 ]
 
 watchEffect(() => {
-  // eslint-disable-next-line no-console
   console.log(suggest.value)
 })
 

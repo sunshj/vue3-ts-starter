@@ -1,12 +1,11 @@
 <template>
   <el-card shadow="hover" class="custom-card">
-    <div class="custom-card__title" v-if="header">
+    <div v-if="header" class="custom-card__title">
       <slot name="title">{{ title }}</slot>
     </div>
-
     <div class="custom-card__content">
-      <slot></slot>
-      <slot name="content"></slot>
+      <slot />
+      <slot name="content" />
     </div>
   </el-card>
 </template>

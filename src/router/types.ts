@@ -1,4 +1,4 @@
-import type { SvgIconsEnum } from '@/common/svgIcons'
+import type { SvgIconsEnum } from '@/common/svg-icons'
 import 'vue-router'
 
 declare module 'vue-router' {

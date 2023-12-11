@@ -1,5 +1,5 @@
+import { useCancelRequestStore, useConfigStore } from '../stores'
 import router from '.'
-import { useConfigStore, useCancelRequestStore } from '../stores'
 
 const allowPath = ['/login']
 

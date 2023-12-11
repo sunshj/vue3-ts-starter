@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-page-header @back="$router.back()" content="个人中心" style="margin-bottom: 15px">
+    <el-page-header content="个人中心" style="margin-bottom: 15px" @back="$router.back()">
       <template #title>返回</template>
     </el-page-header>
     <custom-card :padding="15" title="登录信息">

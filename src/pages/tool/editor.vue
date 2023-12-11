@@ -1,6 +1,6 @@
 <template>
   <div class="editor-tool">
-    <custom-breadcrumb :bread-list="breadList"></custom-breadcrumb>
+    <custom-breadcrumb :bread-list="breadList" />
     <div class="wrapper">
       <div class="select">
         <span>切换语言类型 > </span>
@@ -15,12 +15,12 @@
       </div>
 
       <monaco-editor
-        class="editor"
         v-model="code"
+        class="editor"
         theme="vs-dark"
         :language="language"
         @change="onEditorChange"
-      ></monaco-editor>
+      />
     </div>
   </div>
 </template>
@@ -97,7 +97,6 @@ const code = computed({
 })
 
 function onEditorChange(value: string) {
-  // eslint-disable-next-line no-console
   console.log(value)
 }
 </script>

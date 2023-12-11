@@ -1,6 +1,6 @@
 <template>
   <div>
-    <custom-breadcrumb :bread-list="breadList"></custom-breadcrumb>
+    <custom-breadcrumb :bread-list="breadList" />
 
     <custom-card :header="false">
       <el-row :gutter="20">
@@ -12,8 +12,8 @@
         </el-col>
         <el-col :span="8" :xs="12">
           <el-input
-            clearable
             v-model="inputVal"
+            clearable
             placeholder="输入用户名进行查询"
             @change="handleSearchChange"
           >
@@ -23,7 +23,7 @@
         </el-col>
       </el-row>
 
-      <el-table :data="userList" border stripe v-loading="tableLoading">
+      <el-table v-loading="tableLoading" :data="userList" border stripe>
         <el-table-column type="index" label="#" />
         <el-table-column prop="userName" label="用户名" />
 
@@ -72,9 +72,9 @@
       </el-table>
 
       <el-pagination
-        background
         v-model:current-page="currentPage"
         v-model:page-size="pageSize"
+        background
         :page-sizes="[5, 10, 15, 20]"
         :total="userTotal"
         layout="total, sizes, prev, pager, next, jumper"
@@ -85,8 +85,8 @@
 
     <!-- 添加 -->
     <el-dialog
-      :title="userDialog.isAdd ? '添加用户' : '编辑用户信息'"
       v-model="userDialog.show"
+      :title="userDialog.isAdd ? '添加用户' : '编辑用户信息'"
       center
       draggable
       width="40%"
@@ -104,7 +104,7 @@
         <el-form-item label="用户名" prop="userName">
           <el-input v-model="userInfo.userName" clearable />
         </el-form-item>
-        <el-form-item label="登录密码" prop="userPass" v-if="userDialog.isAdd">
+        <el-form-item v-if="userDialog.isAdd" label="登录密码" prop="userPass">
           <el-input v-model="userInfo.userPass" type="password" show-password clearable />
         </el-form-item>
         <el-form-item label="用户邮箱" prop="userEmail">
@@ -122,7 +122,7 @@
               :action="UPLOAD_API_URL"
               @success="uploadSuccess"
               @failed="uploadFailed"
-            ></single-image-upload>
+            />
           </div>
         </el-form-item>
 
@@ -156,12 +156,12 @@
 </template>
 
 <script setup lang="ts">
-import { Search, Refresh, Edit, Delete, Plus } from '@element-plus/icons-vue'
-import { type FormInstance } from 'element-plus'
+import { Delete, Edit, Plus, Refresh, Search } from '@element-plus/icons-vue'
 import { ApiGetUser, ApiGetUserList, type IUser } from '@/api/user'
 import { timeFormat } from '@/utils'
-import { validateName, validatePass, validateEmail } from '@/common/validateRules'
+import { validateEmail, validateName, validatePass } from '@/common/validate-rules'
 import { vThrottle } from '@/common/directives'
+import type { FormInstance } from 'element-plus'
 
 definePage({
   meta: {
@@ -263,9 +263,9 @@ function userDialogClosed() {
 }
 
 // 添加用户
-async function addDashUser() {
+function addDashUser() {
   if (!userInfoRef.value) return
-  await userInfoRef.value.validate(async valid => {
+  userInfoRef.value.validate(valid => {
     if (!valid) return ElMessage.warning('请正确填写表单')
     submitLoading.value = true
     setTimeout(() => {
@@ -279,13 +279,12 @@ async function addDashUser() {
 }
 
 // 提交编辑
-async function editUser() {
+function editUser() {
   if (!userInfoRef.value) return
-  await userInfoRef.value.validate(async valid => {
+  userInfoRef.value.validate(valid => {
     if (!valid) return ElMessage.warning('请正确填写表单')
     submitLoading.value = true
     setTimeout(() => {
-      // eslint-disable-next-line no-console
       console.log('更新用户信息：', JSON.parse(JSON.stringify(userInfo)))
       ElMessage.warning('更新用户信息成功：（仅供演示）')
       submitLoading.value = false

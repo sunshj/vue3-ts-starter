@@ -1,5 +1,5 @@
 <template>
-  <div ref="codeEditorRef" id="codeEditorBox"></div>
+  <div id="codeEditorBox" ref="codeEditorRef" />
 </template>
 
 <script setup lang="ts">

@@ -26,9 +26,7 @@ const datalist = ref(props.suggestions)
 
 function querySearch(queryString: string, cb: Function) {
   const results = queryString
-    ? datalist.value.filter(
-        item => item.value.toLowerCase().indexOf(queryString.toLowerCase()) !== -1
-      )
+    ? datalist.value.filter(item => item.value.toLowerCase().includes(queryString.toLowerCase()))
     : datalist.value
   cb(results)
 }

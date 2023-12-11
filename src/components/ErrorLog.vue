@@ -20,7 +20,7 @@
 
       <el-table :data="errorLogsStore.logs" border>
         <el-table-column label="Message">
-          <template v-slot="{ row }">
+          <template #default="{ row }">
             <div>
               <span class="message-title">Msg:</span>
               <el-tag type="danger">
@@ -44,7 +44,7 @@
           </template>
         </el-table-column>
         <el-table-column label="Stack">
-          <template v-slot="{ row }">
+          <template #default="{ row }">
             {{ row.err.stack }}
           </template>
         </el-table-column>

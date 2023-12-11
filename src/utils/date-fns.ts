@@ -19,7 +19,7 @@ export function timeFormat(
 ) {
   const time =
     typeof datetime === 'number'
-      ? parseInt(datetime.toString().padEnd(13, '0'), 10)
+      ? Number.parseInt(datetime.toString().padEnd(13, '0'), 10)
       : Date.parse(datetime)
 
   if (type === 'ago') return dayjs(time).fromNow()

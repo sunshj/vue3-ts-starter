@@ -1,7 +1,7 @@
-// @ts-ignore
+// @ts-expect-error
 // @ts-nocheck
 
-import { Component } from 'vue'
+import type { Component } from 'vue'
 import IMenuHome from '~icons/menu/home'
 import IMenuChart from '~icons/menu/chart'
 import IMenuCustomer from '~icons/menu/customer'

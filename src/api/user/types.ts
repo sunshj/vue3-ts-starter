@@ -1,4 +1,4 @@
-import { IResData } from '../typings'
+import type { IResData } from '../typings'
 
 export interface IUser {
   userId: number

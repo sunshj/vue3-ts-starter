@@ -3,8 +3,8 @@
     <template #form>
       <!-- 表单 -->
       <el-form
-        class="login_form"
         ref="loginFormRef"
+        class="login_form"
         :model="loginForm"
         :rules="loginFormRules"
         status-icon
@@ -17,20 +17,20 @@
         <!-- password -->
         <el-form-item prop="password">
           <el-input
-            show-password
             v-model="loginForm.password"
+            show-password
             :prefix-icon="Key"
             placeholder="密码"
-          ></el-input>
+          />
         </el-form-item>
         <!-- 按钮 -->
         <el-button
+          v-throttle
           class="submit_btn"
           type="primary"
-          @click="submitForm"
           native-type="submit"
           :loading="loginLoading"
-          v-throttle
+          @click="submitForm"
         >
           <i-fa6-solid-arrow-right-to-bracket />
           <span style="margin-left: 5px">登入</span>
@@ -44,11 +44,11 @@
 </template>
 
 <script setup lang="ts">
-import { User, Key } from '@element-plus/icons-vue'
-import type { FormInstance, FormRules } from 'element-plus'
-import { validateName, validatePass } from '@/common/validateRules'
+import { Key, User } from '@element-plus/icons-vue'
+import { validateName, validatePass } from '@/common/validate-rules'
 import { vThrottle } from '@/common/directives'
 import ActionFormCard from '@/components/ActionFormCard.vue'
+import type { FormInstance, FormRules } from 'element-plus'
 
 definePage({
   meta: {
@@ -88,20 +88,23 @@ const submitForm = async () => {
     ElMessage.success('已通过校验')
     loginLoading.value = true
     // 异步请求
-    setTimeout(() => {
-      if (rememberPassChecked.value) {
-        localStorage.setItem('username', loginForm.username)
-        localStorage.setItem('password', loginForm.password)
-      }
-      sessionStorage.setItem('token', Date.now().toString())
-      sessionStorage.setItem(
-        'userInfo',
-        JSON.stringify({ userName: loginForm.username, loginTime: Date.now() })
-      )
-      ElMessage.success('登录成功')
-      router.push('/')
-      loginLoading.value = false
-    }, 1000 + Math.random() * 2000)
+    setTimeout(
+      () => {
+        if (rememberPassChecked.value) {
+          localStorage.setItem('username', loginForm.username)
+          localStorage.setItem('password', loginForm.password)
+        }
+        sessionStorage.setItem('token', Date.now().toString())
+        sessionStorage.setItem(
+          'userInfo',
+          JSON.stringify({ userName: loginForm.username, loginTime: Date.now() })
+        )
+        ElMessage.success('登录成功')
+        router.push('/')
+        loginLoading.value = false
+      },
+      1000 + Math.random() * 2000
+    )
   })
 }
 
