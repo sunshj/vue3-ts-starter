@@ -29,7 +29,8 @@
   "devDependencies": {
     "@iconify-json/fa6-brands": "^1.1.11",
     "@iconify-json/fa6-solid": "^1.1.13",
-    "@sxzz/eslint-config": "^3.7.5",
+    "@sunshj/eslint-config": "^1.0.1",
+    "@sunshj/prettier-config": "^1.0.0",
     "@types/node": "^20.2.5",
     "@vitejs/plugin-vue": "^4.1.0",
     "commitlint": "^18.4.3",
@@ -48,6 +49,7 @@
     "vite-plugin-vue-layouts": "^0.9.1",
     "vue-tsc": "^1.4.2"
   },
+  "prettier": "@sunshj/prettier-config",
   "config": {
     "commitizen": {
       "path": "node_modules/cz-git"
