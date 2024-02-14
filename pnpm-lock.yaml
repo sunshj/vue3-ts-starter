@@ -98,8 +98,8 @@ devDependencies:
     specifier: ^0.16.5
     version: 0.16.5
   unplugin-vue-components:
-    specifier: ^0.25.0
-    version: 0.25.0(vue@3.3.0)
+    specifier: ^0.26.0
+    version: 0.26.0(vue@3.3.0)
   unplugin-vue-router:
     specifier: ^0.6.4
     version: 0.6.4(vue-router@4.2.2)(vue@3.3.0)
@@ -1100,7 +1100,7 @@ packages:
       '@vue/reactivity-transform': 3.3.4
       '@vue/shared': 3.3.4
       estree-walker: 2.0.2
-      magic-string: 0.30.4
+      magic-string: 0.30.5
       postcss: 8.4.31
       source-map-js: 1.0.2
     dev: true
@@ -1128,7 +1128,7 @@ packages:
       '@vue/compiler-core': 3.3.0
       '@vue/shared': 3.3.0
       estree-walker: 2.0.2
-      magic-string: 0.30.4
+      magic-string: 0.30.5
 
   /@vue/reactivity-transform@3.3.4:
     resolution: {integrity: sha512-MXgwjako4nu5WFLAjpBnCj/ieqcjE2aJBINUNQzkZQfzIZA4xn+0fV1tIYBJvvva3N3OvKGofRLvQIwEQPpaXw==}
@@ -1137,7 +1137,7 @@ packages:
       '@vue/compiler-core': 3.3.4
       '@vue/shared': 3.3.4
       estree-walker: 2.0.2
-      magic-string: 0.30.4
+      magic-string: 0.30.5
     dev: true
 
   /@vue/reactivity@3.3.0:
@@ -3480,7 +3480,7 @@ packages:
     resolution: {integrity: sha512-0shqecEPgdFpnI3AP90epXyxZy9g6CRZ+SZ7BcqFwYmtFEnZ1jpevcV5HoyVnlDS9gCnc1UIg3Rsvp3Ci7r8OA==}
     engines: {node: '>=16.14.0'}
     dependencies:
-      magic-string: 0.30.4
+      magic-string: 0.30.5
     dev: true
 
   /magic-string@0.30.4:
@@ -3494,7 +3494,6 @@ packages:
     engines: {node: '>=12'}
     dependencies:
       '@jridgewell/sourcemap-codec': 1.4.15
-    dev: true
 
   /map-obj@1.0.1:
     resolution: {integrity: sha512-7N/q3lyZ+LVCp7PzuxrJr4KMbBE2hW7BT7YNia330OFxIf4d3r5zVpicP2650l7CPN6RM9zOJRl3NGpqSiw3Eg==}
@@ -4736,8 +4735,8 @@ packages:
       - supports-color
     dev: true
 
-  /unplugin-vue-components@0.25.0(vue@3.3.0):
-    resolution: {integrity: sha512-HxrQ4GMSS1RwVww2av3a42cABo/v5AmTRN9iARv6e/xwkrfTyHhLh84kFwXxKkXK61vxDHxaryn694mQmkiVBg==}
+  /unplugin-vue-components@0.26.0(vue@3.3.0):
+    resolution: {integrity: sha512-s7IdPDlnOvPamjunVxw8kNgKNK8A5KM1YpK5j/p97jEKTjlPNrA0nZBiSfAKKlK1gWZuyWXlKL5dk3EDw874LQ==}
     engines: {node: '>=14'}
     peerDependencies:
       '@babel/parser': ^7.15.8
@@ -4753,9 +4752,9 @@ packages:
       '@rollup/pluginutils': 5.0.4
       chokidar: 3.5.3
       debug: 4.3.4
-      fast-glob: 3.3.1
+      fast-glob: 3.3.2
       local-pkg: 0.4.3
-      magic-string: 0.30.4
+      magic-string: 0.30.5
       minimatch: 9.0.3
       resolve: 1.22.6
       unplugin: 1.5.0
