@@ -160,7 +160,6 @@ import { Delete, Edit, Plus, Refresh, Search } from '@element-plus/icons-vue'
 import { ApiGetUser, ApiGetUserList, type IUser } from '@/api/user'
 import { timeFormat } from '@/utils'
 import { validateEmail, validateName, validatePass } from '@/common/validate-rules'
-import { vThrottle } from '@/common/directives'
 import type { FormInstance } from 'element-plus'
 
 definePage({

@@ -46,8 +46,8 @@
 <script setup lang="ts">
 import { Key, User } from '@element-plus/icons-vue'
 import { validateName, validatePass } from '@/common/validate-rules'
-import { vThrottle } from '@/common/directives'
 import ActionFormCard from '@/components/ActionFormCard.vue'
+import { delay } from '@/utils'
 import type { FormInstance, FormRules } from 'element-plus'
 
 definePage({
@@ -80,7 +80,7 @@ const resetForm = () => {
 const submitForm = async () => {
   const formEl = loginFormRef.value
   if (!formEl) return
-  await formEl.validate(valid => {
+  await formEl.validate(async valid => {
     if (!valid) {
       ElMessage.warning('未通过校验')
       return
@@ -88,23 +88,19 @@ const submitForm = async () => {
     ElMessage.success('已通过校验')
     loginLoading.value = true
     // 异步请求
-    setTimeout(
-      () => {
-        if (rememberPassChecked.value) {
-          localStorage.setItem('username', loginForm.username)
-          localStorage.setItem('password', loginForm.password)
-        }
-        sessionStorage.setItem('token', Date.now().toString())
-        sessionStorage.setItem(
-          'userInfo',
-          JSON.stringify({ userName: loginForm.username, loginTime: Date.now() })
-        )
-        ElMessage.success('登录成功')
-        router.push('/')
-        loginLoading.value = false
-      },
-      1000 + Math.random() * 2000
+    await delay(1000 + Math.random() * 2000)
+    if (rememberPassChecked.value) {
+      localStorage.setItem('username', loginForm.username)
+      localStorage.setItem('password', loginForm.password)
+    }
+    sessionStorage.setItem('token', Date.now().toString())
+    sessionStorage.setItem(
+      'userInfo',
+      JSON.stringify({ userName: loginForm.username, loginTime: Date.now() })
     )
+    ElMessage.success('登录成功')
+    router.push('/')
+    loginLoading.value = false
   })
 }
 

@@ -14,6 +14,7 @@
   },
   "dependencies": {
     "@element-plus/icons-vue": "^2.1.0",
+    "@sunshj/directives": "^0.1.0",
     "@vueuse/core": "^10.1.2",
     "axios": "^1.4.0",
     "darkreader": "^4.9.58",
@@ -29,7 +30,7 @@
   "devDependencies": {
     "@iconify-json/fa6-brands": "^1.1.11",
     "@iconify-json/fa6-solid": "^1.1.13",
-    "@sunshj/eslint-config": "^1.0.1",
+    "@sunshj/eslint-config": "^1.0.6",
     "@sunshj/plugins": "^0.1.1",
     "@sunshj/prettier-config": "^1.0.0",
     "@types/node": "^20.2.5",

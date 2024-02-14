@@ -73,5 +73,6 @@ declare module '@vue/runtime-core' {
   }
   export interface ComponentCustomProperties {
     vLoading: typeof import('element-plus/es')['ElLoadingDirective']
+    vThrottle: typeof import('@sunshj/directives')['vThrottle']
   }
 }

@@ -1,7 +1,7 @@
-/* eslint-disable no-param-reassign */
 import { URL, fileURLToPath } from 'node:url'
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
+import Layouts from 'vite-plugin-vue-layouts'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import VueRouter from 'unplugin-vue-router/vite'
@@ -10,7 +10,7 @@ import Icons from 'unplugin-icons/vite'
 import IconsResolver from 'unplugin-icons/resolver'
 import { FileSystemIconLoader } from 'unplugin-icons/loaders'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
-import Layouts from 'vite-plugin-vue-layouts'
+import { vAnyResolver } from '@sunshj/directives/resolver'
 import { GitInfo } from '@sunshj/plugins'
 
 // https://vitejs.dev/config/
@@ -41,7 +41,8 @@ export default defineConfig(({ mode }) => ({
         ElementPlusResolver(),
         IconsResolver({
           customCollections: ['menu']
-        })
+        }),
+        vAnyResolver()
       ]
     }),
     Icons({
