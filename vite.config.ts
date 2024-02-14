@@ -11,9 +11,10 @@ import IconsResolver from 'unplugin-icons/resolver'
 import { FileSystemIconLoader } from 'unplugin-icons/loaders'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import Layouts from 'vite-plugin-vue-layouts'
+import { GitInfo } from '@sunshj/plugins'
 
 // https://vitejs.dev/config/
-export default defineConfig({
+export default defineConfig(({ mode }) => ({
   plugins: [
     VueRouter({
       exclude: ['**/components/**.vue'],
@@ -58,7 +59,8 @@ export default defineConfig({
           props.height = '1.5em'
         }
       }
-    })
+    }),
+    GitInfo()
   ],
   optimizeDeps: {
     include: [
@@ -77,7 +79,7 @@ export default defineConfig({
     }
   },
   esbuild: {
-    drop: ['console', 'debugger']
+    pure: mode === 'production' ? ['console.log'] : []
   },
   build: {
     rollupOptions: {
@@ -95,4 +97,4 @@ export default defineConfig({
       '@': fileURLToPath(new URL('./src', import.meta.url))
     }
   }
-})
+}))
