@@ -9,8 +9,8 @@ dependencies:
     specifier: ^2.1.0
     version: 2.1.0(vue@3.3.0)
   '@sunshj/directives':
-    specifier: ^0.1.0
-    version: 0.1.0(vue@3.3.0)
+    specifier: ^0.1.2
+    version: 0.1.2(vue@3.3.0)
   '@vueuse/core':
     specifier: ^10.1.2
     version: 10.1.2(vue@3.3.0)
@@ -692,8 +692,8 @@ packages:
       picomatch: 2.3.1
     dev: true
 
-  /@sunshj/directives@0.1.0(vue@3.3.0):
-    resolution: {integrity: sha512-oylJvPWsf1KvuWllndTBz5842EAae6jS/G5NjIffxrS0z+X0PfvUD4f1CDchGw6RZ3XSOHsDxxKkNP5GLZ/llw==}
+  /@sunshj/directives@0.1.2(vue@3.3.0):
+    resolution: {integrity: sha512-PmgTa9LoyezeCZ39prO+RfU5pak+f5f8p/jAnLkvqYnd4KhijpyGjS56tcI3ZNkediunkqs4tANUEJgiCfaCSg==}
     peerDependencies:
       vue: '3'
     dependencies:
