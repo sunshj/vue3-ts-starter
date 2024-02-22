@@ -15,10 +15,10 @@ const dom = ref<HTMLDivElement | null>(null)
 
 watchPostEffect(() => {
   if (!dom.value) dom.value = document.getElementById(props.id) as HTMLDivElement
-  const { echartsInstance } = useECharts(dom.value as HTMLDivElement)
-  echartsInstance.showLoading()
-  echartsInstance.setOption(props.option)
-  echartsInstance.hideLoading()
+  const chart = useECharts(dom.value as HTMLDivElement)
+  chart.showLoading()
+  chart.setOption(props.option)
+  chart.hideLoading()
 })
 </script>
 

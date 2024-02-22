@@ -17,12 +17,12 @@ const dom = ref<HTMLDivElement | null>(null)
 
 watchPostEffect(() => {
   if (!dom.value) dom.value = document.getElementById(props.id) as HTMLDivElement
-  const { echartsInstance } = useECharts(dom.value as HTMLDivElement, echarts => {
+  const mapChart = useECharts(dom.value as HTMLDivElement, echarts => {
     echarts.registerMap(props.map, props.mapGeoJson)
   })
-  echartsInstance.showLoading()
-  echartsInstance.setOption(props.option)
-  echartsInstance.hideLoading()
+  mapChart.showLoading()
+  mapChart.setOption(props.option)
+  mapChart.hideLoading()
 })
 </script>
 

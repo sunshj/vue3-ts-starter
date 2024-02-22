@@ -37,6 +37,7 @@ export default defineConfig(({ mode }) => ({
       resolvers: [ElementPlusResolver()]
     }),
     Components({
+      directoryAsNamespace: true,
       resolvers: [
         ElementPlusResolver(),
         IconsResolver({

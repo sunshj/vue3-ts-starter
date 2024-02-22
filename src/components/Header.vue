@@ -57,7 +57,6 @@
 
 <script setup lang="ts">
 import { CaretBottom } from '@element-plus/icons-vue'
-import DarkSwitch from '@/components/DarkSwitch.vue'
 import { useConfigStore, useErrorLogsStore } from '@/stores'
 import Menu from './Menu.vue'
 
