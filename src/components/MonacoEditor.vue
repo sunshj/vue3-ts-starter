@@ -7,11 +7,11 @@ import { editor, languages } from 'monaco-editor'
 
 interface EditorProps {
   modelValue: string
-  width: string | number
-  height: string | number
-  language: 'javascript' | 'css' | 'html' | 'typescript' | 'json'
-  theme: editor.BuiltinTheme
-  options: editor.IEditorOptions
+  width?: string | number
+  height?: string | number
+  language?: 'javascript' | 'css' | 'html' | 'typescript' | 'json'
+  theme?: editor.BuiltinTheme
+  options?: editor.IEditorOptions
 }
 
 defineOptions({

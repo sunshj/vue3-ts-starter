@@ -36,7 +36,7 @@
         <el-table-column prop="userEmail" label="邮箱" />
         <el-table-column label="用户角色">
           <template #default="scope">
-            <el-tag :type="scope.row.userRole === 2 ? 'warning' : ''">
+            <el-tag :type="scope.row.userRole === 2 ? 'warning' : 'primary'">
               {{ scope.row.userRole === 2 ? '管理员' : '普通用户' }}
             </el-tag>
           </template>

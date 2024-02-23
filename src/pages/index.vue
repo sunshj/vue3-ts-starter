@@ -57,7 +57,7 @@
       </el-col>
 
       <el-col :span="12" :xs="24">
-        <custom-card :title="title" :padding="20">
+        <custom-card :title="title" :padding="20" align-mode="center">
           <b>align="center" padding="20px"</b>
           <p>
             Lorem ipsum dolor sit, amet consectetur adipisicing elit. Alias unde perspiciatis

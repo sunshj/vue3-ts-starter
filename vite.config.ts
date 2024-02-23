@@ -28,12 +28,6 @@ export default defineConfig(({ mode }) => ({
     Layouts(),
     AutoImport({
       imports: ['vue', VueRouterAutoImports, { 'vue-router/auto': ['useLink'] }, '@vueuse/core'],
-      dts: true,
-      eslintrc: {
-        enabled: true,
-        filepath: './.eslintrc-auto-import.json',
-        globalsPropValue: true
-      },
       resolvers: [ElementPlusResolver()]
     }),
     Components({
