@@ -46,7 +46,6 @@
 <script setup lang="ts">
 import { Key, User } from '@element-plus/icons-vue'
 import { validateName, validatePass } from '@/common/validate-rules'
-import ActionFormCard from '@/components/ActionFormCard.vue'
 import { delay } from '@/utils'
 import type { FormInstance, FormRules } from 'element-plus'
 

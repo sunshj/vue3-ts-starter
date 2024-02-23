@@ -9,7 +9,7 @@ declare module 'vue' {
   export interface GlobalComponents {
     ActionFormCard: typeof import('./src/components/ActionFormCard.vue')['default']
     AutoComplete: typeof import('./src/components/AutoComplete.vue')['default']
-    BasicChart: typeof import('./src/components/Charts/BasicChart.vue')['default']
+    BasicChart: typeof import('./src/components/BasicChart.vue')['default']
     CustomBreadcrumb: typeof import('./src/components/CustomBreadcrumb.vue')['default']
     CustomCard: typeof import('./src/components/CustomCard.vue')['default']
     DarkSwitch: typeof import('./src/components/DarkSwitch.vue')['default']
@@ -61,7 +61,7 @@ declare module 'vue' {
     IFa6SolidBug: typeof import('~icons/fa6-solid/bug')['default']
     IMenuDoubleArrowLeft: typeof import('~icons/menu/double-arrow-left')['default']
     IMenuDoubleArrowRight: typeof import('~icons/menu/double-arrow-right')['default']
-    MapChart: typeof import('./src/components/Charts/MapChart.vue')['default']
+    MapChart: typeof import('./src/components/MapChart.vue')['default']
     Menu: typeof import('./src/components/Menu.vue')['default']
     MonacoEditor: typeof import('./src/components/MonacoEditor.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']

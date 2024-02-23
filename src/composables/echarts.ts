@@ -32,7 +32,7 @@ const instances = new WeakMap<InitDom, ECharts>()
 export default function useECharts(
   domOrFullOption: InitDom | FullOption,
   callback?: (globalECharts: GlobalEChartsType) => void
-): { echartsInstance: ECharts } {
+): ECharts {
   if (typeof callback === 'function') {
     callback(echarts)
   }
@@ -41,15 +41,12 @@ export default function useECharts(
 
   if ((domOrFullOption as FullOption).el) {
     const { el, theme, opts } = domOrFullOption as FullOption
-    if (instances.has(el)) return { echartsInstance: instances.get(el) as ECharts }
+    if (instances.has(el)) return instances.get(el)!
 
     echartsInstance = echarts.init(el, theme, opts)
     instances.set(el, echartsInstance)
   } else {
-    if (instances.has(domOrFullOption as InitDom))
-      return {
-        echartsInstance: instances.get(domOrFullOption as InitDom) as ECharts
-      }
+    if (instances.has(domOrFullOption as InitDom)) return instances.get(domOrFullOption as InitDom)!
 
     echartsInstance = echarts.init(domOrFullOption as InitDom)
     instances.set(domOrFullOption as InitDom, echartsInstance)
@@ -60,5 +57,5 @@ export default function useECharts(
     echarts.throttle(() => echartsInstance.resize(), 500)
   )
 
-  return { echartsInstance }
+  return echartsInstance
 }
