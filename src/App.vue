@@ -8,4 +8,7 @@
 import zhCn from 'element-plus/es/locale/lang/zh-cn'
 
 const locale = ref(zhCn)
+
+// @ts-expect-error
+window.__GIT_INFO__ = __GIT_INFO__
 </script>
