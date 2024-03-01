@@ -83,4 +83,3 @@ onBeforeMount(() => {
   }
 }
 </style>
-@/common/svg-icons

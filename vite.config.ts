@@ -56,7 +56,13 @@ export default defineConfig(({ mode }) => ({
         }
       }
     }),
-    GitInfo({ enable: { shortCommitHash: true, lastCommitTime: true } })
+    GitInfo({
+      enableVars: {
+        lastCommitTime: true,
+        lastCommitMsg: true
+      },
+      injectToHead: false
+    })
   ],
   optimizeDeps: {
     include: [

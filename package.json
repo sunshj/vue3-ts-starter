@@ -31,7 +31,7 @@
     "@iconify-json/fa6-brands": "^1.1.18",
     "@iconify-json/fa6-solid": "^1.1.20",
     "@sunshj/eslint-config": "^1.0.6",
-    "@sunshj/plugins": "^0.1.4",
+    "@sunshj/plugins": "^0.1.5",
     "@sunshj/prettier-config": "^1.0.0",
     "@types/node": "^20.11.20",
     "@vitejs/plugin-vue": "^4.6.2",

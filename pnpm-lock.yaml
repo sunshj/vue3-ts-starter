@@ -56,8 +56,8 @@ devDependencies:
     specifier: ^1.0.6
     version: 1.0.6(eslint@8.56.0)(typescript@5.3.3)
   '@sunshj/plugins':
-    specifier: ^0.1.4
-    version: 0.1.4
+    specifier: ^0.1.5
+    version: 0.1.5
   '@sunshj/prettier-config':
     specifier: ^1.0.0
     version: 1.0.0
@@ -762,8 +762,8 @@ packages:
       - typescript
     dev: true
 
-  /@sunshj/plugins@0.1.4:
-    resolution: {integrity: sha512-VtzPWKe+aTDQUh5WsvsHgt70Mg1rYdsozQj/oWhXgsiIM6hVHgN8tt+TVIapUBwmzSxJDXlwotHHstMXvaMpqg==}
+  /@sunshj/plugins@0.1.5:
+    resolution: {integrity: sha512-Av1vxMs2HDRawxoHTZlQy20qYgnAGW8jVGl+FMaNITemoz4f+/Alkz2Z4cr/XmQigRMkVyAbODzKXYVCIOGibA==}
     dev: true
 
   /@sunshj/prettier-config@1.0.0:
