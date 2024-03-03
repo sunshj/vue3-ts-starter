@@ -37,9 +37,9 @@ withDefaults(defineProps<IProps>(), {
 
   &__title {
     padding: 15px;
-    background-color: #f7f9fb;
     font-size: 24px;
     font-weight: bold;
+    background-color: #f7f9fb;
   }
 
   &__content {

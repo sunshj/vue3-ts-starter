@@ -97,8 +97,8 @@ onBeforeRouteUpdate(() => {
 <style lang="scss" scoped>
 * {
   box-sizing: border-box;
-  margin: 0;
   padding: 0;
+  margin: 0;
 }
 
 .layout_header {
@@ -133,17 +133,17 @@ onBeforeRouteUpdate(() => {
 
   .right_wrapper {
     display: flex;
-    align-items: center;
     gap: 20px;
+    align-items: center;
     margin-right: 20px;
   }
 
   .github_icon {
     width: 24px;
     height: 24px;
-    color: rgba(60, 60, 60, 0.7);
-    transition: color 0.5s;
+    color: rgb(60 60 60 / 70%);
     fill: currentColor;
+    transition: color 0.5s;
 
     &:hover {
       color: black;
@@ -157,8 +157,8 @@ onBeforeRouteUpdate(() => {
     .user-avatar {
       width: 40px;
       height: 40px;
-      border-radius: 10px;
       cursor: pointer;
+      border-radius: 10px;
     }
 
     .el-icon {
@@ -186,8 +186,8 @@ onBeforeRouteUpdate(() => {
 
   .menu {
     display: flex;
-    align-items: center;
     gap: 8px;
+    align-items: center;
     cursor: pointer;
   }
 }

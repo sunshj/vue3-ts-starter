@@ -340,8 +340,8 @@ onMounted(() => {
 <style lang="scss" scoped>
 .type-group {
   display: flex;
-  align-items: center;
   gap: 10px;
+  align-items: center;
   margin-bottom: 10px;
 }
 

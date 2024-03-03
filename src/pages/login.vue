@@ -142,8 +142,8 @@ onMounted(() => {
       flex-direction: column;
       align-items: center;
       padding: 24px 20px;
-      border-radius: 5px 5px 0 0;
       background: white;
+      border-radius: 5px 5px 0 0;
 
       .text {
         margin-bottom: 15px;
@@ -155,8 +155,8 @@ onMounted(() => {
 
         p {
           margin-top: 5px;
-          color: #6c757d;
           font-size: 14px;
+          color: #6c757d;
         }
       }
 
@@ -179,8 +179,8 @@ onMounted(() => {
       align-items: center;
       height: 50px;
       padding: 16px 24px;
-      border-radius: 0 0 5px 5px;
       background: #f8f9fa;
+      border-radius: 0 0 5px 5px;
 
       .clear_form_popover {
         display: flex;
@@ -191,8 +191,8 @@ onMounted(() => {
 
         .popover_reference {
           display: flex;
-          align-items: center;
           gap: 2px;
+          align-items: center;
           font-size: 14px;
         }
       }
@@ -200,7 +200,7 @@ onMounted(() => {
   }
 }
 
-@media screen and (max-width: 450px) {
+@media screen and (width <= 450px) {
   .login_container {
     .login_card {
       width: 95%;

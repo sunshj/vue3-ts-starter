@@ -20,7 +20,7 @@
         <div v-if="clearable" class="clear_form_popover">
           <el-popover v-model:visible="popoverVisible" placement="top" :width="160" trigger="hover">
             <p>确认清空输入框？</p>
-            <div style="text-align: right; margin: 0">
+            <div style="margin: 0; text-align: right">
               <el-button size="small" text @click="popoverVisible = false">取消</el-button>
               <el-button type="primary" size="small" @click="resetForm">确定</el-button>
             </div>
@@ -87,8 +87,8 @@ function resetForm() {
       flex-direction: column;
       align-items: center;
       padding: 24px 20px;
-      border-radius: 5px 5px 0 0;
       background: white;
+      border-radius: 5px 5px 0 0;
 
       .card_title {
         margin-bottom: 15px;
@@ -100,8 +100,8 @@ function resetForm() {
 
         .subtitle {
           margin-top: 5px;
-          color: #6c757d;
           font-size: 14px;
+          color: #6c757d;
         }
       }
 
@@ -124,8 +124,8 @@ function resetForm() {
       align-items: center;
       height: 50px;
       padding: 16px 24px;
-      border-radius: 0 0 5px 5px;
       background: #f8f9fa;
+      border-radius: 0 0 5px 5px;
 
       .clear_form_popover {
         display: flex;
@@ -136,8 +136,8 @@ function resetForm() {
 
         .popover_reference {
           display: flex;
-          align-items: center;
           gap: 2px;
+          align-items: center;
           font-size: 14px;
         }
       }
@@ -145,7 +145,7 @@ function resetForm() {
   }
 }
 
-@media screen and (max-width: 450px) {
+@media screen and (width <= 450px) {
   .container {
     .card {
       width: 95%;

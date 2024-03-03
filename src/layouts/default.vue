@@ -79,30 +79,30 @@ onMounted(() => {
     display: block;
     padding-bottom: 60px;
     overflow-x: hidden;
-    border-right: 1px solid rgb(217, 217, 217);
     background-color: white;
+    border-right: 1px solid rgb(217 217 217);
 
     .toggle_collapse {
       position: absolute;
       bottom: 0;
       z-index: 99;
       display: flex;
-      align-items: center;
       gap: 10px;
+      align-items: center;
       width: inherit;
       padding: 18px 0 18px 20px;
       overflow: hidden;
-      border-top: 1px solid rgb(217, 217, 217);
-      background-color: #fff;
       cursor: pointer;
+      background-color: #ffffff;
+      border-top: 1px solid rgb(217 217 217);
 
       &:hover svg {
         transform: scale(1.15);
       }
 
       svg {
-        color: #0051c3;
         font-size: 20px;
+        color: #0051c3;
         transition: transform 0.15s ease-in-out;
       }
 
@@ -115,10 +115,7 @@ onMounted(() => {
 
   .layout_main {
     position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: v-bind(collapseWidth);
+    inset: 0 0 0 v-bind(collapseWidth);
     padding: 10;
     padding-top: $layout-padding-top;
     overflow-y: auto;
