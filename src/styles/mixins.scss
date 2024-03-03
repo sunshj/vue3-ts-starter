@@ -1,5 +1,5 @@
 @mixin backdrop {
-  border-bottom: 1px solid rgb(217, 217, 217);
-  background: rgba(255, 255, 255, 0.7);
+  background: rgb(255 255 255 / 70%);
   backdrop-filter: saturate(50%) blur(8px);
+  border-bottom: 1px solid rgb(217 217 217);
 }

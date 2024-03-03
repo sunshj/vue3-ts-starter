@@ -70,8 +70,8 @@ function clearAll() {
 <style lang="scss" scoped>
 .message-title {
   padding-right: 8px;
-  color: #333;
   font-size: 16px;
   font-weight: bold;
+  color: #333333;
 }
 </style>

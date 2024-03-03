@@ -1,5 +1,5 @@
 <template>
-  <div id="codeEditorBox" ref="codeEditorRef" />
+  <div id="code-editor-box" ref="codeEditorRef" />
 </template>
 
 <script setup lang="ts">
@@ -111,7 +111,7 @@ onBeforeUnmount(() => {
 </script>
 
 <style lang="scss" scoped>
-#codeEditorBox {
+#code-editor-box {
   width: v-bind(width);
   height: v-bind(height);
 }

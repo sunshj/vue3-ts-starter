@@ -25,9 +25,9 @@ function toggleDarkMode() {
 <style lang="scss" scoped>
 :deep(.el-switch__core .el-switch__action) {
   background-image: url('../assets/icons/sun.png');
+  background-repeat: no-repeat;
   background-position: center center;
   background-size: 75%;
-  background-repeat: no-repeat;
 }
 
 .el-switch.is-checked {

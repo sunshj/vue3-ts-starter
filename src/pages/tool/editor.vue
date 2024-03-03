@@ -115,8 +115,8 @@ function onEditorChange(value: string) {
 
     .select {
       display: flex;
-      align-items: center;
       gap: 5px;
+      align-items: center;
     }
 
     .editor {
