@@ -1,6 +1,6 @@
 <template>
   <div>
-    <custom-breadcrumb />
+    <AutoBreadcrumb />
     <el-row :gutter="20">
       <el-col :span="12" :xs="24">
         <custom-card :title="title">
@@ -81,7 +81,7 @@
 definePage({
   meta: {
     title: '首页',
-    icon: 'i-menu-home',
+    icon: 'home',
     isMenuitem: true,
     menuitemOrder: 0
   }

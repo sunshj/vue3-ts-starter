@@ -1,33 +1,20 @@
 import { disable, enable } from 'darkreader'
+import { useConfigStore } from '@/stores'
 
-export const darkModeState = reactive({ isDark: false })
+export function useDark() {
+  const configStore = useConfigStore()
 
-export default function useDarkMode() {
-  function toggleMode(val: boolean) {
-    darkModeState.isDark = val
+  function toggle(val: boolean) {
+    configStore.setIsDark(val)
     if (val) {
-      enableDark()
+      enable({ brightness: 105, contrast: 95, sepia: 0, grayscale: 15 })
     } else {
-      disableDark()
+      disable()
     }
   }
 
-  function enableDark() {
-    enable({ brightness: 105, contrast: 95, sepia: 0, grayscale: 15 })
-  }
-
-  function disableDark() {
-    disable()
-  }
-
-  watchPostEffect(() => {
-    sessionStorage.setItem('darkMode', darkModeState.isDark.toString())
-  })
-
   onBeforeMount(() => {
-    darkModeState.isDark = sessionStorage.getItem('darkMode') === 'true'
-    toggleMode(darkModeState.isDark)
+    toggle(configStore.isDark)
   })
-
-  return { toggleMode }
+  return { toggle, isDark: toRef(configStore.isDark) }
 }

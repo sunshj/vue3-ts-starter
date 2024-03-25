@@ -18,8 +18,8 @@ dependencies:
     specifier: ^1.6.7
     version: 1.6.7
   darkreader:
-    specifier: ^4.9.77
-    version: 4.9.77
+    specifier: ^4.9.58
+    version: 4.9.58
   dayjs:
     specifier: ^1.11.10
     version: 1.11.10
@@ -38,6 +38,9 @@ dependencies:
   pinia:
     specifier: ^2.1.7
     version: 2.1.7(typescript@5.3.3)(vue@3.4.19)
+  pinia-plugin-persistedstate:
+    specifier: ^3.2.1
+    version: 3.2.1(pinia@2.1.7)
   vue:
     specifier: ^3.4.19
     version: 3.4.19(typescript@5.3.3)
@@ -46,12 +49,6 @@ dependencies:
     version: 4.3.0(vue@3.4.19)
 
 devDependencies:
-  '@iconify-json/fa6-brands':
-    specifier: ^1.1.18
-    version: 1.1.18
-  '@iconify-json/fa6-solid':
-    specifier: ^1.1.20
-    version: 1.1.20
   '@sunshj/eslint-config':
     specifier: ^1.0.6
     version: 1.0.6(eslint@8.56.0)(typescript@5.3.3)
@@ -659,18 +656,6 @@ packages:
 
   /@humanwhocodes/object-schema@2.0.2:
     resolution: {integrity: sha512-6EwiSjwWYP7pTckG6I5eyFANjPhmPjUX9JRLUSfNPC7FX7zK9gyZAfUEaECL6ALTpGX5AjnBq3C9XmVWPitNpw==}
-    dev: true
-
-  /@iconify-json/fa6-brands@1.1.18:
-    resolution: {integrity: sha512-vmeJP06Xbj0XbVGiBHg0q8H3M894d4bGXKCmiHt6JqUdpiGcIV7r96N+BOU4ZS1+hvpV57fTfXlFPiUfxAIfkg==}
-    dependencies:
-      '@iconify/types': 2.0.0
-    dev: true
-
-  /@iconify-json/fa6-solid@1.1.20:
-    resolution: {integrity: sha512-99P9zOacNS56MNNT7Mzih2Loe3jzwNFKFBOiVh+kF+4D+AHW5zyksyvMizIgGu2cizFz6npaATlCtl3E5Zfjbw==}
-    dependencies:
-      '@iconify/types': 2.0.0
     dev: true
 
   /@iconify/types@2.0.0:
@@ -1860,8 +1845,8 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
-  /darkreader@4.9.77:
-    resolution: {integrity: sha512-PHv6pOEFIdoiQxJewUxnbrcB7aJsTgiECws9KNNxEpk2bma1CZNaweFALyADfmosAaoDlJaxvbpzXMxcc0T+jA==}
+  /darkreader@4.9.58:
+    resolution: {integrity: sha512-D/JGoJqW3m2AWBLhO+Pev+eThfs+CwRT4bcLb/1zKjql2yVwG0lx8C2XRDdSVGHw4y11n26W7syWoBpUfuhMqQ==}
     dev: false
 
   /dayjs@1.11.10:
@@ -4137,6 +4122,14 @@ packages:
     engines: {node: '>=0.10'}
     hasBin: true
     dev: true
+
+  /pinia-plugin-persistedstate@3.2.1(pinia@2.1.7):
+    resolution: {integrity: sha512-MK++8LRUsGF7r45PjBFES82ISnPzyO6IZx3CH5vyPseFLZCk1g2kgx6l/nW8pEBKxxd4do0P6bJw+mUSZIEZUQ==}
+    peerDependencies:
+      pinia: ^2.0.0
+    dependencies:
+      pinia: 2.1.7(typescript@5.3.3)(vue@3.4.19)
+    dev: false
 
   /pinia@2.1.7(typescript@5.3.3)(vue@3.4.19):
     resolution: {integrity: sha512-+C2AHFtcFqjPih0zpYuvof37SFxMQ7OEG2zV9jRI12i9BOy3YQVAHwdKtyyc8pDcDyIc33WCIsZaCFWU7WWxGQ==}

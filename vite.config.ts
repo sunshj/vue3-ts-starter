@@ -26,6 +26,13 @@ export default defineConfig(({ mode }) => ({
     }),
     vue(),
     Layouts(),
+    Icons({
+      compiler: 'vue3',
+      customCollections: {
+        'svg-icon': FileSystemIconLoader('./src/assets/svgIcons')
+      },
+      defaultStyle: 'width:20px;height:20px;'
+    }),
     AutoImport({
       imports: ['vue', VueRouterAutoImports, { 'vue-router/auto': ['useLink'] }, '@vueuse/core'],
       resolvers: [ElementPlusResolver()]
@@ -35,26 +42,14 @@ export default defineConfig(({ mode }) => ({
       resolvers: [
         ElementPlusResolver(),
         IconsResolver({
-          customCollections: ['menu']
+          prefix: 'svg',
+          customCollections: ['svg-icon'],
+          alias: {
+            icon: 'svg-icon'
+          }
         }),
         vAnyResolver()
       ]
-    }),
-    Icons({
-      compiler: 'vue3',
-      customCollections: {
-        menu: FileSystemIconLoader('./src/assets/icons/svg')
-      },
-      iconCustomizer(collection, _icon, props) {
-        if (collection === 'menu') {
-          props.width = '20px'
-          props.height = '20px'
-        }
-        if (collection === 'fa6-brands') {
-          props.width = '1.5em'
-          props.height = '1.5em'
-        }
-      }
     }),
     GitInfo({
       enableVars: {

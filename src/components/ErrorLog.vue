@@ -6,7 +6,7 @@
       @click="dialogTableVisible = true"
     >
       <el-button style="padding: 8px 10px" type="danger">
-        <i-fa6-solid-bug />
+        <SvgIconBug />
       </el-button>
     </el-badge>
 

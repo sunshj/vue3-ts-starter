@@ -32,7 +32,7 @@
           :loading="loginLoading"
           @click="submitForm"
         >
-          <i-fa6-solid-arrow-right-to-bracket />
+          <SvgIconArrowRightToBracket />
           <span style="margin-left: 5px">登入</span>
         </el-button>
       </el-form>
@@ -45,8 +45,9 @@
 
 <script setup lang="ts">
 import { Key, User } from '@element-plus/icons-vue'
-import { validateName, validatePass } from '@/common/validate-rules'
+import { isPassword, isUserName } from '@/common/async-validators'
 import { delay } from '@/utils'
+import { useUserStore } from '@/stores'
 import type { FormInstance, FormRules } from 'element-plus'
 
 definePage({
@@ -54,6 +55,8 @@ definePage({
     layout: 'empty'
   }
 })
+
+const userStore = useUserStore()
 
 const router = useRouter()
 
@@ -63,8 +66,8 @@ const loginForm = reactive({
   password: ''
 })
 const loginFormRules = reactive<FormRules>({
-  username: [{ validator: validateName, trigger: 'blur' }],
-  password: [{ validator: validatePass, trigger: 'blur' }]
+  username: [{ validator: isUserName, trigger: 'blur' }],
+  password: [{ validator: isPassword, trigger: 'blur' }]
 })
 
 const loginLoading = ref(false)
@@ -92,11 +95,9 @@ const submitForm = async () => {
       localStorage.setItem('username', loginForm.username)
       localStorage.setItem('password', loginForm.password)
     }
-    sessionStorage.setItem('token', Date.now().toString())
-    sessionStorage.setItem(
-      'userInfo',
-      JSON.stringify({ userName: loginForm.username, loginTime: Date.now() })
-    )
+    userStore.setToken(Date.now().toString())
+    userStore.setUserInfo({ ...loginForm })
+
     ElMessage.success('登录成功')
     router.push('/')
     loginLoading.value = false

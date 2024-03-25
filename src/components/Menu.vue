@@ -1,7 +1,7 @@
 <template>
   <el-menu
     class="layout_menu"
-    :collapse="props.isCollapse"
+    :collapse="configStore.isCollapse"
     :collapse-transition="false"
     router
     text-color="#000"
@@ -14,7 +14,7 @@
       <template v-if="item.children?.length">
         <el-sub-menu :key="item.path" :index="item.path">
           <template #title>
-            <el-icon :size="24"> <component :is="svgIconsMap.get(item.meta?.icon!)" /></el-icon>
+            <el-icon :size="20"> <component :is="menuIconsMap.get(item.meta?.icon!)" /></el-icon>
             <span>{{ item.meta?.title }}</span>
           </template>
           <el-menu-item
@@ -23,7 +23,7 @@
             :index="`${item.path}/${subItem.path}`"
           >
             <template #title>
-              <component :is="svgIconsMap.get(subItem.meta?.icon!)" />
+              <component :is="menuIconsMap.get(subItem.meta?.icon!)" />
               <span>{{ subItem.meta?.title }}</span>
             </template>
           </el-menu-item>
@@ -32,7 +32,7 @@
       <!-- 没有子菜单直接作为一级菜单 -->
       <template v-else>
         <el-menu-item :key="item.path" :index="item.path">
-          <component :is="svgIconsMap.get(item.meta?.icon!)" />
+          <component :is="menuIconsMap.get(item.meta?.icon!)" />
           <template #title>
             <span>{{ item.meta?.title }}</span>
           </template>
@@ -45,19 +45,26 @@
 <script setup lang="ts">
 import { routes } from 'vue-router/auto/routes'
 import { useConfigStore } from '@/stores'
-import { svgIconsMap } from '@/common/svg-icons'
+import { menuIconsMap } from '@/common/menu-icons'
+import type { RouteRecordRaw } from 'vue-router'
 
 const configStore = useConfigStore()
 
-const props = defineProps<{ isCollapse: boolean }>()
+function getMenus(routes: RouteRecordRaw[]): RouteRecordRaw[] {
+  return routes
+    .filter(r => r.meta?.isMenuitem)
+    .sort((a, b) => (a.meta?.menuitemOrder as number) - (b.meta?.menuitemOrder as number))
+    .map(item => {
+      const { children, ...rest } = item
+      return {
+        ...rest,
+        children: children ? getMenus(children) : []
+      }
+    })
+}
 
-const menusList = routes
-  .filter(r => r.meta?.isMenuitem)
-  .sort((a, b) => (a.meta?.menuitemOrder as number) - (b.meta?.menuitemOrder as number))
-
-onBeforeMount(() => {
-  configStore.setCurrentPath(sessionStorage.getItem('activePath') as string)
-})
+const menusList = getMenus(routes)
+configStore.setMenus(menusList)
 </script>
 
 <style lang="scss" scoped>

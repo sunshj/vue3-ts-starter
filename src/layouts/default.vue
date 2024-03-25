@@ -5,14 +5,14 @@
     <!-- main container -->
     <el-container>
       <!-- left aside -->
-      <el-aside :width="isCollapse ? '64px' : '200px'" class="layout_aside">
+      <el-aside :width="collapseWidth" class="layout_aside">
         <!-- 导航菜单 -->
-        <Menu :is-collapse="isCollapse" />
+        <Menu />
         <!-- 底部控制侧边栏折叠区域 -->
-        <div class="toggle_collapse" @click="toggleCollapse">
-          <i-menu-double-arrow-right v-if="isCollapse" />
-          <i-menu-double-arrow-left v-else />
-          <span>{{ isCollapse ? '' : '折叠边栏' }}</span>
+        <div class="toggle_collapse" @click="configStore.toggleCollapse()">
+          <SvgIconDoubleArrowRight v-if="configStore.isCollapse" />
+          <SvgIconDoubleArrowLeft v-else />
+          <span>{{ configStore.isCollapse ? '' : '折叠边栏' }}</span>
         </div>
       </el-aside>
       <!-- main -->
@@ -38,31 +38,21 @@ const dashHeader = reactive({
     'https://kjimg10.360buyimg.com/ott/jfs/t1/158031/24/34052/15691/63c68488F1f6d0939/ceccba0c6a5dacb0.jpg'
 })
 
-const isCollapse = ref(false)
-
 const collapseWidth = computed(() => {
-  return isCollapse.value ? '64px' : '200px'
+  return configStore.isCollapse ? '64px' : '200px'
 })
-
-// 切换侧边栏折叠/展开
-const toggleCollapse = () => {
-  isCollapse.value = !isCollapse.value
-  sessionStorage.setItem('isCollapse', isCollapse.value.toString())
-}
 
 // 移动端默认设置
 const mobileOptimization = () => {
   dashHeader.title = '短标题'
 }
 
-onBeforeMount(() => {
-  isCollapse.value = sessionStorage.getItem('isCollapse') === 'true'
-})
-
 onMounted(() => {
   if (Reflect.has(window, 'ontouchstart')) {
     configStore.setIsMobile(true)
     mobileOptimization()
+  } else {
+    configStore.setIsMobile(false)
   }
 })
 </script>

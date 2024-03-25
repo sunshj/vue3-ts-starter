@@ -1,7 +1,6 @@
 <template>
   <div>
-    <custom-breadcrumb :bread-list="breadList" />
-
+    <AutoBreadcrumb />
     <el-row :gutter="20">
       <el-col :span="12" :xs="24">
         <custom-card align-mode="center" :header="false">
@@ -44,18 +43,11 @@ import type { EChartsOption } from 'echarts'
 definePage({
   meta: {
     title: '图表统计',
-    icon: 'i-menu-chart',
+    icon: 'chart',
     isMenuitem: true,
     menuitemOrder: 2
   }
 })
-
-const breadList = [
-  {
-    path: '/charts',
-    title: '图表统计'
-  }
-]
 
 const pieChartOption: Ref<EChartsOption> = ref({
   title: {

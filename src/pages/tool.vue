@@ -7,7 +7,7 @@ definePage({
   redirect: '/tool/editor',
   meta: {
     title: '系统工具',
-    icon: 'i-menu-setting',
+    icon: 'setting',
     isMenuitem: true,
     menuitemOrder: 3
   }

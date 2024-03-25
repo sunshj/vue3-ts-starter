@@ -1,4 +1,4 @@
-import { useCancelRequestStore, useConfigStore } from '../stores'
+import { useCancelRequestStore, useConfigStore, useUserStore } from '../stores'
 import router from '.'
 
 const allowPath = ['/login']
@@ -6,12 +6,11 @@ const allowPath = ['/login']
 // 路由守卫
 router.beforeEach((to, _from, next) => {
   const configStore = useConfigStore()
+  const userStore = useUserStore()
   const cancelRequestStore = useCancelRequestStore()
 
-  // 获取token
-  const token = sessionStorage.getItem('token')
   // 手动判断token是否存在且有效
-  if (!token) {
+  if (!userStore.token) {
     if (allowPath.includes(to.path)) return next()
     return next('/login')
   }

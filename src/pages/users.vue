@@ -1,7 +1,6 @@
 <template>
   <div>
-    <custom-breadcrumb :bread-list="breadList" />
-
+    <AutoBreadcrumb />
     <custom-card :header="false">
       <el-row :gutter="20">
         <el-col :span="16" :xs="12" class="type-group">
@@ -159,24 +158,17 @@
 import { Delete, Edit, Plus, Refresh, Search } from '@element-plus/icons-vue'
 import { ApiGetUser, ApiGetUserList, type IUser } from '@/api/user'
 import { timeFormat } from '@/utils'
-import { validateEmail, validateName, validatePass } from '@/common/validate-rules'
+import { isEmail, isPassword, isUserName } from '@/common/async-validators'
 import type { FormInstance } from 'element-plus'
 
 definePage({
   meta: {
     title: '用户管理',
-    icon: 'i-menu-customer',
+    icon: 'customer',
     isMenuitem: true,
     menuitemOrder: 1
   }
 })
-
-const breadList = [
-  {
-    path: '/users',
-    title: '用户管理'
-  }
-]
 
 const UPLOAD_API_URL = import.meta.env.VITE_API_UPLOAD_URL
 
@@ -227,9 +219,9 @@ const userRoleOption = [
 ]
 
 const userFormRules = reactive({
-  userName: [{ validator: validateName, trigger: 'blur' }],
-  userPass: [{ validator: validatePass, trigger: 'blur' }],
-  userEmail: [{ validator: validateEmail, trigger: 'blur' }]
+  userName: [{ validator: isUserName, trigger: 'blur' }],
+  userPass: [{ validator: isPassword, trigger: 'blur' }],
+  userEmail: [{ validator: isEmail, trigger: 'blur' }]
 })
 
 const formRulesComputed = computed(() => {

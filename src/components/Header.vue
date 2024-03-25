@@ -22,7 +22,7 @@
 
       <el-tooltip content="前往仓库" effect="dark" placement="bottom">
         <a href="https://github.com/sunshj/vue3-ts-starter" target="_blank">
-          <i-fa6-brands-github class="github_icon" />
+          <SvgIconGithub class="github_icon" />
         </a>
       </el-tooltip>
 
@@ -46,7 +46,7 @@
 
   <div v-if="configStore.isMobile" class="mobile">
     <span class="menu" @click="sideDrawerVisible = true">
-      <i-fa6-solid-bars />
+      <SvgIconBars />
       <span>菜单</span>
     </span>
   </div>
@@ -79,7 +79,8 @@ function linkToUserProfile() {
 
 function logout() {
   sessionStorage.clear()
-  router.push('/login')
+  localStorage.clear()
+  location.href = '/login'
   ElMessage.info('已退出登录')
 }
 
@@ -139,8 +140,8 @@ onBeforeRouteUpdate(() => {
   }
 
   .github_icon {
-    width: 24px;
-    height: 24px;
+    width: 24px !important;
+    height: 24px !important;
     color: rgb(60 60 60 / 70%);
     fill: currentColor;
     transition: color 0.5s;

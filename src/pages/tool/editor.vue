@@ -1,6 +1,6 @@
 <template>
   <div class="editor-tool">
-    <custom-breadcrumb :bread-list="breadList" />
+    <AutoBreadcrumb />
     <div class="wrapper">
       <div class="select">
         <span>切换语言类型 > </span>
@@ -29,7 +29,7 @@
 definePage({
   meta: {
     title: '代码编辑',
-    icon: 'i-menu-code',
+    icon: 'code',
     isMenuitem: true
   }
 })
@@ -40,17 +40,6 @@ interface ICase {
   value: LangType
   code: string
 }
-
-const breadList = [
-  {
-    path: '/tool',
-    title: '系统工具'
-  },
-  {
-    path: '/editor',
-    title: '代码编辑'
-  }
-]
 
 const language = ref<LangType>('javascript')
 const cases: ICase[] = [

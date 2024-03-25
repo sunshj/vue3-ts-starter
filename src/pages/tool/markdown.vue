@@ -1,6 +1,6 @@
 <template>
   <div>
-    <custom-breadcrumb :bread-list="breadList" />
+    <AutoBreadcrumb />
 
     <h2>基础使用</h2>
     <md-editor v-model="editor.value" :box-shadow="false" default-open="preview" />
@@ -23,7 +23,7 @@ import 'mavon-editor/dist/css/index.css'
 definePage({
   meta: {
     title: 'Markdown',
-    icon: 'i-menu-md',
+    icon: 'md',
     isMenuitem: true
   }
 })
@@ -33,17 +33,6 @@ defineOptions({
     'md-editor': MavonEditor.mavonEditor
   }
 })
-
-const breadList = [
-  {
-    path: '/tool',
-    title: '系统工具'
-  },
-  {
-    path: '/markdown',
-    title: 'Markdown'
-  }
-]
 
 const editor = reactive({
   value: `

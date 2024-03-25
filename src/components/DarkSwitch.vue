@@ -1,6 +1,6 @@
 <template>
   <el-switch
-    v-model="darkModeState.isDark"
+    v-model="isDark"
     active-color="#2F2F2F"
     inactive-color="#F1F1F1"
     @change="toggleDarkMode"
@@ -8,17 +8,17 @@
 </template>
 
 <script setup lang="ts">
-import useDarkMode, { darkModeState } from '@/composables/dark'
+import { useDark } from '@/composables/dark'
 
-const { toggleMode } = useDarkMode()
+const { toggle, isDark } = useDark()
 
 const emit = defineEmits<{
   (e: 'change', value: boolean): void
 }>()
 
-function toggleDarkMode() {
-  toggleMode(darkModeState.isDark)
-  emit('change', darkModeState.isDark)
+function toggleDarkMode(val: boolean | string | number) {
+  toggle(!!val)
+  emit('change', !!val)
 }
 </script>
 
