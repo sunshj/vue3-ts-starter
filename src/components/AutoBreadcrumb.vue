@@ -33,8 +33,6 @@ const autoBreadList = ref<IBreadList[]>([])
 const configStore = useConfigStore()
 
 function findMenuItemByPath(currentPath: string) {
-  const menus = configStore.menus
-
   function findMenuItem(menus: RouteRecordRaw[], currentPath: string) {
     for (const menu of menus) {
       if (menu.name === currentPath) {
@@ -47,7 +45,7 @@ function findMenuItemByPath(currentPath: string) {
       continue
     }
   }
-  return findMenuItem(menus, currentPath)
+  return findMenuItem(configStore.routes, currentPath)
 }
 
 function splitPathToLevels(path: string) {
@@ -70,8 +68,8 @@ function generateBreadcrumb(path: string) {
     if (menuItem?.meta?.title) {
       breadcrumb.push({
         title: menuItem.meta.title,
-        path: menuItem.path,
-        isLink: menuItem.meta?.isLink
+        path: `${breadcrumb.length > 0 ? `${breadcrumb.at(-1)?.path ?? ''}/` : ''}${menuItem.path}`,
+        isLink: menuItem.meta?.isLink ?? false
       })
     }
   })

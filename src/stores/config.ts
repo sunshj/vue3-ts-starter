@@ -8,6 +8,7 @@ export const useConfigStore = defineStore(
     const isMobile = ref(false)
     // 侧边栏是否折叠
     const isCollapse = ref(false)
+    const routes = ref<RouteRecordRaw[]>([])
     const menus = ref<RouteRecordRaw[]>([])
     const language = ref('zh-CN')
     const isDark = ref(false)
@@ -27,6 +28,10 @@ export const useConfigStore = defineStore(
 
     function toggleCollapse() {
       isCollapse.value = !isCollapse.value
+    }
+
+    function setRoutes(val: RouteRecordRaw[]) {
+      routes.value = val
     }
 
     function setMenus(val: RouteRecordRaw[]) {
@@ -49,6 +54,8 @@ export const useConfigStore = defineStore(
       isCollapse,
       setIsCollapse,
       toggleCollapse,
+      routes,
+      setRoutes,
       menus,
       setMenus,
       language,
