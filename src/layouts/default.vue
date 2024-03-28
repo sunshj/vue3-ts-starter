@@ -18,6 +18,7 @@
       <!-- main -->
       <el-main class="layout_main" :class="configStore.isMobile ? 'mobile' : ''">
         <router-view v-slot="{ Component, route }">
+          <AutoBreadcrumb v-if="route.meta.isMenuitem" />
           <transition name="fade-transform" mode="out-in">
             <component :is="Component" :key="route.path" />
           </transition>
@@ -28,8 +29,6 @@
 </template>
 
 <script setup lang="ts">
-import { useConfigStore } from '@/stores'
-
 const configStore = useConfigStore()
 
 const dashHeader = reactive({

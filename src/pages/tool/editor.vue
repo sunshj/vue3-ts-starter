@@ -1,6 +1,5 @@
 <template>
   <div class="editor-tool">
-    <AutoBreadcrumb />
     <div class="wrapper">
       <div class="select">
         <span>切换语言类型 > </span>

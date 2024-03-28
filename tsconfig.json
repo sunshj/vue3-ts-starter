@@ -9,9 +9,8 @@
     "paths": {
       "@/*": ["src/*"]
     },
-    "types": ["vite-plugin-vue-layouts/client"],
+    "types": ["vite-plugin-vue-layouts/client", "unplugin-icons/types/vue"],
 
-    /* Bundler mode */
     "moduleResolution": "node",
     "allowImportingTsExtensions": true,
     "resolveJsonModule": true,
@@ -19,7 +18,6 @@
     "noEmit": true,
     "jsx": "preserve",
 
-    /* Linting */
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,

@@ -1,6 +1,5 @@
 <template>
   <div>
-    <AutoBreadcrumb />
     <el-row :gutter="20">
       <el-col :span="12" :xs="24">
         <custom-card :title="title">

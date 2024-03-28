@@ -7,7 +7,6 @@ import './assets/css/global.css'
 import App from './App.vue'
 import router from './router'
 import './router/permission'
-import { useErrorLogsStore } from './stores'
 import './common/monaco'
 
 const app = createApp(App)

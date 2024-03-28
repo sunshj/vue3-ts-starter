@@ -3,7 +3,6 @@
 </template>
 
 <script setup lang="ts">
-import useECharts from '@/composables/echarts'
 import type { EChartsOption } from 'echarts'
 
 const props = defineProps<{

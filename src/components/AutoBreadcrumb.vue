@@ -12,8 +12,10 @@
 </template>
 
 <script setup lang="ts">
-import { useConfigStore } from '@/stores'
 import type { RouteRecordRaw } from 'vue-router'
+
+const route = useRoute()
+const configStore = useConfigStore()
 
 interface IBreadList {
   title: string
@@ -26,26 +28,19 @@ const props = defineProps<{
   path?: string
 }>()
 
-const route = useRoute()
-
 const autoBreadList = ref<IBreadList[]>([])
 
-const configStore = useConfigStore()
-
-function findMenuItemByPath(currentPath: string) {
-  function findMenuItem(menus: RouteRecordRaw[], currentPath: string) {
-    for (const menu of menus) {
-      if (menu.name === currentPath) {
-        return menu
-      }
-      if (menu.children) {
-        const result = findMenuItem(menu.children, currentPath) as RouteRecordRaw
-        if (result) return result
-      }
-      continue
+function findMenuItemByPath(menus: RouteRecordRaw[], currentPath: string) {
+  for (const menu of menus) {
+    if (menu.name === currentPath) {
+      return menu
     }
+    if (menu.children) {
+      const result = findMenuItemByPath(menu.children, currentPath) as RouteRecordRaw
+      if (result) return result
+    }
+    continue
   }
-  return findMenuItem(configStore.routes, currentPath)
 }
 
 function splitPathToLevels(path: string) {
@@ -62,8 +57,8 @@ function generateBreadcrumb(path: string) {
   const breadcrumb: IBreadList[] = []
   const currentPathArr = splitPathToLevels(path)
 
-  currentPathArr.forEach(item => {
-    const menuItem = findMenuItemByPath(item)
+  currentPathArr.forEach(currentPath => {
+    const menuItem = findMenuItemByPath(configStore.routes, currentPath)
 
     if (menuItem?.meta?.title) {
       breadcrumb.push({
@@ -78,6 +73,10 @@ function generateBreadcrumb(path: string) {
 }
 
 onMounted(() => {
+  autoBreadList.value = generateBreadcrumb(props.path ?? route.name)
+})
+
+watch([() => route.path, () => props.path], () => {
   autoBreadList.value = generateBreadcrumb(props.path ?? route.name)
 })
 </script>

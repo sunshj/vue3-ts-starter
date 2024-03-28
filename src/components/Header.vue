@@ -57,7 +57,6 @@
 
 <script setup lang="ts">
 import { CaretBottom } from '@element-plus/icons-vue'
-import { useConfigStore, useErrorLogsStore } from '@/stores'
 import Menu from './Menu.vue'
 
 const router = useRouter()

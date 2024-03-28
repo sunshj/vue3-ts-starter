@@ -1,7 +1,5 @@
 <template>
   <div>
-    <AutoBreadcrumb />
-
     <h2>基础使用</h2>
     <md-editor v-model="editor.value" :box-shadow="false" default-open="preview" />
 

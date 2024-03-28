@@ -8,9 +8,7 @@
 </template>
 
 <script setup lang="ts">
-import { useDark } from '@/composables/dark'
-
-const { toggle, isDark } = useDark()
+const { toggle, isDark } = useDarkMode()
 
 const emit = defineEmits<{
   (e: 'change', value: boolean): void

@@ -1,8 +1,6 @@
 import * as echarts from 'echarts'
 import type { ECharts } from 'echarts'
 
-type GlobalEChartsType = typeof echarts
-
 type InitDom = HTMLDivElement | HTMLCanvasElement
 
 interface FullOption {
@@ -25,13 +23,13 @@ const instances = new WeakMap<InitDom, ECharts>()
 
 /**
  * 使用 echarts 初始化图表，并返回实例对象。
- * @param {InitDom | FullOption} domOrFullOption  包含初始化 DOM 或完整选项配置的对象。
- * @param {(globalECharts: GlobalEChartsType) => void} [callback]  可选的回调函数，接受全局 echarts 对象作为参数。
- * @returns {{ echartsInstance: ECharts }}  包含 echarts 实例的对象。
+ * @param domOrFullOption  包含初始化 DOM 或完整选项配置的对象。
+ * @param callback  可选的回调函数，接受全局 echarts 对象作为参数。
+ * @returns 包含 echarts 实例的对象。
  */
-export default function useECharts(
+export function useECharts(
   domOrFullOption: InitDom | FullOption,
-  callback?: (globalECharts: GlobalEChartsType) => void
+  callback?: (globalECharts: typeof echarts) => void
 ): ECharts {
   if (typeof callback === 'function') {
     callback(echarts)
@@ -39,7 +37,7 @@ export default function useECharts(
 
   let echartsInstance: ECharts
 
-  if ((domOrFullOption as FullOption).el) {
+  if (typeof (domOrFullOption as FullOption).el !== 'undefined') {
     const { el, theme, opts } = domOrFullOption as FullOption
     if (instances.has(el)) return instances.get(el)!
 

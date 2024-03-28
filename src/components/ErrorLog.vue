@@ -55,7 +55,6 @@
 
 <script setup lang="ts">
 import { Delete } from '@element-plus/icons-vue'
-import { useErrorLogsStore } from '@/stores'
 
 const errorLogsStore = useErrorLogsStore()
 

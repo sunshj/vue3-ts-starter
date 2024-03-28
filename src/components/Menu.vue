@@ -44,7 +44,6 @@
 
 <script setup lang="ts">
 import { routes } from 'vue-router/auto/routes'
-import { useConfigStore } from '@/stores'
 import { menuIconsMap } from '@/common/menu-icons'
 import type { RouteRecordRaw } from 'vue-router'
 

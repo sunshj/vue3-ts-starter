@@ -47,7 +47,6 @@
 import { Key, User } from '@element-plus/icons-vue'
 import { isPassword, isUserName } from '@/common/async-validators'
 import { delay } from '@/utils'
-import { useUserStore } from '@/stores'
 import type { FormInstance, FormRules } from 'element-plus'
 
 definePage({

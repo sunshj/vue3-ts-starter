@@ -9,7 +9,8 @@ definePage({
     title: '系统工具',
     icon: 'setting',
     isMenuitem: true,
-    menuitemOrder: 3
+    menuitemOrder: 3,
+    isLink: true
   }
 })
 </script>

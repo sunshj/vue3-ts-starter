@@ -1,6 +1,5 @@
 <template>
   <div>
-    <AutoBreadcrumb />
     <custom-card :header="false">
       <el-row :gutter="20">
         <el-col :span="16" :xs="12" class="type-group">
@@ -199,13 +198,15 @@ const userDialog = reactive({
 })
 
 const fileList = ref([])
-const userInfo = reactive<Omit<IUser, 'userId'>>({
+
+const initialUserInfo = {
   userName: '',
   userPass: '',
   userEmail: '',
   userAvatar: '',
   userRole: 1
-})
+}
+const userInfo = ref<Omit<IUser, 'userId'>>({ ...initialUserInfo })
 
 const userRoleOption = [
   {
@@ -240,16 +241,13 @@ async function showEditDialog(id: number) {
   userDialog.show = true
   userDialog.isAdd = false
   const res = await ApiGetUser(id)
-  userInfo.userName = res.userName
-  userInfo.userEmail = res.userEmail
-  userInfo.userAvatar = res.userAvatar
-  userInfo.userRole = res.userRole
+  userInfo.value = { ...res }
 }
 
 function userDialogClosed() {
   userDialog.show = false
-  userDialog.isAdd = false
   userInfoRef.value?.resetFields()
+  userInfo.value = { ...initialUserInfo }
   fileList.value = []
 }
 
@@ -298,7 +296,7 @@ async function handleDelete(id: number) {
 
 // 上传事件
 function uploadSuccess(url: string) {
-  userInfo.userAvatar = url
+  userInfo.value.userAvatar = url
 }
 
 function uploadFailed(err: any) {

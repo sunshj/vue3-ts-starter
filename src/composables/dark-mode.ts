@@ -1,7 +1,6 @@
 import { disable, enable } from 'darkreader'
-import { useConfigStore } from '@/stores'
 
-export function useDark() {
+export function useDarkMode() {
   const configStore = useConfigStore()
 
   function toggle(val: boolean) {
@@ -16,5 +15,6 @@ export function useDark() {
   onBeforeMount(() => {
     toggle(configStore.isDark)
   })
+
   return { toggle, isDark: toRef(configStore.isDark) }
 }

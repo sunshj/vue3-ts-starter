@@ -35,7 +35,8 @@ export default defineConfig(({ mode }) => ({
     }),
     AutoImport({
       imports: ['vue', VueRouterAutoImports, { 'vue-router/auto': ['useLink'] }, '@vueuse/core'],
-      resolvers: [ElementPlusResolver()]
+      resolvers: [ElementPlusResolver()],
+      dirs: ['./src/stores', './src/composables']
     }),
     Components({
       directoryAsNamespace: true,

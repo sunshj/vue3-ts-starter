@@ -22,7 +22,7 @@ html[data-device='mobile'] .el-dialog {
 .fade-transform--move,
 .fade-transform-leave-active,
 .fade-transform-enter-active {
-  transition: all 0.5s;
+  transition: all 0.3s;
 }
 
 .fade-transform-leave-active {

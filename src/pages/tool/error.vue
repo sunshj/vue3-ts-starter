@@ -1,6 +1,5 @@
 <template>
   <div>
-    <AutoBreadcrumb />
     <el-button type="danger" @click="showMessage()">测试ERROR捕获</el-button>
   </div>
 </template>
