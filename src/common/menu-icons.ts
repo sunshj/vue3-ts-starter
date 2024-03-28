@@ -2,13 +2,6 @@
 // @ts-nocheck
 
 import type { Component } from 'vue'
-import SvgIconHome from '~icons/svg-icon/home'
-import SvgIconChart from '~icons/svg-icon/chart'
-import SvgIconCustomer from '~icons/svg-icon/customer'
-import SvgIconSetting from '~icons/svg-icon/setting'
-import SvgIconCode from '~icons/svg-icon/code'
-import SvgIconMd from '~icons/svg-icon/md'
-import SvgIconError from '~icons/svg-icon/error'
 
 const menuIcons = [
   {

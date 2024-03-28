@@ -35,7 +35,16 @@ export default defineConfig(({ mode }) => ({
     }),
     AutoImport({
       imports: ['vue', VueRouterAutoImports, { 'vue-router/auto': ['useLink'] }, '@vueuse/core'],
-      resolvers: [ElementPlusResolver()],
+      resolvers: [
+        ElementPlusResolver(),
+        IconsResolver({
+          prefix: 'svg',
+          customCollections: ['svg-icon'],
+          alias: {
+            icon: 'svg-icon'
+          }
+        })
+      ],
       dirs: ['./src/stores', './src/composables']
     }),
     Components({
