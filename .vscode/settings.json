@@ -1,0 +1,9 @@
+{
+    "stylelint.validate": [
+        "css",
+        "postcss",
+        "scss",
+        "vue"
+    ],
+    "eslint.experimental.useFlatConfig": true
+}
