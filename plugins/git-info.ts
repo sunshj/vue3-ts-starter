@@ -6,16 +6,18 @@ interface Command<T> {
   key: T
 }
 
-export interface GitInfoOptions<TCmd extends string | number | symbol> {
+export interface GitInfoOptions<TCmd extends string> {
   commands?: Command<TCmd>[]
   /** @default true */
   injectToHead?: boolean
-  globalDefine?: {
-    /** @default true */
-    enable?: boolean
-    /** @default '__GIT_INFO__' */
-    key?: string
-  }
+  globalDefine?:
+    | false
+    | {
+        /** @default true */
+        enable?: boolean
+        /** @default '__GIT_INFO__' */
+        key?: string
+      }
 
   enableVars?: {
     /** @default true */
@@ -51,7 +53,7 @@ const defaultOptions = {
   ]
 } satisfies GitInfoOptions<string>
 
-async function execCommands<TCmd extends string | number | symbol>(commands: Command<TCmd>[]) {
+async function execCommands<TCmd extends string>(commands: Command<TCmd>[]) {
   if (!Array.isArray(commands)) return Promise.resolve([])
 
   const results = await Promise.allSettled<{ stdout: string } & Command<TCmd>>(
@@ -66,30 +68,27 @@ async function execCommands<TCmd extends string | number | symbol>(commands: Com
   return results.map(res => (res.status === 'fulfilled' ? res.value : undefined))
 }
 
-const generateCommands = <TCmd extends string | number | symbol>(
+const generateCommands = <TCmd extends string>(
   options: GitInfoOptions<TCmd>,
   commands: Command<TCmd>[]
 ) => {
-  return Object.entries({ ...defaultOptions.enableVars, ...options.enableVars }).reduce(
-    (acc, [key, value]) => {
-      if (value) {
-        return [...acc, ...commands.filter(v => v.key === key)]
-      }
-      return []
-    },
-    []
-  )
+  return Object.entries({ ...defaultOptions.enableVars, ...options.enableVars }).reduce<
+    Command<TCmd>[]
+  >((acc, [key, value]) => {
+    if (value) {
+      return acc.concat(commands.filter(v => v.key === key))
+    }
+    return acc
+  }, [])
 }
 
-async function generateGitInfoData<TCmd extends string | number | symbol>(
-  options?: GitInfoOptions<TCmd>
-) {
+async function generateGitInfoData<TCmd extends string>(options?: GitInfoOptions<TCmd>) {
   const commands = Array.isArray(options?.commands)
     ? [
         ...generateCommands<TCmd>(options, defaultOptions.commands as Command<TCmd>[]),
         ...generateCommands<TCmd>(options, options.commands)
       ]
-    : generateCommands<TCmd>(options, defaultOptions.commands as Command<TCmd>[])
+    : generateCommands<TCmd>(options!, defaultOptions.commands as Command<TCmd>[])
 
   const res = await execCommands<TCmd>(commands as Command<TCmd>[])
 
@@ -99,17 +98,22 @@ async function generateGitInfoData<TCmd extends string | number | symbol>(
   )
 }
 
-async function vitePluginGitInfo<TCmd extends string | number | symbol>(
+async function vitePluginGitInfo<TCmd extends string>(
   options?: GitInfoOptions<TCmd>
 ): Promise<Plugin> {
   const info = await generateGitInfoData<TCmd>(options)
+
+  const globalDefine =
+    options?.globalDefine === false
+      ? false
+      : { ...defaultOptions.globalDefine, ...options?.globalDefine }
 
   return {
     name: 'vite-plugin-git-info',
     apply: 'build',
     config() {
-      const enable = options?.globalDefine?.enable ?? defaultOptions.globalDefine?.enable
-      const key = options?.globalDefine?.key ?? defaultOptions.globalDefine?.key
+      if (globalDefine === false) return {}
+      const { enable, key } = globalDefine
       return {
         define: { ...(enable ? { [key]: JSON.stringify(info) } : {}) }
       }
