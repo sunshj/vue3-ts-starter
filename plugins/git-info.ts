@@ -1,13 +1,13 @@
 import { execSync } from 'node:child_process'
 import type { HtmlTagDescriptor, Plugin } from 'vite'
 
-interface Command {
+interface Command<T> {
   command: string
-  key: string
+  key: T
 }
 
-export interface GitInfoOptions {
-  commands?: Command[]
+export interface GitInfoOptions<TCmd extends string | number | symbol> {
+  commands?: Command<TCmd>[]
   /** @default true */
   injectToHead?: boolean
   globalDefine?: {
@@ -19,12 +19,12 @@ export interface GitInfoOptions {
 
   enableVars?: {
     /** @default true */
-    shortCommitHash?: boolean
+    shortHash?: boolean
     /** @default false */
-    lastCommitTime?: boolean
+    time?: boolean
     /** @default false */
-    lastCommitMsg?: boolean
-  }
+    msg?: boolean
+  } & { [k in TCmd]?: boolean }
 }
 
 const defaultOptions = {
@@ -34,16 +34,27 @@ const defaultOptions = {
   },
   injectToHead: true,
   enableVars: {
-    shortCommitHash: true,
-    lastCommitMsg: false,
-    lastCommitTime: false
-  }
-} satisfies GitInfoOptions
+    shortHash: true,
+    time: false,
+    msg: false
+  },
+  commands: [
+    { key: 'shortHash', command: 'git rev-parse --short HEAD' },
+    {
+      key: 'time',
+      command: 'git log -1 --format=%cI'
+    },
+    {
+      key: 'msg',
+      command: 'git log -1 --format=%s'
+    }
+  ]
+} satisfies GitInfoOptions<string>
 
-async function execCommands(commands: Command[]) {
+async function execCommands<TCmd extends string | number | symbol>(commands: Command<TCmd>[]) {
   if (!Array.isArray(commands)) return Promise.resolve([])
 
-  const results = await Promise.allSettled<{ stdout: string } & Command>(
+  const results = await Promise.allSettled<{ stdout: string } & Command<TCmd>>(
     commands.map(item => {
       return new Promise(resolve => {
         const stdout = execSync(item.command).toString()
@@ -55,42 +66,32 @@ async function execCommands(commands: Command[]) {
   return results.map(res => (res.status === 'fulfilled' ? res.value : undefined))
 }
 
-const generateDefaultCommands = (options?: GitInfoOptions) => {
-  const defaultCommands: Command[] = []
-  const shortCommitHash =
-    options?.enableVars?.shortCommitHash ?? defaultOptions.enableVars.shortCommitHash
-  const lastCommitTime =
-    options?.enableVars?.lastCommitTime ?? defaultOptions.enableVars.lastCommitTime
-  const lastCommitMsg =
-    options?.enableVars?.lastCommitMsg ?? defaultOptions.enableVars.lastCommitMsg
-
-  if (shortCommitHash)
-    defaultCommands.push({
-      key: 'commit',
-      command: 'git rev-parse --short HEAD'
-    })
-
-  if (lastCommitTime)
-    defaultCommands.push({
-      key: 'time',
-      command: 'git log -1 --format=%cI'
-    })
-
-  if (lastCommitMsg)
-    defaultCommands.push({
-      key: 'msg',
-      command: 'git log -1 --format=%s'
-    })
-
-  return defaultCommands
+const generateCommands = <TCmd extends string | number | symbol>(
+  options: GitInfoOptions<TCmd>,
+  commands: Command<TCmd>[]
+) => {
+  return Object.entries({ ...defaultOptions.enableVars, ...options.enableVars }).reduce(
+    (acc, [key, value]) => {
+      if (value) {
+        return [...acc, ...commands.filter(v => v.key === key)]
+      }
+      return []
+    },
+    []
+  )
 }
 
-async function generateGitInfoData(options?: GitInfoOptions) {
+async function generateGitInfoData<TCmd extends string | number | symbol>(
+  options?: GitInfoOptions<TCmd>
+) {
   const commands = Array.isArray(options?.commands)
-    ? [...generateDefaultCommands(options), ...options.commands]
-    : generateDefaultCommands(options)
+    ? [
+        ...generateCommands<TCmd>(options, defaultOptions.commands as Command<TCmd>[]),
+        ...generateCommands<TCmd>(options, options.commands)
+      ]
+    : generateCommands<TCmd>(options, defaultOptions.commands as Command<TCmd>[])
 
-  const res = await execCommands(commands)
+  const res = await execCommands<TCmd>(commands as Command<TCmd>[])
 
   return res.reduce(
     (acc, item) => ({ ...acc!, [item!.key]: item!.stdout.replaceAll(/\r|\n/gi, '') }),
@@ -98,8 +99,10 @@ async function generateGitInfoData(options?: GitInfoOptions) {
   )
 }
 
-async function vitePluginGitInfo(options?: GitInfoOptions): Promise<Plugin> {
-  const info = await generateGitInfoData(options)
+async function vitePluginGitInfo<TCmd extends string | number | symbol>(
+  options?: GitInfoOptions<TCmd>
+): Promise<Plugin> {
+  const info = await generateGitInfoData<TCmd>(options)
 
   return {
     name: 'vite-plugin-git-info',

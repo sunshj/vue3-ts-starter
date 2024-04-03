@@ -75,9 +75,17 @@ export default defineConfig(({ mode }) => ({
       ]
     }),
     GitInfo({
+      commands: [
+        {
+          key: 'fullHash',
+          command: 'git rev-parse HEAD'
+        }
+      ],
       enableVars: {
-        lastCommitTime: true,
-        lastCommitMsg: true
+        shortHash: false,
+        fullHash: true,
+        msg: true,
+        time: true
       },
       injectToHead: false
     })
