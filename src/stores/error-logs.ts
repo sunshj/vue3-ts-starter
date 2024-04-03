@@ -1,5 +1,3 @@
-import { defineStore } from 'pinia'
-
 interface ILogData {
   err: any
   instance: any

@@ -15,7 +15,6 @@
   },
   "dependencies": {
     "@element-plus/icons-vue": "^2.3.1",
-    "@sunshj/directives": "^0.1.2",
     "@vueuse/core": "^10.8.0",
     "axios": "^1.6.7",
     "darkreader": "4.9.58",
@@ -31,7 +30,6 @@
   },
   "devDependencies": {
     "@sunshj/eslint-config": "^1.0.6",
-    "@sunshj/plugins": "^0.1.5",
     "@sunshj/prettier-config": "^1.0.0",
     "@sunshj/stylelint-config": "^1.0.2",
     "@types/node": "^20.11.20",

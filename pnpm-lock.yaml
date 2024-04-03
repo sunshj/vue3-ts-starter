@@ -8,9 +8,6 @@ dependencies:
   '@element-plus/icons-vue':
     specifier: ^2.3.1
     version: 2.3.1(vue@3.4.19)
-  '@sunshj/directives':
-    specifier: ^0.1.2
-    version: 0.1.2(vue@3.4.19)
   '@vueuse/core':
     specifier: ^10.8.0
     version: 10.8.0(vue@3.4.19)
@@ -52,9 +49,6 @@ devDependencies:
   '@sunshj/eslint-config':
     specifier: ^1.0.6
     version: 1.0.6(eslint@8.56.0)(typescript@5.3.3)
-  '@sunshj/plugins':
-    specifier: ^0.1.5
-    version: 0.1.5
   '@sunshj/prettier-config':
     specifier: ^1.0.0
     version: 1.0.0
@@ -739,14 +733,6 @@ packages:
       picomatch: 2.3.1
     dev: true
 
-  /@sunshj/directives@0.1.2(vue@3.4.19):
-    resolution: {integrity: sha512-PmgTa9LoyezeCZ39prO+RfU5pak+f5f8p/jAnLkvqYnd4KhijpyGjS56tcI3ZNkediunkqs4tANUEJgiCfaCSg==}
-    peerDependencies:
-      vue: '3'
-    dependencies:
-      vue: 3.4.19(typescript@5.3.3)
-    dev: false
-
   /@sunshj/eslint-config@1.0.6(eslint@8.56.0)(typescript@5.3.3):
     resolution: {integrity: sha512-pSBvw2e521lTKy+uoctX2+O54TTg73s7KRcsVLgSlkPBj/eHXx4xAbGOlxuUxurxzd4cMXLdqeNTxNldVCHEVQ==}
     engines: {node: '>=16.14.0'}
@@ -785,10 +771,6 @@ packages:
       - eslint-import-resolver-webpack
       - supports-color
       - typescript
-    dev: true
-
-  /@sunshj/plugins@0.1.5:
-    resolution: {integrity: sha512-Av1vxMs2HDRawxoHTZlQy20qYgnAGW8jVGl+FMaNITemoz4f+/Alkz2Z4cr/XmQigRMkVyAbODzKXYVCIOGibA==}
     dev: true
 
   /@sunshj/prettier-config@1.0.0:

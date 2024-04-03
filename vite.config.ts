@@ -10,8 +10,7 @@ import Icons from 'unplugin-icons/vite'
 import IconsResolver from 'unplugin-icons/resolver'
 import { FileSystemIconLoader } from 'unplugin-icons/loaders'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
-import { vAnyResolver } from '@sunshj/directives/resolver'
-import { GitInfo } from '@sunshj/plugins'
+import { GitInfo } from './plugins/git-info'
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
@@ -34,7 +33,13 @@ export default defineConfig(({ mode }) => ({
       defaultStyle: 'width:20px;height:20px;'
     }),
     AutoImport({
-      imports: ['vue', VueRouterAutoImports, { 'vue-router/auto': ['useLink'] }, '@vueuse/core'],
+      imports: [
+        'vue',
+        VueRouterAutoImports,
+        { 'vue-router/auto': ['useLink'] },
+        '@vueuse/core',
+        'pinia'
+      ],
       resolvers: [
         ElementPlusResolver(),
         IconsResolver({
@@ -58,7 +63,15 @@ export default defineConfig(({ mode }) => ({
             icon: 'svg-icon'
           }
         }),
-        vAnyResolver()
+        {
+          type: 'directive',
+          resolve(name) {
+            return {
+              name: `v${name}`,
+              from: '@/directives/index.ts'
+            }
+          }
+        }
       ]
     }),
     GitInfo({

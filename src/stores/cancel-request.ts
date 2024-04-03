@@ -1,5 +1,3 @@
-import { defineStore } from 'pinia'
-
 export const useCancelRequestStore = defineStore('cancelRequest', () => {
   const cancelAjaxList = ref<Function[]>([])
 

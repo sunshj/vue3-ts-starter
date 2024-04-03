@@ -12,9 +12,13 @@ export function useDarkMode() {
     }
   }
 
+  watchEffect(() => {
+    toggle(configStore.isDark)
+  })
+
   onBeforeMount(() => {
     toggle(configStore.isDark)
   })
 
-  return { toggle, isDark: toRef(configStore.isDark) }
+  return { toggle, isDark: storeToRefs(configStore).isDark }
 }
