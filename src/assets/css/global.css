@@ -1,5 +1,9 @@
 @import './base.css';
 
+.hljs {
+  background-color: transparent !important;
+}
+
 .el-pagination {
   padding-bottom: 5px;
   overflow-x: auto;

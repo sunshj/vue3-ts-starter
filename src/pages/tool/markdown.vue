@@ -34,16 +34,38 @@ defineOptions({
 
 const editor = reactive({
   value: `
-## 任务列表
-  
-  - [x] 已完成任务
-  - [ ] 未完成任务
+## 开启devtools
+1. vue2
+\`\`\`js
+const vueApp = document.getElementById('app').__vue__
 
-  ## 数学公式
-  $$ 1+1=2 $$
-  
-## 引用
-> 这是Markdown的简单语法
+let Vue = vueApp.constructor
+while (Vue.super) {
+  Vue = Vue.super
+}
+
+Vue.config.devtools = true
+window.__VUE_DEVTOOLS_GLOBAL_HOOK__.Vue = Vue
+
+\`\`\`
+
+2. vue3
+\`\`\`js
+const vueApp = document.getElementById('app').__vue_app__
+
+window.__VUE_DEVTOOLS_GLOBAL_HOOK__.apps.push({
+  app: vueApp,
+  version: vueApp.version,
+  types: {
+    Comment: Symbol('Comment'),
+    Fragment: Symbol('Fragment'),
+    Static: Symbol('Static'),
+    Text: Symbol('Text')
+  }
+})
+
+window.__VUE_DEVTOOLS_GLOBAL_HOOK__.enabled = true
+\`\`\`
 `
 })
 </script>
