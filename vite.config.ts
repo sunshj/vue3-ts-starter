@@ -10,7 +10,7 @@ import Icons from 'unplugin-icons/vite'
 import IconsResolver from 'unplugin-icons/resolver'
 import { FileSystemIconLoader } from 'unplugin-icons/loaders'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
-import { GitInfo } from './plugins/git-info'
+import { GitInfo } from '@sunshj/vite-plugins'
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
@@ -81,11 +81,8 @@ export default defineConfig(({ mode }) => ({
           command: 'git rev-parse HEAD'
         }
       ],
-      enableVars: {
-        shortHash: false,
-        fullHash: true,
-        msg: true,
-        time: true
+      usingKeys: {
+        shortHash: false
       },
       injectToHead: false
     })

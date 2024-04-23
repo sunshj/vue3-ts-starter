@@ -55,6 +55,9 @@ devDependencies:
   '@sunshj/stylelint-config':
     specifier: ^1.0.2
     version: 1.0.2(stylelint@16.2.1)
+  '@sunshj/vite-plugins':
+    specifier: ^0.1.0
+    version: 0.1.0
   '@types/node':
     specifier: ^20.11.20
     version: 20.11.20
@@ -791,6 +794,10 @@ packages:
       stylelint-config-recommended-vue: 1.5.0(postcss-html@1.6.0)(stylelint@16.2.1)
       stylelint-config-standard: 36.0.0(stylelint@16.2.1)
       stylelint-config-standard-scss: 13.0.0(postcss@8.4.35)(stylelint@16.2.1)
+    dev: true
+
+  /@sunshj/vite-plugins@0.1.0:
+    resolution: {integrity: sha512-1usEcGeGvqWnXRgaZu92R5tz+3qF4uNzge57s+8E9uRqq855b5HdlIpmtgh4bDhogDdoAxIUJt3qVdPOnYoD4w==}
     dev: true
 
   /@sxzz/popperjs-es@2.11.7:
