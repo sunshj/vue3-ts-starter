@@ -11,6 +11,7 @@ import IconsResolver from 'unplugin-icons/resolver'
 import { FileSystemIconLoader } from 'unplugin-icons/loaders'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import { EnvDts, GitInfo } from '@sunshj/vite-plugins'
+import { MenuIcons } from './plugins'
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
@@ -86,7 +87,8 @@ export default defineConfig(({ mode }) => ({
       },
       injectToHead: false
     }),
-    EnvDts()
+    EnvDts(),
+    MenuIcons()
   ],
   optimizeDeps: {
     include: [
