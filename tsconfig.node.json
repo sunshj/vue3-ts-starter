@@ -7,5 +7,5 @@
     "allowSyntheticDefaultImports": true,
     "types": ["element-plus/global"]
   },
-  "include": ["vite.config.ts", "./plugins"]
+  "include": ["vite.config.ts"]
 }

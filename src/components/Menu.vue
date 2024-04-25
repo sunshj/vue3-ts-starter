@@ -14,7 +14,7 @@
       <template v-if="item.children?.length">
         <el-sub-menu :key="item.path" :index="item.path">
           <template #title>
-            <el-icon :size="20"> <component :is="menuIconsMap.get(item.meta?.icon!)" /></el-icon>
+            <el-icon :size="20"> <component :is="iconsMap.get(item.meta?.icon!)" /></el-icon>
             <span>{{ item.meta?.title }}</span>
           </template>
           <el-menu-item
@@ -23,7 +23,7 @@
             :index="`${item.path}/${subItem.path}`"
           >
             <template #title>
-              <component :is="menuIconsMap.get(subItem.meta?.icon!)" />
+              <component :is="iconsMap.get(subItem.meta?.icon!)" />
               <span>{{ subItem.meta?.title }}</span>
             </template>
           </el-menu-item>
@@ -32,7 +32,7 @@
       <!-- 没有子菜单直接作为一级菜单 -->
       <template v-else>
         <el-menu-item :key="item.path" :index="item.path">
-          <component :is="menuIconsMap.get(item.meta?.icon!)" />
+          <component :is="iconsMap.get(item.meta?.icon!)" />
           <template #title>
             <span>{{ item.meta?.title }}</span>
           </template>
@@ -44,7 +44,7 @@
 
 <script setup lang="ts">
 import { routes } from 'vue-router/auto/routes'
-import { menuIconsMap } from '@/common/menu-icons'
+import { iconsMap } from '@/common/icons-helper'
 import type { RouteRecordRaw } from 'vue-router'
 
 const configStore = useConfigStore()

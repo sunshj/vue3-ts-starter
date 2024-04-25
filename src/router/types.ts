@@ -1,4 +1,4 @@
-import type { MenuIconsEnum } from '@/common/menu-icons'
+import type { IconsEnum } from '@/common/icons-helper'
 import 'vue-router'
 
 declare module 'vue-router' {
@@ -7,7 +7,7 @@ declare module 'vue-router' {
     /** 菜单标题 */
     title?: string
     /** 菜单显示图标 */
-    icon?: MenuIconsEnum
+    icon?: IconsEnum
     /** 是否为菜单栏 */
     isMenuitem?: boolean
     /** 菜单项排序 */
