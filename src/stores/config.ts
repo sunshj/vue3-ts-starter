@@ -3,14 +3,18 @@ import type { RouteRecordRaw } from 'vue-router'
 export const useConfigStore = defineStore(
   'config',
   () => {
+    const appTitle = ref('')
     const currentPath = ref('')
     const isMobile = ref(false)
-    // 侧边栏是否折叠
+    /** 侧边栏是否折叠*/
     const isCollapse = ref(false)
     const routes = ref<RouteRecordRaw[]>([])
     const menus = ref<RouteRecordRaw[]>([])
-    const language = ref('zh-CN')
     const isDark = ref(false)
+
+    function setAppTitle(title: string) {
+      appTitle.value = title
+    }
 
     function setCurrentPath(path: string) {
       currentPath.value = path
@@ -37,15 +41,13 @@ export const useConfigStore = defineStore(
       menus.value = val
     }
 
-    function setLanguage(val: string) {
-      language.value = val
-    }
-
     function setIsDark(val: boolean) {
       isDark.value = val
     }
 
     return {
+      appTitle,
+      setAppTitle,
       currentPath,
       setCurrentPath,
       isMobile,
@@ -57,8 +59,6 @@ export const useConfigStore = defineStore(
       setRoutes,
       menus,
       setMenus,
-      language,
-      setLanguage,
       isDark,
       setIsDark
     }

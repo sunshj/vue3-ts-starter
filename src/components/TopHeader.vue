@@ -3,7 +3,7 @@
     <div class="left_wrapper">
       <div class="logo_title_wrap">
         <img src="@/assets/logo.svg" />
-        <span>{{ props.dashTitle }}</span>
+        <span>{{ configStore.appTitle }}</span>
       </div>
     </div>
     <div class="right_wrapper">
@@ -28,7 +28,7 @@
 
       <el-dropdown trigger="click">
         <div class="avatar-wrapper">
-          <el-avatar :src="props.userAvatar" class="user-avatar" />
+          <el-avatar :src="userStore.userInfo.avatar" class="user-avatar" />
           <el-icon><CaretBottom /></el-icon>
         </div>
 
@@ -51,22 +51,17 @@
     </span>
   </div>
   <el-drawer v-model="sideDrawerVisible" :with-header="false" direction="ltr" size="200px">
-    <Menu :is-collapse="false" />
+    <LayoutMenu :is-collapse="false" />
   </el-drawer>
 </template>
 
 <script setup lang="ts">
 import { CaretBottom } from '@element-plus/icons-vue'
-import Menu from './Menu.vue'
 
 const router = useRouter()
 const configStore = useConfigStore()
+const userStore = useUserStore()
 const errorLogsStore = useErrorLogsStore()
-
-const props = defineProps<{
-  dashTitle: string
-  userAvatar: string
-}>()
 
 function darkModeSwitchChange(val: boolean) {
   ElMessage.success(`已${val ? '开启' : '关闭'}暗黑模式`)
@@ -77,10 +72,7 @@ function linkToUserProfile() {
 }
 
 function logout() {
-  sessionStorage.clear()
-  localStorage.clear()
-  location.href = '/login'
-  ElMessage.info('已退出登录')
+  userStore.logout()
 }
 
 const sideDrawerVisible = ref(false)

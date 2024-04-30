@@ -4,6 +4,8 @@ export const useUserStore = defineStore(
     const token = ref('')
     const userInfo = ref({
       username: '',
+      avatar:
+        'https://kjimg10.360buyimg.com/ott/jfs/t1/158031/24/34052/15691/63c68488F1f6d0939/ceccba0c6a5dacb0.jpg',
       lastLogin: ''
     })
 
@@ -15,7 +17,13 @@ export const useUserStore = defineStore(
       userInfo.value = value
     }
 
-    return { token, setToken, userInfo, setUserInfo }
+    function logout() {
+      token.value = ''
+      window.location.href = '/login'
+      ElMessage.info('已退出登录')
+    }
+
+    return { token, setToken, userInfo, setUserInfo, logout }
   },
   {
     persist: true

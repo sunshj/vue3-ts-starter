@@ -87,7 +87,12 @@ const submitForm = async () => {
     await delay(1000 + Math.random() * 2000)
 
     userStore.setToken(Date.now().toString())
-    userStore.setUserInfo({ username: loginForm.username, lastLogin: new Date().toLocaleString() })
+    userStore.$patch({
+      userInfo: {
+        username: loginForm.username,
+        lastLogin: new Date().toLocaleString()
+      }
+    })
 
     ElMessage.success('登录成功')
     router.push('/')
