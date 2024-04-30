@@ -5,8 +5,8 @@
     </el-page-header>
     <custom-card :padding="15" title="登录信息">
       <div class="login-info">
-        <div>用户名：{{ userInfo.userName }}</div>
-        <div>登录时间：{{ timeFormat(userInfo.loginTime) }}</div>
+        <div>用户名：{{ userStore.userInfo.username }}</div>
+        <div>登录时间：{{ timeFormat(userStore.userInfo.lastLogin) }}</div>
       </div>
     </custom-card>
   </div>
@@ -15,14 +15,7 @@
 <script setup lang="ts">
 import { timeFormat } from '@/utils'
 
-const userInfo = ref({
-  userName: '',
-  loginTime: 0
-})
-
-onBeforeMount(() => {
-  userInfo.value = JSON.parse(sessionStorage.getItem('userInfo') ?? '{}')
-})
+const userStore = useUserStore()
 </script>
 
 <style lang="scss" scoped>

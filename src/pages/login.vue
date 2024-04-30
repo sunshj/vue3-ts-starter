@@ -37,9 +37,6 @@
         </el-button>
       </el-form>
     </template>
-    <template #action>
-      <el-checkbox v-model="rememberPassChecked" label="记住密码" size="large" />
-    </template>
   </ActionFormCard>
 </template>
 
@@ -56,7 +53,6 @@ definePage({
 })
 
 const userStore = useUserStore()
-
 const router = useRouter()
 
 const loginFormRef = ref<FormInstance>()
@@ -71,7 +67,6 @@ const loginFormRules = reactive<FormRules>({
 
 const loginLoading = ref(false)
 const popoverVisible = ref(false)
-const rememberPassChecked = ref(false)
 
 const resetForm = () => {
   loginFormRef.value?.resetFields()
@@ -90,27 +85,15 @@ const submitForm = async () => {
     loginLoading.value = true
     // 异步请求
     await delay(1000 + Math.random() * 2000)
-    if (rememberPassChecked.value) {
-      localStorage.setItem('username', loginForm.username)
-      localStorage.setItem('password', loginForm.password)
-    }
+
     userStore.setToken(Date.now().toString())
-    userStore.setUserInfo({ ...loginForm })
+    userStore.setUserInfo({ username: loginForm.username, lastLogin: new Date().toLocaleString() })
 
     ElMessage.success('登录成功')
     router.push('/')
     loginLoading.value = false
   })
 }
-
-onMounted(() => {
-  const username = localStorage.getItem('username') as string
-  const password = localStorage.getItem('password') as string
-  if (username && password) {
-    loginForm.username = username
-    loginForm.password = password
-  }
-})
 </script>
 
 <style lang="scss" scoped>

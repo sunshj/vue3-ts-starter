@@ -1,5 +1,3 @@
-import type { IResData } from '../typings'
-
 export interface IUser {
   userId: number
   userName: string
@@ -9,9 +7,7 @@ export interface IUser {
   userRole: number
 }
 
-export type GetUserList = IResData<{
+export interface GetUserList {
   result: IUser[]
   total: number
-}>
-
-export type GetUser = IResData<IUser>
+}

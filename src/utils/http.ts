@@ -1,4 +1,4 @@
-import Axios from 'axios'
+import Axios, { type AxiosRequestConfig } from 'axios'
 import { ElMessage } from 'element-plus'
 
 const baseURL = import.meta.env.VITE_API_BASE_URL
@@ -41,3 +41,16 @@ axios.interceptors.response.use(
 )
 
 export { axios }
+
+interface ResData<T> {
+  code: number
+  message: string
+  data: T
+}
+
+export async function request<T>(url: string, config?: AxiosRequestConfig) {
+  const { data: res } = await axios<ResData<T>>(url, config)
+  if (res.code !== 200) ElMessage.error(res.data ?? res.message)
+
+  return res.data
+}

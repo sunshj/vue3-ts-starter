@@ -1,20 +1,13 @@
-import { axios } from '@/utils'
-import type { GetUser, GetUserList } from './types'
+import { request } from '@/utils'
+import type { GetUserList, IUser } from './types'
 
 export * from './types'
 
 export const ApiGetUserList = async (pageNum: number, pagesize: number, query: string) => {
   const encodeQuery = encodeURIComponent(query)
-  const { data: res } = await axios.get<GetUserList>(
-    `/user?page=${pageNum}&size=${pagesize}&query=${encodeQuery}`
-  )
-
-  if (res.code !== 200) ElMessage.error(res.data as unknown as string)
-  return res.data
+  return await request<GetUserList>(`/user?page=${pageNum}&size=${pagesize}&query=${encodeQuery}`)
 }
 
 export const ApiGetUser = async (id: number) => {
-  const { data: res } = await axios.get<GetUser>(`/user/${id}`)
-  if (res.code !== 200) ElMessage.error(res.data as unknown as string)
-  return res.data
+  return await request<IUser>(`/user/${id}`)
 }
