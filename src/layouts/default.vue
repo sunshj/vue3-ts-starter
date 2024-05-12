@@ -12,7 +12,6 @@
       </el-aside>
       <el-main class="layout_main" :class="configStore.isMobile ? 'mobile' : ''">
         <router-view v-slot="{ Component, route }">
-          <AutoBreadcrumb v-if="route.meta.isMenuitem" />
           <transition name="fade-transform" mode="out-in">
             <component :is="Component" :key="route.path" />
           </transition>
@@ -35,6 +34,7 @@ onMounted(() => {
     configStore.setAppTitle('短标题')
   } else {
     configStore.setIsMobile(false)
+    configStore.setAppTitle(import.meta.env.VITE_APP_TITLE)
   }
 })
 </script>
@@ -55,7 +55,7 @@ onMounted(() => {
     border-right: 1px solid rgb(217 217 217);
 
     .toggle_collapse {
-      position: absolute;
+      position: fixed;
       bottom: 0;
       z-index: 99;
       display: flex;

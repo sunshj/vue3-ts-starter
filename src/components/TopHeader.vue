@@ -3,8 +3,11 @@
     <div class="left_wrapper">
       <div class="logo_title_wrap">
         <img src="@/assets/logo.svg" />
-        <span>{{ configStore.appTitle }}</span>
+        <span v-if="!configStore.isCollapse">{{ configStore.appTitle }}</span>
       </div>
+      <AutoBreadcrumb
+        v-if="configStore.isCollapse && !configStore.isMobile && $route.meta.isMenuitem"
+      />
     </div>
     <div class="right_wrapper">
       <el-tooltip
@@ -106,6 +109,10 @@ onBeforeRouteUpdate(() => {
   @include backdrop;
 
   .left_wrapper {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+
     .logo_title_wrap {
       display: flex;
       align-items: center;

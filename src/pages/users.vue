@@ -21,8 +21,16 @@
         </el-col>
       </el-row>
 
-      <el-table v-loading="tableLoading" :data="userList" border stripe>
-        <el-table-column type="index" label="#" />
+      <el-table
+        v-loading="tableLoading"
+        row-key="userId"
+        :data="userList"
+        border
+        stripe
+        @selection-change="handleSelectionChange"
+      >
+        <el-table-column type="selection" reserve-selection width="55" />
+        <el-table-column prop="userId" label="ID" />
         <el-table-column prop="userName" label="用户名" />
 
         <el-table-column label="用户头像" width="100">
@@ -81,7 +89,7 @@
       />
     </custom-card>
 
-    <!-- 添加 -->
+    <!-- 添加/编辑 -->
     <el-dialog
       v-model="userDialog.show"
       :title="userDialog.isAdd ? '添加用户' : '编辑用户信息'"
@@ -187,6 +195,10 @@ async function getUsersList() {
   )
   userList.value = res.result
   userTotal.value = res.total
+}
+
+function handleSelectionChange(selection: IUser[]) {
+  console.log('selection:', selection)
 }
 
 const userInfoRef = ref<FormInstance>()

@@ -80,9 +80,3 @@ watch([() => route.path, () => props.path], () => {
   autoBreadList.value = generateBreadcrumb(props.path ?? route.name)
 })
 </script>
-
-<style lang="scss" scoped>
-* {
-  margin-bottom: 12px;
-}
-</style>
