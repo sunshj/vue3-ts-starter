@@ -63,9 +63,6 @@ function getMenus(routes: RouteRecordRaw[]): RouteRecordRaw[] {
 }
 
 const menusList = getMenus(routes)
-
-configStore.setRoutes(routes)
-configStore.setMenus(menusList)
 </script>
 
 <style lang="scss" scoped>
