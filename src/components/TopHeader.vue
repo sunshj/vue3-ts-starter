@@ -54,7 +54,7 @@
     </span>
   </div>
   <el-drawer v-model="sideDrawerVisible" :with-header="false" direction="ltr" size="200px">
-    <LayoutMenu :is-collapse="false" />
+    <LayoutMenu />
   </el-drawer>
 </template>
 

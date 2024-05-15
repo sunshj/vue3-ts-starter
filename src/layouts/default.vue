@@ -34,6 +34,7 @@ onMounted(() => {
     configStore.setAppTitle('短标题')
   } else {
     configStore.setIsMobile(false)
+    configStore.setIsCollapse(false)
     configStore.setAppTitle(import.meta.env.VITE_APP_TITLE)
   }
 })
