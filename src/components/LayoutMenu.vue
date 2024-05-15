@@ -4,8 +4,7 @@
     :collapse="configStore.isCollapse"
     :collapse-transition="false"
     router
-    text-color="#000"
-    active-text-color="#000"
+    active-text-color="var(--el-menu-text-color)"
     :default-active="configStore.currentPath"
   >
     <!-- 菜单项 -->
@@ -80,7 +79,7 @@ const menusList = getMenus(routes)
   }
 
   &.is-active {
-    background-color: #f2f2f2 !important;
+    background-color: var(--menu-bg-color);
 
     svg {
       color: #0051c3;

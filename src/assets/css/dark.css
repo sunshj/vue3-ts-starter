@@ -1,0 +1,17 @@
+:root {
+  --layout-bg-color: #e9edf1;
+  --menu-bg-color: #f2f2f2;
+  --menu-border-color: #d9d9d9;
+  --card-bg-color: #f7f9fb;
+  --header-bg-color: #ffffffb3;
+}
+
+html.dark {
+  background: #121212;
+
+  --layout-bg-color: #121212;
+  --menu-bg-color: #292b2c;
+  --menu-border-color: #424648;
+  --card-bg-color: #252828;
+  --header-bg-color: #232425b3;
+}

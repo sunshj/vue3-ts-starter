@@ -51,8 +51,7 @@ onMounted(() => {
     display: block;
     padding-bottom: 60px;
     overflow-x: hidden;
-    background-color: white;
-    border-right: 1px solid rgb(217 217 217);
+    border-right: 1px solid var(--menu-border-color);
 
     .toggle_collapse {
       position: fixed;
@@ -65,8 +64,7 @@ onMounted(() => {
       padding: 18px 0 18px 20px;
       overflow: hidden;
       cursor: pointer;
-      background-color: #ffffff;
-      border-top: 1px solid rgb(217 217 217);
+      border-top: 1px solid var(--menu-border-color);
 
       &:hover svg {
         transform: scale(1.15);
@@ -91,7 +89,7 @@ onMounted(() => {
     padding: 10;
     padding-top: $layout-padding-top;
     overflow-y: auto;
-    background-color: #e9edf1;
+    background-color: var(--layout-bg-color);
 
     &.mobile {
       left: 0;

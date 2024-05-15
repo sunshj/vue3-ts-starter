@@ -39,7 +39,7 @@ withDefaults(defineProps<IProps>(), {
     padding: 15px;
     font-size: 24px;
     font-weight: bold;
-    background-color: #f7f9fb;
+    background-color: var(--card-bg-color);
   }
 
   &__content {

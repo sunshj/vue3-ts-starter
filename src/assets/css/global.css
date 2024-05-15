@@ -1,4 +1,5 @@
 @import './base.css';
+@import './dark.css';
 
 .hljs {
   background-color: transparent !important;

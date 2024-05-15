@@ -6,7 +6,6 @@ export const useConfigStore = defineStore(
     const isMobile = ref(false)
     /** 侧边栏是否折叠*/
     const isCollapse = ref(false)
-    const isDark = ref(false)
 
     function setAppTitle(title: string) {
       appTitle.value = title
@@ -29,10 +28,6 @@ export const useConfigStore = defineStore(
       isCollapse.value = !isCollapse.value
     }
 
-    function setIsDark(val: boolean) {
-      isDark.value = val
-    }
-
     return {
       appTitle,
       setAppTitle,
@@ -42,9 +37,7 @@ export const useConfigStore = defineStore(
       setIsMobile,
       isCollapse,
       setIsCollapse,
-      toggleCollapse,
-      isDark,
-      setIsDark
+      toggleCollapse
     }
   },
   {

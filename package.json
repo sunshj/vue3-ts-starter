@@ -17,7 +17,6 @@
     "@element-plus/icons-vue": "^2.3.1",
     "@vueuse/core": "^10.8.0",
     "axios": "^1.6.7",
-    "darkreader": "4.9.58",
     "dayjs": "^1.11.10",
     "echarts": "^5.5.0",
     "element-plus": "^2.5.6",

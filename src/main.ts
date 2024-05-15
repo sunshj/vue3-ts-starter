@@ -2,6 +2,7 @@ import { createApp, nextTick } from 'vue'
 import { createPinia } from 'pinia'
 import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
 
+import 'element-plus/theme-chalk/dark/css-vars.css'
 import './assets/css/global.css'
 
 import App from './App.vue'

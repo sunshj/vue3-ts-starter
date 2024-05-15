@@ -8,7 +8,8 @@
 </template>
 
 <script setup lang="ts">
-const { toggle, isDark } = useDarkMode()
+const isDark = useDark()
+const toggle = useToggle(isDark)
 
 const emit = defineEmits<{
   (e: 'change', value: boolean): void
@@ -30,6 +31,8 @@ function toggleDarkMode(val: boolean | string | number) {
 
 .el-switch.is-checked {
   :deep(.el-switch__core .el-switch__action) {
+    color: #d5d3d0;
+    background-color: #636363;
     background-image: url('../assets/icons/moon.png');
   }
 }
