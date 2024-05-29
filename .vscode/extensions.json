@@ -7,6 +7,6 @@
     "antfu.goto-alias",
     "christian-kohler.path-intellisense",
     "mrmlnc.vscode-scss",
-    "tarrow.css-class-intellisense",
+    "tarrow.css-class-intellisense"
   ]
 }
