@@ -23,27 +23,27 @@
 
       <el-table
         v-loading="tableLoading"
-        row-key="userId"
+        row-key="id"
         :data="userList"
         border
         stripe
         @selection-change="handleSelectionChange"
       >
         <el-table-column type="selection" reserve-selection width="55" />
-        <el-table-column prop="userId" label="ID" />
-        <el-table-column prop="userName" label="用户名" />
+        <el-table-column prop="id" label="ID" />
+        <el-table-column prop="name" label="用户名" />
 
         <el-table-column label="用户头像" width="100">
           <template #default="scope">
-            <el-avatar :size="35" :src="scope.row.userAvatar" />
+            <el-avatar :size="35" :src="scope.row.avatar" />
           </template>
         </el-table-column>
 
-        <el-table-column prop="userEmail" label="邮箱" />
+        <el-table-column prop="email" label="邮箱" />
         <el-table-column label="用户角色">
           <template #default="scope">
-            <el-tag :type="scope.row.userRole === 2 ? 'warning' : 'primary'">
-              {{ scope.row.userRole === 2 ? '管理员' : '普通用户' }}
+            <el-tag :type="scope.row.role === 2 ? 'warning' : 'primary'">
+              {{ scope.row.role === 2 ? '管理员' : '普通用户' }}
             </el-tag>
           </template>
         </el-table-column>
@@ -62,14 +62,14 @@
 
         <el-table-column label="操作" width="200">
           <template #default="scope">
-            <el-button size="small" :icon="Edit" @click="showEditDialog(scope.row.userId)">
+            <el-button size="small" :icon="Edit" @click="showEditDialog(scope.row.id)">
               编辑
             </el-button>
             <el-button
               size="small"
               type="danger"
               :icon="Delete"
-              @click="handleDelete(scope.row.userId)"
+              @click="handleDelete(scope.row.id)"
             >
               删除
             </el-button>
@@ -107,21 +107,21 @@
         label-width="80px"
         status-icon
       >
-        <el-form-item label="用户名" prop="userName">
-          <el-input v-model="userInfo.userName" clearable />
+        <el-form-item label="用户名" prop="name">
+          <el-input v-model="userInfo.name" clearable />
         </el-form-item>
-        <el-form-item v-if="userDialog.isAdd" label="登录密码" prop="userPass">
-          <el-input v-model="userInfo.userPass" type="password" show-password clearable />
+        <el-form-item v-if="userDialog.isAdd" label="登录密码" prop="pass">
+          <el-input v-model="userInfo.pass" type="password" show-password clearable />
         </el-form-item>
-        <el-form-item label="用户邮箱" prop="userEmail">
-          <el-input v-model="userInfo.userEmail" type="email" clearable />
+        <el-form-item label="用户邮箱" prop="email">
+          <el-input v-model="userInfo.email" type="email" clearable />
         </el-form-item>
         <el-form-item label="用户头像">
           <div :class="userDialog.isAdd ? '' : 'edit_img'">
             <el-image
               v-if="!userDialog.isAdd"
               style="width: 60px; height: 60px"
-              :src="userInfo.userAvatar"
+              :src="userInfo.avatar"
             />
             <single-image-upload
               :file="fileList"
@@ -133,7 +133,7 @@
         </el-form-item>
 
         <el-form-item label="用户角色">
-          <el-select v-model="userInfo.userRole" placeholder="选择角色">
+          <el-select v-model="userInfo.role" placeholder="选择角色">
             <el-option
               v-for="item in userRoleOption"
               :key="item.value"
@@ -211,14 +211,14 @@ const userDialog = reactive({
 
 const fileList = ref([])
 
-const initialUserInfo = {
-  userName: '',
-  userPass: '',
-  userEmail: '',
-  userAvatar: '',
-  userRole: 1
+const initialUserInfo: Omit<IUser, 'id'> = {
+  name: '',
+  pass: '',
+  email: '',
+  avatar: '',
+  role: 1
 }
-const userInfo = ref<Omit<IUser, 'userId'>>({ ...initialUserInfo })
+const userInfo = ref<Omit<IUser, 'id'>>({ ...initialUserInfo })
 
 const userRoleOption = [
   {
@@ -232,16 +232,16 @@ const userRoleOption = [
 ]
 
 const userFormRules = reactive({
-  userName: [{ validator: isUserName, trigger: 'blur' }],
-  userPass: [{ validator: isPassword, trigger: 'blur' }],
-  userEmail: [{ validator: isEmail, trigger: 'blur' }]
+  name: [{ validator: isUserName, trigger: 'blur' }],
+  pass: [{ validator: isPassword, trigger: 'blur' }],
+  email: [{ validator: isEmail, trigger: 'blur' }]
 })
 
 const formRulesComputed = computed(() => {
   if (userDialog.isAdd) {
     return userFormRules
   }
-  return { userName: userFormRules.userName, userEmail: userFormRules.userEmail }
+  return { name: userFormRules.name, email: userFormRules.email }
 })
 
 function showAddDialog() {
@@ -270,7 +270,6 @@ function addDashUser() {
     if (!valid) return ElMessage.warning('请正确填写表单')
     submitLoading.value = true
     setTimeout(() => {
-      // eslint-disable-next-line no-console
       console.log('添加用户信息：', JSON.parse(JSON.stringify(userInfo)))
       ElMessage.warning('添加用户成功：（仅供演示）')
       submitLoading.value = false
@@ -303,12 +302,12 @@ async function handleDelete(id: number) {
   }).catch(() => ElMessage.info('已取消删除'))
   if (action !== 'confirm') return false
   ElMessage.warning(`删除用户成功：${id}（仅供演示）`)
-  userList.value = userList.value.filter(v => v.userId !== id)
+  userList.value = userList.value.filter(v => v.id !== id)
 }
 
 // 上传事件
 function uploadSuccess(url: string) {
-  userInfo.value.userAvatar = url
+  userInfo.value.avatar = url
 }
 
 function uploadFailed(err: any) {

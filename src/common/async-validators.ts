@@ -1,10 +1,10 @@
 export const isUserName = (_rule: any, value: string, callback: Function) => {
   if (value.trim() === '') return callback(new Error('请输入用户名'))
-  const regName = /^[\dA-Z_-\u4E00\u9FA5-]{3,10}$/
+  const regName = /^[·\u4E00-\u9FA5]{2,16}$/
   if (regName.test(value)) {
     return callback()
   }
-  callback(new Error('长度为3到10字，且不得包含特殊字符'))
+  callback(new Error('长度为2到10字，且不得包含特殊字符'))
 }
 
 export const isPassword = (_rule: any, value: string, callback: Function) => {

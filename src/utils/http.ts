@@ -43,14 +43,14 @@ axios.interceptors.response.use(
 export { axios }
 
 interface ResData<T> {
-  code: number
+  statusCode: number
   message: string
   data: T
 }
 
 export async function request<T>(url: string, config?: AxiosRequestConfig) {
   const { data: res } = await axios<ResData<T>>(url, config)
-  if (res.code !== 200) ElMessage.error(res.data ?? res.message)
+  if (res.statusCode !== 200) ElMessage.error(res.data ?? res.message)
 
   return res.data
 }

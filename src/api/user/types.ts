@@ -1,10 +1,10 @@
 export interface IUser {
-  userId: number
-  userName: string
-  userPass: string
-  userEmail: string
-  userAvatar: string
-  userRole: number
+  id: number
+  name: string
+  pass: string
+  email: string
+  avatar: string
+  role: number
 }
 
 export interface GetUserList {
