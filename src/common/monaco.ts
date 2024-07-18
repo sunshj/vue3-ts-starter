@@ -5,7 +5,6 @@ import HtmlWorker from 'monaco-editor/esm/vs/language/html/html.worker?worker'
 import TsWorker from 'monaco-editor/esm/vs/language/typescript/ts.worker?worker'
 
 // @ts-expect-error: worker
-// eslint-disable-next-line no-restricted-globals
 self.MonacoEnvironment = {
   getWorker(_: any, label: string) {
     if (label === 'json') return new JsonWorker()
