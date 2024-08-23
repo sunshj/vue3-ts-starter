@@ -13,8 +13,8 @@ const props = defineProps<{
 const dom = ref<HTMLDivElement | null>(null)
 
 watchPostEffect(() => {
-  if (!dom.value) dom.value = document.getElementById(props.id) as HTMLDivElement
-  const chart = useECharts(dom.value as HTMLDivElement)
+  if (!dom.value) dom.value = document.querySelector(`#${props.id}`)
+  const chart = useECharts(dom.value!)
   chart.showLoading()
   chart.setOption(props.option)
   chart.hideLoading()

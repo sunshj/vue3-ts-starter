@@ -5,7 +5,7 @@ type InitDom = HTMLDivElement | HTMLCanvasElement
 
 interface FullOption {
   el: InitDom
-  theme?: Object | string
+  theme?: object | string
   opts?: {
     devicePixelRatio?: number
     renderer?: 'canvas' | 'svg'

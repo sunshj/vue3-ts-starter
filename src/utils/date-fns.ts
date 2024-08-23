@@ -1,8 +1,8 @@
 import dayjs from 'dayjs'
-import 'dayjs/locale/zh-cn'
 import calendar from 'dayjs/plugin/calendar'
 import relativeTime from 'dayjs/plugin/relativeTime'
 import updateLocale from 'dayjs/plugin/updateLocale'
+import 'dayjs/locale/zh-cn'
 
 dayjs.extend(relativeTime)
 dayjs.extend(updateLocale)

@@ -9,7 +9,7 @@ export const isUserName = (_rule: any, value: string, callback: Function) => {
 
 export const isPassword = (_rule: any, value: string, callback: Function) => {
   if (value.trim() === '') return callback(new Error('请输入密码'))
-  const regPass = /^[\dA-Za-z]{6,15}$/
+  const regPass = /^[\dA-Z]{6,15}$/i
   if (regPass.test(value)) {
     return callback()
   }
@@ -18,7 +18,7 @@ export const isPassword = (_rule: any, value: string, callback: Function) => {
 
 export const isEmail = (_rule: any, value: string, callback: Function) => {
   if (value.trim() === '') return callback(new Error('请输入邮箱'))
-  const regEmail = /^[\dA-Za-z\u4E00-\u9FA5]+@[\w-]+(\.[\w-]+)+$/
+  const regEmail = /^[\dA-Z\u4E00-\u9FA5]+@[\w-]+(?:\.[\w-]+)+$/i
   if (regEmail.test(value)) {
     return callback()
   }

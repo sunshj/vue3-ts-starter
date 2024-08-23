@@ -1,14 +1,15 @@
-import { createApp, nextTick } from 'vue'
 import { createPinia } from 'pinia'
 import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
-
-import 'element-plus/theme-chalk/dark/css-vars.css'
-import './assets/css/global.css'
+import { createApp, nextTick } from 'vue'
 
 import App from './App.vue'
 import router from './router'
-import './router/permission'
+
 import './common/monaco'
+import './router/permission'
+
+import './assets/css/global.css'
+import 'element-plus/theme-chalk/dark/css-vars.css'
 
 const app = createApp(App)
 const pinia = createPinia()
