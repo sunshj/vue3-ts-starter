@@ -44,7 +44,7 @@ axios.interceptors.response.use(
     }
 
     if (response.data.statusCode === 401 && response.config.url !== '/auth/refresh_token') {
-      const isSuccess = await refreshToken()
+      const isSuccess = await refreshToken().finally(refreshToken.reset)
       if (isSuccess) {
         response.config.headers.set('Authorization', `Bearer ${userStore.accessToken}`)
         return await axios.request(response.config)
