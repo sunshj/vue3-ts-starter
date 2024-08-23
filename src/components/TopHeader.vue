@@ -19,8 +19,13 @@
         <error-log />
       </el-tooltip>
 
-      <el-button size="small" :icon="Refresh" @click="refreshToken().finally(refreshToken.reset)">
-        RefreshToken
+      <el-button
+        v-if="!configStore.isMobile"
+        size="small"
+        :icon="Refresh"
+        @click="refreshToken().finally(refreshToken.reset)"
+      >
+        Refresh Token
       </el-button>
 
       <el-tooltip content="切换夜间模式" effect="dark" placement="bottom">
@@ -95,12 +100,6 @@ onBeforeRouteUpdate(() => {
 </script>
 
 <style lang="scss" scoped>
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-}
-
 .layout_header {
   position: fixed;
   z-index: 10;
