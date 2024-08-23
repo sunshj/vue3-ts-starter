@@ -1,6 +1,6 @@
 export const isUserName = (_rule: any, value: string, callback: Function) => {
   if (value.trim() === '') return callback(new Error('请输入用户名'))
-  const regName = /^[·\u4E00-\u9FA5]{2,16}$/
+  const regName = /^[\w\u4E00-\u9FA5-]{2,10}$/
   if (regName.test(value)) {
     return callback()
   }
