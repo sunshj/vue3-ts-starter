@@ -42,8 +42,8 @@
 
 <script setup lang="ts">
 import { Key, User } from '@element-plus/icons-vue'
+import { ApiLogin } from '@/api/auth'
 import { isPassword, isUserName } from '@/common/async-validators'
-import { delay } from '@/utils'
 import type { FormInstance, FormRules } from 'element-plus'
 
 definePage({
@@ -57,8 +57,8 @@ const router = useRouter()
 
 const loginFormRef = ref<FormInstance>()
 const loginForm = reactive({
-  username: '',
-  password: ''
+  username: 'sunshj',
+  password: '123456'
 })
 const loginFormRules = reactive<FormRules>({
   username: [{ validator: isUserName, trigger: 'blur' }],
@@ -74,29 +74,24 @@ const resetForm = () => {
 }
 
 const submitForm = async () => {
-  const formEl = loginFormRef.value
-  if (!formEl) return
-  await formEl.validate(async valid => {
-    if (!valid) {
-      ElMessage.warning('未通过校验')
-      return
-    }
-    ElMessage.success('已通过校验')
+  if (!loginFormRef.value) return
+  await loginFormRef.value.validate(async valid => {
+    if (!valid) return ElMessage.warning('未通过校验')
     loginLoading.value = true
-    // 异步请求
-    await delay(1000 + Math.random() * 2000)
+    // 登录逻辑
+    await ApiLogin({ ...loginForm })
+      .then(loginData => {
+        userStore.setAccessToken(loginData.access_token)
+        userStore.setRefreshToken(loginData.refresh_token)
+        const { id, name, avatar } = loginData.user
+        userStore.setUserInfo({ id, name, avatar })
 
-    userStore.setToken(Date.now().toString())
-    userStore.$patch({
-      userInfo: {
-        username: loginForm.username,
-        lastLogin: new Date().toLocaleString()
-      }
-    })
-
-    ElMessage.success('登录成功')
-    router.push('/')
-    loginLoading.value = false
+        router.push('/')
+        ElMessage.success('登录成功')
+      })
+      .finally(() => {
+        loginLoading.value = false
+      })
   })
 }
 </script>

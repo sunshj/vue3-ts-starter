@@ -166,6 +166,7 @@ import { Delete, Edit, Plus, Refresh, Search } from '@element-plus/icons-vue'
 import { ApiGetUser, ApiGetUserList, type IUser } from '@/api/user'
 import { isEmail, isPassword, isUserName } from '@/common/async-validators'
 import { timeFormat } from '@/utils'
+import type { WithDate } from '@/api/types'
 import type { FormInstance } from 'element-plus'
 
 definePage({
@@ -218,7 +219,7 @@ const initialUserInfo: Omit<IUser, 'id'> = {
   avatar: '',
   role: 1
 }
-const userInfo = ref<Omit<IUser, 'id'>>({ ...initialUserInfo })
+const userInfo = ref<Omit<WithDate<IUser>, 'id'>>({ ...initialUserInfo })
 
 const userRoleOption = [
   {
@@ -253,7 +254,7 @@ async function showEditDialog(id: number) {
   userDialog.show = true
   userDialog.isAdd = false
   const res = await ApiGetUser(id)
-  userInfo.value = { ...res }
+  userInfo.value = { ...res, pass: '' }
 }
 
 function userDialogClosed() {

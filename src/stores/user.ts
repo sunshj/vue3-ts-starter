@@ -1,16 +1,22 @@
 export const useUserStore = defineStore(
   'user',
   () => {
-    const token = ref('')
+    const accessToken = ref('')
+    const refreshToken = ref('')
+
     const userInfo = ref({
-      username: '',
+      id: 0,
+      name: '',
       avatar:
-        'https://kjimg10.360buyimg.com/ott/jfs/t1/158031/24/34052/15691/63c68488F1f6d0939/ceccba0c6a5dacb0.jpg',
-      lastLogin: ''
+        'https://kjimg10.360buyimg.com/ott/jfs/t1/158031/24/34052/15691/63c68488F1f6d0939/ceccba0c6a5dacb0.jpg'
     })
 
-    function setToken(value: string) {
-      token.value = value
+    function setAccessToken(value: string) {
+      accessToken.value = value
+    }
+
+    function setRefreshToken(value: string) {
+      refreshToken.value = value
     }
 
     function setUserInfo(value: typeof userInfo.value) {
@@ -18,12 +24,21 @@ export const useUserStore = defineStore(
     }
 
     function logout() {
-      token.value = ''
+      setAccessToken('')
+      setRefreshToken('')
       window.location.href = '/login'
       ElMessage.info('已退出登录')
     }
 
-    return { token, setToken, userInfo, setUserInfo, logout }
+    return {
+      accessToken,
+      refreshToken,
+      setAccessToken,
+      setRefreshToken,
+      userInfo,
+      setUserInfo,
+      logout
+    }
   },
   {
     persist: true

@@ -1,5 +1,6 @@
-import Axios, { type AxiosRequestConfig } from 'axios'
+import Axios, { type AxiosRequestConfig, type AxiosResponse } from 'axios'
 import { ElMessage } from 'element-plus'
+import { refreshToken } from './refresh-token'
 
 const baseURL = import.meta.env.VITE_API_BASE_URL
 
@@ -11,10 +12,18 @@ const axios = Axios.create({
 // 前置拦截器（发起请求之前的拦截）
 axios.interceptors.request.use(
   config => {
+    const userStore = useUserStore()
     const cancelRequestStore = useCancelRequestStore()
+
+    if (userStore.accessToken)
+      config.headers.set('Authorization', `Bearer ${userStore.accessToken}`)
+    if (userStore.refreshToken)
+      config.headers.set('Refresh-Token', `Bearer ${userStore.refreshToken}`)
+
     config.cancelToken = new Axios.CancelToken(cancel => {
       cancelRequestStore.add(cancel)
     })
+
     return config
   },
   error => {
@@ -24,7 +33,25 @@ axios.interceptors.request.use(
 
 // 后置拦截器（获取到响应时的拦截）
 axios.interceptors.response.use(
-  response => {
+  async (response: AxiosResponse<ResData<any>>) => {
+    const userStore = useUserStore()
+
+    if (response.headers.authorization) {
+      userStore.setAccessToken(response.headers.authorization)
+    }
+    if (response.headers['Refresh-Token']) {
+      userStore.setRefreshToken(response.headers['Refresh-Token'])
+    }
+
+    if (response.data.statusCode === 401 && response.config.url !== '/auth/refresh_token') {
+      const isSuccess = await refreshToken()
+      if (isSuccess) {
+        response.config.headers.set('Authorization', `Bearer ${userStore.accessToken}`)
+        return await axios.request(response.config)
+      }
+      userStore.logout()
+    }
+
     return response
   },
   error => {
@@ -40,9 +67,7 @@ axios.interceptors.response.use(
   }
 )
 
-export { axios }
-
-interface ResData<T> {
+export interface ResData<T> {
   statusCode: number
   message: string
   data: T
@@ -54,3 +79,5 @@ export async function request<T>(url: string, config?: AxiosRequestConfig) {
 
   return res.data
 }
+
+export { axios }
