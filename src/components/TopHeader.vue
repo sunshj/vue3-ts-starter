@@ -19,6 +19,10 @@
         <error-log />
       </el-tooltip>
 
+      <el-button size="small" :icon="Refresh" @click="refreshToken().finally(refreshToken.reset)">
+        RefreshToken
+      </el-button>
+
       <el-tooltip content="切换夜间模式" effect="dark" placement="bottom">
         <dark-switch @change="darkModeSwitchChange" />
       </el-tooltip>
@@ -59,7 +63,8 @@
 </template>
 
 <script setup lang="ts">
-import { CaretBottom } from '@element-plus/icons-vue'
+import { CaretBottom, Refresh } from '@element-plus/icons-vue'
+import { refreshToken } from '@/utils/refresh-token'
 
 const router = useRouter()
 const configStore = useConfigStore()

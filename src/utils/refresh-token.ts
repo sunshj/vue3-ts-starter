@@ -1,3 +1,4 @@
+import { createSingletonPromise } from '@vueuse/core'
 import { axios, type ResData } from './http'
 
 async function getRefreshToken() {
@@ -21,18 +22,4 @@ async function getRefreshToken() {
     })
 }
 
-let promise: Promise<boolean> | null = null
-
-export function refreshToken() {
-  if (promise) return promise
-
-  promise = new Promise(resolve => {
-    getRefreshToken().then(token => resolve(!!token))
-  })
-
-  promise.finally(() => {
-    promise = null
-  })
-
-  return promise
-}
+export const refreshToken = createSingletonPromise(() => getRefreshToken().then(token => !!token))
