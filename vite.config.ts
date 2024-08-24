@@ -113,7 +113,6 @@ export default defineConfig(({ mode }) => ({
       output: {
         manualChunks(id) {
           if (id.includes('node_modules/monaco-editor')) return 'monaco-editor'
-          if (id.includes('node_modules/element-plus')) return 'element-plus'
         }
       }
     }

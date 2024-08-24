@@ -32,9 +32,9 @@ onMounted(() => {
   if (Reflect.has(window, 'ontouchstart')) {
     configStore.setIsMobile(true)
     configStore.setAppTitle('短标题')
+    configStore.setIsCollapse(false)
   } else {
     configStore.setIsMobile(false)
-    configStore.setIsCollapse(false)
     configStore.setAppTitle(import.meta.env.VITE_APP_TITLE)
   }
 })
