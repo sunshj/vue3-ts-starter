@@ -23,3 +23,5 @@ async function getRefreshToken() {
 }
 
 export const refreshToken = createSingletonPromise(() => getRefreshToken().then(token => !!token))
+
+export const isRefreshTokenUrl = (url?: string) => url === '/auth/refresh_token'

@@ -1,6 +1,6 @@
 import Axios, { type AxiosRequestConfig, type AxiosResponse } from 'axios'
 import { ElMessage } from 'element-plus'
-import { refreshToken } from './refresh-token'
+import { isRefreshTokenUrl, refreshToken } from './refresh-token'
 
 const baseURL = import.meta.env.VITE_API_BASE_URL
 
@@ -15,10 +15,8 @@ axios.interceptors.request.use(
     const userStore = useUserStore()
     const cancelRequestStore = useCancelRequestStore()
 
-    if (userStore.accessToken)
+    if (userStore.accessToken && !isRefreshTokenUrl(config.url))
       config.headers.set('Authorization', `Bearer ${userStore.accessToken}`)
-    if (userStore.refreshToken)
-      config.headers.set('Refresh-Token', `Bearer ${userStore.refreshToken}`)
 
     config.cancelToken = new Axios.CancelToken(cancel => {
       cancelRequestStore.add(cancel)
@@ -43,7 +41,7 @@ axios.interceptors.response.use(
       userStore.setRefreshToken(response.headers['Refresh-Token'])
     }
 
-    if (response.data.statusCode === 401 && response.config.url !== '/auth/refresh_token') {
+    if (response.data.statusCode === 401 && !isRefreshTokenUrl(response.config.url)) {
       const isSuccess = await refreshToken().finally(refreshToken.reset)
       if (isSuccess) {
         response.config.headers.set('Authorization', `Bearer ${userStore.accessToken}`)
