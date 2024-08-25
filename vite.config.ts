@@ -17,6 +17,7 @@ export default defineConfig(({ mode }) => ({
   plugins: [
     VueRouter({
       exclude: ['**/components/**.vue'],
+      dts: 'types/router.d.ts',
       importMode(filepath) {
         const lazyLoadPages = ['/login.vue', '/index.vue', '/charts.vue']
         if (lazyLoadPages.includes(filepath.split('src/pages')[1])) return 'async'
@@ -33,6 +34,7 @@ export default defineConfig(({ mode }) => ({
       defaultStyle: 'width:20px;height:20px;'
     }),
     AutoImport({
+      dts: 'types/imports.d.ts',
       imports: [
         'vue',
         VueRouterAutoImports,
@@ -53,6 +55,7 @@ export default defineConfig(({ mode }) => ({
       dirs: ['./src/stores', './src/composables']
     }),
     Components({
+      dts: 'types/components.d.ts',
       directoryAsNamespace: true,
       resolvers: [
         ElementPlusResolver(),
@@ -86,8 +89,12 @@ export default defineConfig(({ mode }) => ({
       },
       injectToHead: false
     }),
-    EnvDts(),
-    IconsHelper()
+    EnvDts({
+      dtsFile: 'types/env.d.ts'
+    }),
+    IconsHelper({
+      preserveImports: false
+    })
   ],
   optimizeDeps: {
     include: [

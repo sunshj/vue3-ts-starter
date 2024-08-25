@@ -156,17 +156,17 @@ declare global {
   const useBase64: typeof import('@vueuse/core')['useBase64']
   const useBattery: typeof import('@vueuse/core')['useBattery']
   const useBluetooth: typeof import('@vueuse/core')['useBluetooth']
-  const useBreadcrumb: typeof import('./src/composables/breadcrumb')['useBreadcrumb']
+  const useBreadcrumb: typeof import('../src/composables/breadcrumb')['useBreadcrumb']
   const useBreakpoints: typeof import('@vueuse/core')['useBreakpoints']
   const useBroadcastChannel: typeof import('@vueuse/core')['useBroadcastChannel']
   const useBrowserLocation: typeof import('@vueuse/core')['useBrowserLocation']
   const useCached: typeof import('@vueuse/core')['useCached']
-  const useCancelRequestStore: typeof import('./src/stores/cancel-request')['useCancelRequestStore']
+  const useCancelRequestStore: typeof import('../src/stores/cancel-request')['useCancelRequestStore']
   const useClipboard: typeof import('@vueuse/core')['useClipboard']
   const useClipboardItems: typeof import('@vueuse/core')['useClipboardItems']
   const useCloned: typeof import('@vueuse/core')['useCloned']
   const useColorMode: typeof import('@vueuse/core')['useColorMode']
-  const useConfigStore: typeof import('./src/stores/config')['useConfigStore']
+  const useConfigStore: typeof import('../src/stores/config')['useConfigStore']
   const useConfirmDialog: typeof import('@vueuse/core')['useConfirmDialog']
   const useCounter: typeof import('@vueuse/core')['useCounter']
   const useCssModule: typeof import('vue')['useCssModule']
@@ -187,13 +187,13 @@ declare global {
   const useDocumentVisibility: typeof import('@vueuse/core')['useDocumentVisibility']
   const useDraggable: typeof import('@vueuse/core')['useDraggable']
   const useDropZone: typeof import('@vueuse/core')['useDropZone']
-  const useECharts: typeof import('./src/composables/echarts')['useECharts']
+  const useECharts: typeof import('../src/composables/echarts')['useECharts']
   const useElementBounding: typeof import('@vueuse/core')['useElementBounding']
   const useElementByPoint: typeof import('@vueuse/core')['useElementByPoint']
   const useElementHover: typeof import('@vueuse/core')['useElementHover']
   const useElementSize: typeof import('@vueuse/core')['useElementSize']
   const useElementVisibility: typeof import('@vueuse/core')['useElementVisibility']
-  const useErrorLogsStore: typeof import('./src/stores/error-logs')['useErrorLogsStore']
+  const useErrorLogsStore: typeof import('../src/stores/error-logs')['useErrorLogsStore']
   const useEventBus: typeof import('@vueuse/core')['useEventBus']
   const useEventListener: typeof import('@vueuse/core')['useEventListener']
   const useEventSource: typeof import('@vueuse/core')['useEventSource']
@@ -287,11 +287,10 @@ declare global {
   const useToNumber: typeof import('@vueuse/core')['useToNumber']
   const useToString: typeof import('@vueuse/core')['useToString']
   const useToggle: typeof import('@vueuse/core')['useToggle']
-  const useToken: typeof import('./src/composables/token')['useToken']
   const useTransition: typeof import('@vueuse/core')['useTransition']
   const useUrlSearchParams: typeof import('@vueuse/core')['useUrlSearchParams']
   const useUserMedia: typeof import('@vueuse/core')['useUserMedia']
-  const useUserStore: typeof import('./src/stores/user')['useUserStore']
+  const useUserStore: typeof import('../src/stores/user')['useUserStore']
   const useVModel: typeof import('@vueuse/core')['useVModel']
   const useVModels: typeof import('@vueuse/core')['useVModels']
   const useVibrate: typeof import('@vueuse/core')['useVibrate']
@@ -324,5 +323,17 @@ declare global {
 // for type re-export
 declare global {
   // @ts-ignore
-  export type { Component, ComponentPublicInstance, ComputedRef, ExtractDefaultPropTypes, ExtractPropTypes, ExtractPublicPropTypes, InjectionKey, PropType, Ref, VNode, WritableComputedRef } from 'vue'
+  export type {
+    Component,
+    ComponentPublicInstance,
+    ComputedRef,
+    ExtractDefaultPropTypes,
+    ExtractPropTypes,
+    ExtractPublicPropTypes,
+    InjectionKey,
+    PropType,
+    Ref,
+    VNode,
+    WritableComputedRef
+  } from 'vue'
 }

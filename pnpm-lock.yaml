@@ -72,8 +72,8 @@ devDependencies:
     specifier: ^1.0.2
     version: 1.0.2(stylelint@16.2.1)
   '@sunshj/vite-plugins':
-    specifier: ^0.1.5
-    version: 0.1.5
+    specifier: ^0.1.6
+    version: 0.1.6
   '@types/node':
     specifier: ^20.11.20
     version: 20.11.20
@@ -1200,8 +1200,8 @@ packages:
       stylelint-config-standard-scss: 13.0.0(postcss@8.4.35)(stylelint@16.2.1)
     dev: true
 
-  /@sunshj/vite-plugins@0.1.5:
-    resolution: {integrity: sha512-lJc+MnW2MTptfRp0EtUzG72Nuqj371O6rZPUSAIQkZ7w1BRD4QYYRFTQzWzjszBFXzLBUqqGz0BABoWlemUzzA==}
+  /@sunshj/vite-plugins@0.1.6:
+    resolution: {integrity: sha512-XmtN8Z1ixIzSdq+989wEy5A/mb/WaEFIx2PSuF++lIg9LFQPh+PSZqnHGbZFkPGLlT/Gnphwngecv1vzlvAedA==}
     dev: true
 
   /@sxzz/popperjs-es@2.11.7:
@@ -3906,6 +3906,7 @@ packages:
 
   /json-schema-traverse@1.0.0:
     resolution: {integrity: sha512-NM8/P9n3XjXhIZn1lLhkFaACTOURQXjWhV4BA/RnOv8xvgqtqpAX9IO4mRQxSx1Rlo4tqzeqb0sOlruaOy3dug==}
+    requiresBuild: true
     dev: true
 
   /json-stable-stringify-without-jsonify@1.0.1:
@@ -4877,6 +4878,7 @@ packages:
   /require-from-string@2.0.2:
     resolution: {integrity: sha512-Xf0nWe6RseziFMu+Ap9biiUbmplq6S9/p+7w7YXP/JBHhrUDDUhwa+vANyubuqfZWTveU//DYVGsDG7RKL/vEw==}
     engines: {node: '>=0.10.0'}
+    requiresBuild: true
     dev: true
 
   /resolve-dir@1.0.1:
