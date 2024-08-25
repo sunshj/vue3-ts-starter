@@ -47,7 +47,6 @@ axios.interceptors.response.use(
         response.config.headers.set('Authorization', `Bearer ${userStore.accessToken}`)
         return await axios.request(response.config)
       }
-      userStore.logout()
     }
 
     return response
