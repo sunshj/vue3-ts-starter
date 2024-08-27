@@ -72,8 +72,8 @@ devDependencies:
     specifier: ^1.0.2
     version: 1.0.2(stylelint@16.2.1)
   '@sunshj/vite-plugins':
-    specifier: ^0.1.6
-    version: 0.1.6
+    specifier: ^0.1.7
+    version: 0.1.7
   '@types/node':
     specifier: ^20.11.20
     version: 20.11.20
@@ -1200,8 +1200,8 @@ packages:
       stylelint-config-standard-scss: 13.0.0(postcss@8.4.35)(stylelint@16.2.1)
     dev: true
 
-  /@sunshj/vite-plugins@0.1.6:
-    resolution: {integrity: sha512-XmtN8Z1ixIzSdq+989wEy5A/mb/WaEFIx2PSuF++lIg9LFQPh+PSZqnHGbZFkPGLlT/Gnphwngecv1vzlvAedA==}
+  /@sunshj/vite-plugins@0.1.7:
+    resolution: {integrity: sha512-mA7Q4fAeiVCoeVxrRHpT4GSdOU8/JlDaq27DpQfx+Ol4+Bh5PS1Y/PmD2xpfc+RH4B3u5bhMYmdT/zGusDiGyg==}
     dev: true
 
   /@sxzz/popperjs-es@2.11.7:

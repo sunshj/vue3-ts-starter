@@ -90,7 +90,7 @@ export default defineConfig(({ mode }) => ({
       injectToHead: false
     }),
     EnvDts({
-      dtsFile: 'types/env.d.ts'
+      dts: 'types/env.d.ts'
     }),
     IconsHelper({
       preserveImports: false
