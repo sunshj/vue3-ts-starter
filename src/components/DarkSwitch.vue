@@ -1,6 +1,7 @@
 <template>
-  <el-switch
+  <ElSwitch
     v-model="isDark"
+    class="dark-switch"
     active-color="#2F2F2F"
     inactive-color="#F1F1F1"
     @change="toggleDarkMode"
@@ -22,18 +23,23 @@ function toggleDarkMode(val: boolean | string | number) {
 </script>
 
 <style lang="scss" scoped>
-:deep(.el-switch__core .el-switch__action) {
+.el-switch :deep(.el-switch__core .el-switch__action) {
   background-image: url('../assets/icons/sun.png');
   background-repeat: no-repeat;
   background-position: center center;
   background-size: 75%;
 }
 
-.el-switch.is-checked {
-  :deep(.el-switch__core .el-switch__action) {
+.el-switch.is-checked :deep(.el-switch__core) {
+  background-color: #65758529;
+  border-color: #3c3f44;
+
+  .el-switch__action {
     color: #d5d3d0;
-    background-color: #636363;
+    background-color: currentColor;
     background-image: url('../assets/icons/moon.png');
+    filter: invert(100%);
+    border-color: #d5d3d0;
   }
 }
 </style>

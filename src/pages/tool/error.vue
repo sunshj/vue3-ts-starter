@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-button type="danger" @click="showMessage()">测试ERROR捕获</el-button>
+    <ElButton type="danger" @click="showMessage()">测试ERROR捕获</ElButton>
   </div>
 </template>
 

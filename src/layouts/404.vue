@@ -1,14 +1,14 @@
 <template>
   <div class="container">
-    <el-result
+    <ElResult
       :sub-title="`抱歉，访问地址 ${$route.path} 不存在`"
       title="404 Not Found"
       icon="error"
     >
       <template #extra>
-        <el-button type="primary" @click="$router.back()">返回</el-button>
+        <ElButton type="primary" @click="$router.back()">返回</ElButton>
       </template>
-    </el-result>
+    </ElResult>
   </div>
 </template>
 

@@ -7,12 +7,16 @@
     "baseUrl": ".",
     "module": "ESNext",
 
-    "moduleResolution": "node",
+    "moduleResolution": "Bundler",
     "paths": {
       "@/*": ["src/*"]
     },
     "resolveJsonModule": true,
-    "types": ["vite-plugin-vue-layouts/client", "unplugin-icons/types/vue"],
+    "types": [
+      "vite-plugin-vue-layouts/client",
+      "unplugin-icons/types/vue",
+      "unplugin-vue-router/client"
+    ],
     "allowImportingTsExtensions": true,
 
     "strict": true,

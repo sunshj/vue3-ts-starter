@@ -1,5 +1,4 @@
-import type { IconsEnum } from '@/common/icons-helper'
-import 'vue-router'
+import type { SvgIconEnum } from '@/common/icons-helper'
 
 declare module 'vue-router' {
   interface RouteMeta {
@@ -7,7 +6,7 @@ declare module 'vue-router' {
     /** 菜单标题 */
     title?: string
     /** 菜单显示图标 */
-    icon?: IconsEnum
+    icon?: SvgIconEnum
     /** 是否为菜单栏 */
     isMenuitem?: boolean
     /** 菜单项排序 */

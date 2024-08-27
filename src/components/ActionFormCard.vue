@@ -18,19 +18,19 @@
       <div class="card_footer">
         <slot name="action" />
         <div v-if="clearable" class="clear_form_popover">
-          <el-popover v-model:visible="popoverVisible" placement="top" :width="160" trigger="hover">
+          <ElPopover v-model:visible="popoverVisible" placement="top" :width="160" trigger="hover">
             <p>确认清空输入框？</p>
             <div style="margin: 0; text-align: right">
-              <el-button size="small" text @click="popoverVisible = false">取消</el-button>
-              <el-button type="primary" size="small" @click="resetForm">确定</el-button>
+              <ElButton size="small" text @click="popoverVisible = false">取消</ElButton>
+              <ElButton type="primary" size="small" @click="resetForm">确定</ElButton>
             </div>
             <template #reference>
               <span class="popover_reference">
-                <el-icon :size="18"><RefreshLeft /></el-icon>
+                <ElIcon :size="18"><RefreshLeft /></ElIcon>
                 <p>清空</p>
               </span>
             </template>
-          </el-popover>
+          </ElPopover>
         </div>
       </div>
     </div>

@@ -1,27 +1,27 @@
 <template>
   <div>
-    <custom-card :header="false">
-      <el-row :gutter="20">
-        <el-col :span="16" :xs="12" class="type-group">
-          <el-button type="primary" :icon="Plus" @click="showAddDialog()"> 添加用户 </el-button>
-          <el-tooltip effect="dark" content="刷新" placement="top">
-            <el-button :icon="Refresh" circle @click="getUsersList" />
-          </el-tooltip>
-        </el-col>
-        <el-col :span="8" :xs="12">
-          <el-input
+    <CustomCard :header="false">
+      <ElRow :gutter="20">
+        <ElCol :span="16" :xs="12" class="type-group">
+          <ElButton type="primary" :icon="Plus" @click="showAddDialog()"> 添加用户 </ElButton>
+          <ElTooltip effect="dark" content="刷新" placement="top">
+            <ElButton :icon="Refresh" circle @click="getUsersList" />
+          </ElTooltip>
+        </ElCol>
+        <ElCol :span="8" :xs="12">
+          <ElInput
             v-model="inputVal"
             clearable
             placeholder="输入用户名进行查询"
             @change="handleSearchChange"
           >
             <template #prefix>
-              <el-icon class="el-input__icon"><search /></el-icon> </template
-          ></el-input>
-        </el-col>
-      </el-row>
+              <ElIcon class="el-input__icon"><Search /></ElIcon> </template
+          ></ElInput>
+        </ElCol>
+      </ElRow>
 
-      <el-table
+      <ElTable
         v-loading="tableLoading"
         row-key="id"
         :data="userList"
@@ -29,55 +29,50 @@
         stripe
         @selection-change="handleSelectionChange"
       >
-        <el-table-column type="selection" reserve-selection width="55" />
-        <el-table-column prop="id" label="ID" />
-        <el-table-column prop="name" label="用户名" />
+        <ElTableColumn type="selection" reserve-selection width="55" />
+        <ElTableColumn prop="id" label="ID" />
+        <ElTableColumn prop="name" label="用户名" />
 
-        <el-table-column label="用户头像" width="100">
+        <ElTableColumn label="用户头像" width="100">
           <template #default="scope">
-            <el-avatar :size="35" :src="scope.row.avatar" />
+            <ElAvatar :size="35" :src="scope.row.avatar" />
           </template>
-        </el-table-column>
+        </ElTableColumn>
 
-        <el-table-column prop="email" label="邮箱" />
-        <el-table-column label="用户角色">
+        <ElTableColumn prop="email" label="邮箱" />
+        <ElTableColumn label="用户角色">
           <template #default="scope">
-            <el-tag :type="scope.row.role === 2 ? 'warning' : 'primary'">
+            <ElTag :type="scope.row.role === 2 ? 'warning' : 'primary'">
               {{ scope.row.role === 2 ? '管理员' : '普通用户' }}
-            </el-tag>
+            </ElTag>
           </template>
-        </el-table-column>
+        </ElTableColumn>
 
-        <el-table-column label="创建时间">
+        <ElTableColumn label="创建时间">
           <template #default="scope">
             <span>{{ timeFormat(scope.row.createdAt) }}</span>
           </template>
-        </el-table-column>
+        </ElTableColumn>
 
-        <el-table-column label="更新时间">
+        <ElTableColumn label="更新时间">
           <template #default="scope">
             <span>{{ timeFormat(scope.row.updatedAt) }}</span>
           </template>
-        </el-table-column>
+        </ElTableColumn>
 
-        <el-table-column label="操作" width="200">
+        <ElTableColumn label="操作" width="200">
           <template #default="scope">
-            <el-button size="small" :icon="Edit" @click="showEditDialog(scope.row.id)">
+            <ElButton size="small" :icon="Edit" @click="showEditDialog(scope.row.id)">
               编辑
-            </el-button>
-            <el-button
-              size="small"
-              type="danger"
-              :icon="Delete"
-              @click="handleDelete(scope.row.id)"
-            >
+            </ElButton>
+            <ElButton size="small" type="danger" :icon="Delete" @click="handleDelete(scope.row.id)">
               删除
-            </el-button>
+            </ElButton>
           </template>
-        </el-table-column>
-      </el-table>
+        </ElTableColumn>
+      </ElTable>
 
-      <el-pagination
+      <ElPagination
         v-model:current-page="currentPage"
         v-model:page-size="pageSize"
         background
@@ -87,10 +82,10 @@
         @size-change="handleSizeChange"
         @current-change="handleCurrentChange"
       />
-    </custom-card>
+    </CustomCard>
 
     <!-- 添加/编辑 -->
-    <el-dialog
+    <ElDialog
       v-model="userDialog.show"
       :title="userDialog.isAdd ? '添加用户' : '编辑用户信息'"
       center
@@ -99,7 +94,7 @@
       @close="userDialogClosed()"
     >
       <!-- 表单 -->
-      <el-form
+      <ElForm
         ref="userInfoRef"
         :model="userInfo"
         :rules="formRulesComputed"
@@ -107,57 +102,57 @@
         label-width="80px"
         status-icon
       >
-        <el-form-item label="用户名" prop="name">
-          <el-input v-model="userInfo.name" clearable />
-        </el-form-item>
-        <el-form-item v-if="userDialog.isAdd" label="登录密码" prop="pass">
-          <el-input v-model="userInfo.pass" type="password" show-password clearable />
-        </el-form-item>
-        <el-form-item label="用户邮箱" prop="email">
-          <el-input v-model="userInfo.email" type="email" clearable />
-        </el-form-item>
-        <el-form-item label="用户头像">
+        <ElFormItem label="用户名" prop="name">
+          <ElInput v-model="userInfo.name" clearable />
+        </ElFormItem>
+        <ElFormItem v-if="userDialog.isAdd" label="登录密码" prop="pass">
+          <ElInput v-model="userInfo.pass" type="password" show-password clearable />
+        </ElFormItem>
+        <ElFormItem label="用户邮箱" prop="email">
+          <ElInput v-model="userInfo.email" type="email" clearable />
+        </ElFormItem>
+        <ElFormItem label="用户头像">
           <div :class="userDialog.isAdd ? '' : 'edit_img'">
-            <el-image
+            <ElImage
               v-if="!userDialog.isAdd"
               style="width: 60px; height: 60px"
               :src="userInfo.avatar"
             />
-            <single-image-upload
+            <SingleImageUpload
               :file="fileList"
               :action="UPLOAD_API_URL"
               @success="uploadSuccess"
               @failed="uploadFailed"
             />
           </div>
-        </el-form-item>
+        </ElFormItem>
 
-        <el-form-item label="用户角色">
-          <el-select v-model="userInfo.role" placeholder="选择角色">
-            <el-option
+        <ElFormItem label="用户角色">
+          <ElSelect v-model="userInfo.role" placeholder="选择角色">
+            <ElOption
               v-for="item in userRoleOption"
               :key="item.value"
               :label="item.label"
               :value="item.value"
             />
-          </el-select>
-        </el-form-item>
-      </el-form>
+          </ElSelect>
+        </ElFormItem>
+      </ElForm>
 
       <template #footer>
         <span class="dialog-footer">
-          <el-button @click="userDialogClosed">取消</el-button>
-          <el-button
+          <ElButton @click="userDialogClosed">取消</ElButton>
+          <ElButton
             v-throttle
             :loading="submitLoading"
             type="primary"
             @click="userDialog.isAdd ? addDashUser() : editUser()"
           >
             提交
-          </el-button>
+          </ElButton>
         </span>
       </template>
-    </el-dialog>
+    </ElDialog>
   </div>
 </template>
 
@@ -267,7 +262,10 @@ function userDialogClosed() {
 function addDashUser() {
   if (!userInfoRef.value) return
   userInfoRef.value.validate(valid => {
-    if (!valid) return ElMessage.warning('请正确填写表单')
+    if (!valid) {
+      ElMessage.warning('请正确填写表单')
+      return
+    }
     submitLoading.value = true
     setTimeout(() => {
       console.log('添加用户信息：', JSON.parse(JSON.stringify(userInfo)))
@@ -282,7 +280,10 @@ function addDashUser() {
 function editUser() {
   if (!userInfoRef.value) return
   userInfoRef.value.validate(valid => {
-    if (!valid) return ElMessage.warning('请正确填写表单')
+    if (!valid) {
+      ElMessage.warning('请正确填写表单')
+      return
+    }
     submitLoading.value = true
     setTimeout(() => {
       console.log('更新用户信息：', JSON.parse(JSON.stringify(userInfo)))

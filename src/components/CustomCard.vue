@@ -1,5 +1,5 @@
 <template>
-  <el-card shadow="hover" class="custom-card">
+  <ElCard shadow="hover" class="custom-card">
     <div v-if="header" class="custom-card__title">
       <slot name="title">{{ title }}</slot>
     </div>
@@ -7,7 +7,7 @@
       <slot />
       <slot name="content" />
     </div>
-  </el-card>
+  </ElCard>
 </template>
 
 <script setup lang="ts">

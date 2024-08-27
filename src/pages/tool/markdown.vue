@@ -1,10 +1,10 @@
 <template>
   <div>
     <h2>基础使用</h2>
-    <md-editor v-model="editor.value" :box-shadow="false" default-open="preview" />
+    <MdEditor v-model="editor.value" :box-shadow="false" default-open="preview" />
 
     <h2>仅预览</h2>
-    <md-editor
+    <MdEditor
       v-model="editor.value"
       :box-shadow="false"
       :subfield="false"
@@ -28,7 +28,7 @@ definePage({
 
 defineOptions({
   components: {
-    'md-editor': MavonEditor.mavonEditor
+    MdEditor: MavonEditor.mavonEditor
   }
 })
 

@@ -4,7 +4,7 @@
 
 import type { Component } from 'vue'
 
-export const icons = [
+export const svgIcon = [
   {
     name: 'arrow-right-to-bracket',
     icon: SvgIconArrowRightToBracket as Component
@@ -63,9 +63,9 @@ export const icons = [
   }
 ] as const
 
-export const iconsMap = icons.reduce((map, { name, icon }) => {
+export const svgIconMap = svgIcon.reduce((map, { name, icon }) => {
   map.set(name, icon)
   return map
-}, new Map<IconsEnum, Component>())
+}, new Map<SvgIconEnum, Component>())
 
-export type IconsEnum = (typeof icons)[number]['name']
+export type SvgIconEnum = (typeof svgIcon)[number]['name']

@@ -1,5 +1,5 @@
 <template>
-  <el-autocomplete
+  <ElAutocomplete
     v-model="localValue"
     :fetch-suggestions="querySearch"
     placeholder="请输入"

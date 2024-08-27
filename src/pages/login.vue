@@ -2,7 +2,7 @@
   <ActionFormCard title="后台管理" subtitle="欢迎登录到后台管理系统" @reset="resetForm">
     <template #form>
       <!-- 表单 -->
-      <el-form
+      <ElForm
         ref="loginFormRef"
         class="login_form"
         :model="loginForm"
@@ -11,20 +11,20 @@
         @submit.prevent
       >
         <!-- username -->
-        <el-form-item prop="username">
-          <el-input v-model="loginForm.username" :prefix-icon="User" placeholder="用户名" />
-        </el-form-item>
+        <ElFormItem prop="username">
+          <ElInput v-model="loginForm.username" :prefix-icon="User" placeholder="用户名" />
+        </ElFormItem>
         <!-- password -->
-        <el-form-item prop="password">
-          <el-input
+        <ElFormItem prop="password">
+          <ElInput
             v-model="loginForm.password"
             show-password
             :prefix-icon="Key"
             placeholder="密码"
           />
-        </el-form-item>
+        </ElFormItem>
         <!-- 按钮 -->
-        <el-button
+        <ElButton
           v-throttle
           class="submit_btn"
           type="primary"
@@ -34,8 +34,8 @@
         >
           <SvgIconArrowRightToBracket />
           <span style="margin-left: 5px">登入</span>
-        </el-button>
-      </el-form>
+        </ElButton>
+      </ElForm>
     </template>
   </ActionFormCard>
 </template>
@@ -76,7 +76,10 @@ const resetForm = () => {
 const submitForm = async () => {
   if (!loginFormRef.value) return
   await loginFormRef.value.validate(async valid => {
-    if (!valid) return ElMessage.warning('未通过校验')
+    if (!valid) {
+      ElMessage.warning('未通过校验')
+      return
+    }
     loginLoading.value = true
     // 登录逻辑
     await ApiLogin({ ...loginForm })

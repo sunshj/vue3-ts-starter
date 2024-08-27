@@ -3,17 +3,17 @@
     <div class="wrapper">
       <div class="select">
         <span>切换语言类型 > </span>
-        <el-select v-model="language" placeholder="选择语言类型">
-          <el-option
+        <ElSelect v-model="language" placeholder="选择语言类型">
+          <ElOption
             v-for="item in cases"
             :key="item.value"
             :label="item.label"
             :value="item.value"
           />
-        </el-select>
+        </ElSelect>
       </div>
 
-      <monaco-editor
+      <MonacoEditor
         v-model="code"
         class="editor"
         theme="vs-dark"

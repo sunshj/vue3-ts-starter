@@ -33,23 +33,18 @@ export default defineConfig(({ mode }) => ({
       },
       defaultStyle: 'width:20px;height:20px;'
     }),
+    IconsHelper({
+      preserveImports: false
+    }),
     AutoImports({
       dts: 'types/imports.d.ts',
-      imports: [
-        'vue',
-        VueRouterAutoImports,
-        { 'vue-router/auto': ['useLink'] },
-        '@vueuse/core',
-        'pinia'
-      ],
+      imports: ['vue', 'pinia', '@vueuse/core', VueRouterAutoImports],
       resolvers: [
         ElementPlusResolver(),
         IconsResolver({
-          prefix: 'svg',
-          customCollections: ['svg-icon'],
-          alias: {
-            icon: 'svg-icon'
-          }
+          prefix: false,
+          enabledCollections: [],
+          customCollections: ['svg-icon']
         })
       ],
       dirs: ['./src/stores', './src/composables', './src/utils'],
@@ -61,11 +56,9 @@ export default defineConfig(({ mode }) => ({
       resolvers: [
         ElementPlusResolver(),
         IconsResolver({
-          prefix: 'svg',
-          customCollections: ['svg-icon'],
-          alias: {
-            icon: 'svg-icon'
-          }
+          prefix: false,
+          enabledCollections: [],
+          customCollections: ['svg-icon']
         }),
         {
           type: 'directive',
@@ -79,22 +72,10 @@ export default defineConfig(({ mode }) => ({
       ]
     }),
     GitInfo({
-      commands: [
-        {
-          key: 'fullHash',
-          command: 'git rev-parse HEAD'
-        }
-      ],
-      usingKeys: {
-        shortHash: false
-      },
       injectToHead: false
     }),
     EnvDts({
       dts: 'types/env.d.ts'
-    }),
-    IconsHelper({
-      preserveImports: false
     })
   ],
   optimizeDeps: {

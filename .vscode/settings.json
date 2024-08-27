@@ -1,6 +1,6 @@
 {
   "stylelint.validate": ["css", "postcss", "scss", "vue"],
-  "eslint.experimental.useFlatConfig": true,
+  "typescript.preferences.autoImportFileExcludePatterns": ["vue-router/auto$"],
   "eslint.validate": [
     "javascript",
     "javascriptreact",

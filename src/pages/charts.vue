@@ -1,37 +1,37 @@
 <template>
   <div>
-    <el-row :gutter="20">
-      <el-col :span="12" :xs="24">
-        <custom-card align-mode="center" :header="false">
-          <basic-chart id="pieChart" :option="pieChartOption" />
-        </custom-card>
-      </el-col>
+    <ElRow :gutter="20">
+      <ElCol :span="12" :xs="24">
+        <CustomCard align-mode="center" :header="false">
+          <BasicChart id="pieChart" :option="pieChartOption" />
+        </CustomCard>
+      </ElCol>
 
-      <el-col :span="12" :xs="24">
-        <custom-card align-mode="center" :header="false">
-          <basic-chart id="barChart" :option="barChartOption" />
-        </custom-card>
-      </el-col>
-    </el-row>
+      <ElCol :span="12" :xs="24">
+        <CustomCard align-mode="center" :header="false">
+          <BasicChart id="barChart" :option="barChartOption" />
+        </CustomCard>
+      </ElCol>
+    </ElRow>
 
-    <el-row :gutter="20">
-      <el-col :span="12" :xs="24">
-        <custom-card align-mode="center" :header="false">
-          <basic-chart id="lineChart" :option="lineChartOption" />
-        </custom-card>
-      </el-col>
+    <ElRow :gutter="20">
+      <ElCol :span="12" :xs="24">
+        <CustomCard align-mode="center" :header="false">
+          <BasicChart id="lineChart" :option="lineChartOption" />
+        </CustomCard>
+      </ElCol>
 
-      <el-col :span="12" :xs="24">
-        <custom-card align-mode="center" :header="false">
-          <map-chart
+      <ElCol :span="12" :xs="24">
+        <CustomCard align-mode="center" :header="false">
+          <MapChart
             id="worldMapChart"
             map="world"
             :map-geo-json="worldMapGeoJSON"
             :option="worldChartOption"
           />
-        </custom-card>
-      </el-col>
-    </el-row>
+        </CustomCard>
+      </ElCol>
+    </ElRow>
   </div>
 </template>
 

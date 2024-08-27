@@ -1,15 +1,15 @@
 <template>
-  <el-breadcrumb separator="/">
-    <transition-group name="breadcrumb">
-      <el-breadcrumb-item
+  <ElBreadcrumb separator="/">
+    <TransitionGroup name="breadcrumb">
+      <ElBreadcrumbItem
         v-for="(item, index) in breadcrumbs"
         :key="index"
         :to="item.isLink ? { path: item.path } : ''"
       >
         {{ item.title }}
-      </el-breadcrumb-item>
-    </transition-group>
-  </el-breadcrumb>
+      </ElBreadcrumbItem>
+    </TransitionGroup>
+  </ElBreadcrumb>
 </template>
 
 <script setup lang="ts">

@@ -1,24 +1,24 @@
 <template>
-  <el-container class="layout_container">
+  <ElContainer class="layout_container">
     <TopHeader />
-    <el-container>
-      <el-aside :width="collapseWidth" class="layout_aside">
+    <ElContainer>
+      <ElAside :width="collapseWidth" class="layout_aside">
         <LayoutMenu />
         <div class="toggle_collapse" @click="configStore.toggleCollapse()">
           <SvgIconDoubleArrowRight v-if="configStore.isCollapse" />
           <SvgIconDoubleArrowLeft v-else />
           <span>{{ configStore.isCollapse ? '' : '折叠边栏' }}</span>
         </div>
-      </el-aside>
-      <el-main class="layout_main" :class="configStore.isMobile ? 'mobile' : ''">
-        <router-view v-slot="{ Component, route }">
-          <transition name="fade-transform" mode="out-in">
+      </ElAside>
+      <ElMain class="layout_main" :class="configStore.isMobile ? 'mobile' : ''">
+        <RouterView v-slot="{ Component, route }">
+          <Transition name="fade-transform" mode="out-in">
             <component :is="Component" :key="route.path" />
-          </transition>
-        </router-view>
-      </el-main>
-    </el-container>
-  </el-container>
+          </Transition>
+        </RouterView>
+      </ElMain>
+    </ElContainer>
+  </ElContainer>
 </template>
 
 <script setup lang="ts">

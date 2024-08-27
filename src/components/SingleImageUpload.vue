@@ -1,5 +1,5 @@
 <template>
-  <el-upload
+  <ElUpload
     :file-list="props.file"
     :action="props.action"
     :limit="1"
@@ -7,11 +7,11 @@
     :on-success="uploadSuccess"
     :on-error="uploadFailed"
   >
-    <el-button type="primary" :icon="Upload" size="small">上传</el-button>
+    <ElButton type="primary" :icon="Upload" size="small">上传</ElButton>
     <template #tip>
       <div class="el-upload__tip">仅支持jpg/png图片格式</div>
     </template>
-  </el-upload>
+  </ElUpload>
 </template>
 
 <script setup lang="ts">

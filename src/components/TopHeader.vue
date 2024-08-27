@@ -1,5 +1,5 @@
 <template>
-  <el-header class="layout_header">
+  <ElHeader class="layout_header">
     <div class="left_wrapper">
       <div class="logo_title_wrap">
         <img src="@/assets/logo.svg" />
@@ -10,51 +10,51 @@
       />
     </div>
     <div class="right_wrapper">
-      <el-tooltip
+      <ElTooltip
         v-if="!configStore.isMobile && errorLogsStore.logs.length > 0"
         content="查看错误日志"
         effect="dark"
         placement="bottom"
       >
-        <error-log />
-      </el-tooltip>
+        <ErrorLog />
+      </ElTooltip>
 
-      <el-button
+      <ElButton
         v-if="!configStore.isMobile"
         size="small"
         :icon="Refresh"
         @click="refreshToken().finally(refreshToken.reset)"
       >
         Refresh Token
-      </el-button>
+      </ElButton>
 
-      <el-tooltip content="切换夜间模式" effect="dark" placement="bottom">
-        <dark-switch @change="darkModeSwitchChange" />
-      </el-tooltip>
+      <ElTooltip content="切换夜间模式" effect="dark" placement="bottom">
+        <DarkSwitch @change="darkModeSwitchChange" />
+      </ElTooltip>
 
-      <el-tooltip content="前往仓库" effect="dark" placement="bottom">
+      <ElTooltip content="前往仓库" effect="dark" placement="bottom">
         <a href="https://github.com/sunshj/vue3-ts-starter" target="_blank">
           <SvgIconGithub class="github_icon" />
         </a>
-      </el-tooltip>
+      </ElTooltip>
 
-      <el-dropdown trigger="click">
+      <ElDropdown trigger="click">
         <div class="avatar-wrapper">
-          <el-avatar :src="userStore.userInfo.avatar" class="user-avatar" />
-          <el-icon><CaretBottom /></el-icon>
+          <ElAvatar :src="userStore.userInfo.avatar" class="user-avatar" />
+          <ElIcon><CaretBottom /></ElIcon>
         </div>
 
         <template #dropdown>
-          <el-dropdown-menu>
-            <el-dropdown-item @click="linkToUserProfile">个人中心</el-dropdown-item>
-          </el-dropdown-menu>
-          <el-dropdown-menu>
-            <el-dropdown-item @click="logout">退出</el-dropdown-item>
-          </el-dropdown-menu>
+          <ElDropdownMenu>
+            <ElDropdownItem @click="linkToUserProfile">个人中心</ElDropdownItem>
+          </ElDropdownMenu>
+          <ElDropdownMenu>
+            <ElDropdownItem @click="logout">退出</ElDropdownItem>
+          </ElDropdownMenu>
         </template>
-      </el-dropdown>
+      </ElDropdown>
     </div>
-  </el-header>
+  </ElHeader>
 
   <div v-if="configStore.isMobile" class="mobile">
     <span class="menu" @click="sideDrawerVisible = true">
@@ -62,9 +62,9 @@
       <span>菜单</span>
     </span>
   </div>
-  <el-drawer v-model="sideDrawerVisible" :with-header="false" direction="ltr" size="200px">
+  <ElDrawer v-model="sideDrawerVisible" :with-header="false" direction="ltr" size="200px">
     <LayoutMenu />
-  </el-drawer>
+  </ElDrawer>
 </template>
 
 <script setup lang="ts">
