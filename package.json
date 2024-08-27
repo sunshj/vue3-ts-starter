@@ -33,7 +33,7 @@
     "@sunshj/eslint-config": "2.0.0",
     "@sunshj/prettier-config": "1.0.0",
     "@sunshj/stylelint-config": "1.0.2",
-    "@sunshj/vite-plugins": "0.2.1",
+    "@sunshj/vite-plugins": "0.3.1",
     "@types/node": "20.11.20",
     "@vitejs/plugin-vue": "4.6.2",
     "commitizen": "4.3.0",

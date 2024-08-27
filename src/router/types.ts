@@ -1,4 +1,4 @@
-import type { SvgIconEnum } from '@/common/icons-helper'
+import type { SvgIconEnum } from 'virtual:icons-helper'
 
 declare module 'vue-router' {
   interface RouteMeta {
