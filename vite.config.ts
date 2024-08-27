@@ -1,7 +1,7 @@
 import { fileURLToPath, URL } from 'node:url'
 import { EnvDts, GitInfo, IconsHelper } from '@sunshj/vite-plugins'
 import vue from '@vitejs/plugin-vue'
-import AutoImport from 'unplugin-auto-import/vite'
+import AutoImports from 'unplugin-auto-import/vite'
 import { FileSystemIconLoader } from 'unplugin-icons/loaders'
 import IconsResolver from 'unplugin-icons/resolver'
 import Icons from 'unplugin-icons/vite'
@@ -33,7 +33,7 @@ export default defineConfig(({ mode }) => ({
       },
       defaultStyle: 'width:20px;height:20px;'
     }),
-    AutoImport({
+    AutoImports({
       dts: 'types/imports.d.ts',
       imports: [
         'vue',
@@ -52,7 +52,8 @@ export default defineConfig(({ mode }) => ({
           }
         })
       ],
-      dirs: ['./src/stores', './src/composables']
+      dirs: ['./src/stores', './src/composables', './src/utils'],
+      vueTemplate: true
     }),
     Components({
       dts: 'types/components.d.ts',

@@ -69,7 +69,6 @@
 
 <script setup lang="ts">
 import { CaretBottom, Refresh } from '@element-plus/icons-vue'
-import { refreshToken } from '@/utils/refresh-token'
 
 const router = useRouter()
 const configStore = useConfigStore()

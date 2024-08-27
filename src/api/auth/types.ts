@@ -1,6 +1,6 @@
 import type { IUser } from '../user'
 
-export interface IAuthResponse {
+export interface LoginResData {
   access_token: string
   refresh_token: string
   user: IUser

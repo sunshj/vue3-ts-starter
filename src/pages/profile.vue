@@ -17,7 +17,6 @@
 
 <script setup lang="ts">
 import { ApiGetUser } from '@/api/user'
-import { timeFormat } from '@/utils'
 
 const userStore = useUserStore()
 

@@ -2,15 +2,19 @@ import Axios, { type AxiosRequestConfig, type AxiosResponse } from 'axios'
 import { ElMessage } from 'element-plus'
 import { isRefreshTokenUrl, refreshToken } from './refresh-token'
 
-const baseURL = import.meta.env.VITE_API_BASE_URL
+interface ResData<T> {
+  statusCode: number
+  message: string
+  data: T
+}
 
-const axios = Axios.create({
-  baseURL,
-  timeout: 20000 // 请求超时 20s
+const http = Axios.create({
+  baseURL: import.meta.env.VITE_API_BASE_URL,
+  timeout: 20000
 })
 
 // 前置拦截器（发起请求之前的拦截）
-axios.interceptors.request.use(
+http.interceptors.request.use(
   config => {
     const userStore = useUserStore()
     const cancelRequestStore = useCancelRequestStore()
@@ -30,7 +34,7 @@ axios.interceptors.request.use(
 )
 
 // 后置拦截器（获取到响应时的拦截）
-axios.interceptors.response.use(
+http.interceptors.response.use(
   async (response: AxiosResponse<ResData<any>>) => {
     const userStore = useUserStore()
 
@@ -45,14 +49,14 @@ axios.interceptors.response.use(
       const isSuccess = await refreshToken().finally(refreshToken.reset)
       if (isSuccess) {
         response.config.headers.set('Authorization', `Bearer ${userStore.accessToken}`)
-        return await axios.request(response.config)
+        return await http.request(response.config)
       }
     }
 
     return response
   },
   error => {
-    if (error.code === 'ERR_CANCELED') return new Promise(() => {})
+    if (error.code === 'ERR_CANCELED') return new Promise(() => null)
     if (error.response && error.response.data) {
       const code = error.response.status
       const msg = error.response.data.message
@@ -64,17 +68,13 @@ axios.interceptors.response.use(
   }
 )
 
-export interface ResData<T> {
-  statusCode: number
-  message: string
-  data: T
-}
-
 export async function request<T>(url: string, config?: AxiosRequestConfig) {
-  const { data: res } = await axios<ResData<T>>(url, config)
-  if (res.statusCode !== 200) ElMessage.error(res.data ?? res.message)
-
+  const { data: res } = await http<ResData<T>>(url, config)
+  if (res.statusCode !== 200) {
+    if (res.statusCode !== 401) ElMessage.error(res.message)
+    return Promise.reject(res)
+  }
   return res.data
 }
 
-export { axios }
+export default http

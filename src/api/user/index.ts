@@ -1,4 +1,3 @@
-import { request } from '@/utils'
 import type { WithDate } from '../types'
 import type { GetUserList, IUser } from './types'
 

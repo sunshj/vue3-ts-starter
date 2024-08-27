@@ -1,3 +1,5 @@
+import router from '@/router'
+
 export const useUserStore = defineStore(
   'user',
   () => {
@@ -23,10 +25,10 @@ export const useUserStore = defineStore(
       userInfo.value = value
     }
 
-    function logout() {
+    async function logout() {
       setAccessToken('')
       setRefreshToken('')
-      window.location.href = '/login'
+      await router.push('/login')
       ElMessage.info('已退出登录')
     }
 

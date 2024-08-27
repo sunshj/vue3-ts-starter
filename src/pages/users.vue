@@ -165,7 +165,6 @@
 import { Delete, Edit, Plus, Refresh, Search } from '@element-plus/icons-vue'
 import { ApiGetUser, ApiGetUserList, type IUser } from '@/api/user'
 import { isEmail, isPassword, isUserName } from '@/common/async-validators'
-import { timeFormat } from '@/utils'
 import type { WithDate } from '@/api/types'
 import type { FormInstance } from 'element-plus'
 
