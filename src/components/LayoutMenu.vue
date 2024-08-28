@@ -42,8 +42,8 @@
 </template>
 
 <script setup lang="ts">
-import { svgIconMap } from 'virtual:icons-helper'
 import { routes } from 'vue-router/auto-routes'
+import { svgIconMap } from '@/common/icons-helper'
 import type { RouteRecordRaw } from 'vue-router'
 
 const configStore = useConfigStore()

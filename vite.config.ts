@@ -34,7 +34,10 @@ export default defineConfig(({ mode }) => ({
       defaultStyle: 'width:20px;height:20px;'
     }),
     IconsHelper({
-      dts: 'types/icons.d.ts'
+      output: {
+        file: 'src/common/icons-helper.ts',
+        preserveImports: false
+      }
     }),
     AutoImports({
       dts: 'types/imports.d.ts',
