@@ -72,8 +72,8 @@ devDependencies:
     specifier: 1.0.2
     version: 1.0.2(stylelint@16.2.1)
   '@sunshj/vite-plugins':
-    specifier: 0.4.0
-    version: 0.4.0
+    specifier: 0.4.1
+    version: 0.4.1
   '@types/node':
     specifier: 20.11.20
     version: 20.11.20
@@ -1243,8 +1243,8 @@ packages:
       stylelint-config-standard-scss: 13.1.0(postcss@8.4.41)(stylelint@16.2.1)
     dev: true
 
-  /@sunshj/vite-plugins@0.4.0:
-    resolution: {integrity: sha512-aiEeeHgyb9Uvn4gqGSlGwBJQCrA1ty+ehB7vh8Ufd1MR1b6mbm6l8KP7EGh/sAWkseTI0K093u2pvvUmggBJqA==}
+  /@sunshj/vite-plugins@0.4.1:
+    resolution: {integrity: sha512-JeKeuuJQkRdgmy6e4vclRKaUImIfn65U+vjdV1vqX8cl9ft9J0BAU5xZ2DhBUBLUtJDnH/sAzLu9BbJcpDL09g==}
     dependencies:
       scule: 1.3.0
     dev: true
