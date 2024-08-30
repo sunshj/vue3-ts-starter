@@ -6,9 +6,9 @@
 
 declare module 'virtual:icons-helper' {
   import type { Component } from 'vue'
-  export const svgIcon : Array<{ name: SvgIconEnum; icon: Component }>
+  export const svgIcons : Array<{ name: SvgIconEnum; icon: Component }>
   
-  export const svgIconMap : Map<SvgIconEnum, Component>
+  export const svgIconsMap : Map<SvgIconEnum, Component>
   
   export type SvgIconEnum = 'arrow-right-to-bracket' | 'bars' | 'bug' | 'chart' | 'code' | 'customer' | 'double-arrow-left' | 'double-arrow-right' | 'error' | 'github' | 'home' | 'md' | 'setting' | 'user'
 }

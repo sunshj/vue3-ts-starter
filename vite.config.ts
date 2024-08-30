@@ -34,6 +34,12 @@ export default defineConfig(({ mode }) => ({
       defaultStyle: 'width:20px;height:20px;'
     }),
     IconsHelper({
+      entries: [
+        {
+          dir: './src/assets/svgIcons',
+          prefix: 'svg-icon'
+        }
+      ],
       dts: 'types/icons.d.ts'
     }),
     AutoImports({

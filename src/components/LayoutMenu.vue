@@ -13,7 +13,7 @@
       <template v-if="item.children?.length">
         <ElSubMenu :key="item.path" :index="item.path">
           <template #title>
-            <ElIcon :size="20"> <component :is="svgIconMap.get(item.meta?.icon!)" /></ElIcon>
+            <ElIcon :size="20"> <component :is="svgIconsMap.get(item.meta?.icon!)" /></ElIcon>
             <span>{{ item.meta?.title }}</span>
           </template>
           <ElMenuItem
@@ -22,7 +22,7 @@
             :index="`${item.path}/${subItem.path}`"
           >
             <template #title>
-              <component :is="svgIconMap.get(subItem.meta?.icon!)" />
+              <component :is="svgIconsMap.get(subItem.meta?.icon!)" />
               <span>{{ subItem.meta?.title }}</span>
             </template>
           </ElMenuItem>
@@ -31,7 +31,7 @@
       <!-- 没有子菜单直接作为一级菜单 -->
       <template v-else>
         <ElMenuItem :key="item.path" :index="item.path">
-          <component :is="svgIconMap.get(item.meta?.icon!)" />
+          <component :is="svgIconsMap.get(item.meta?.icon!)" />
           <template #title>
             <span>{{ item.meta?.title }}</span>
           </template>
@@ -42,7 +42,7 @@
 </template>
 
 <script setup lang="ts">
-import { svgIconMap } from 'virtual:icons-helper'
+import { svgIconsMap } from 'virtual:icons-helper'
 import { routes } from 'vue-router/auto-routes'
 import type { RouteRecordRaw } from 'vue-router'
 
