@@ -4,6 +4,7 @@
 
 <script setup lang="ts">
 import { editor, languages } from 'monaco-editor'
+import './monaco'
 
 interface EditorProps {
   modelValue: string

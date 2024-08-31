@@ -116,6 +116,9 @@ devDependencies:
   unplugin-icons:
     specifier: 0.16.6
     version: 0.16.6
+  unplugin-icons-helper:
+    specifier: ^0.1.1
+    version: 0.1.1
   unplugin-vue-components:
     specifier: 0.26.0
     version: 0.26.0(vue@3.4.19)
@@ -5771,6 +5774,14 @@ packages:
       unplugin: 1.12.2
     transitivePeerDependencies:
       - rollup
+    dev: true
+
+  /unplugin-icons-helper@0.1.1:
+    resolution: {integrity: sha512-gB+9CVLod7LcKzZDFx5+Wx23dhlqHzbjlPhUTm4y9ZEMyA8a5A3/0iC04jPAcV2vZs2eD8ykuzIt8cyDlDijYg==}
+    engines: {node: '>=18.12.0'}
+    dependencies:
+      scule: 1.3.0
+      unplugin: 1.12.2
     dev: true
 
   /unplugin-icons@0.16.6:

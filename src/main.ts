@@ -5,7 +5,6 @@ import { createApp, nextTick } from 'vue'
 import App from './App.vue'
 import router from './router'
 
-import './common/monaco'
 import './router/permission'
 
 import './assets/css/global.css'

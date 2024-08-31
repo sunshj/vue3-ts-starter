@@ -1,7 +1,8 @@
 import { fileURLToPath, URL } from 'node:url'
-import { EnvDts, GitInfo, IconsHelper } from '@sunshj/vite-plugins'
+import { EnvDts, GitInfo } from '@sunshj/vite-plugins'
 import vue from '@vitejs/plugin-vue'
 import AutoImports from 'unplugin-auto-import/vite'
+import IconsHelper from 'unplugin-icons-helper/vite'
 import { FileSystemIconLoader } from 'unplugin-icons/loaders'
 import IconsResolver from 'unplugin-icons/resolver'
 import Icons from 'unplugin-icons/vite'
@@ -34,13 +35,13 @@ export default defineConfig(({ mode }) => ({
       defaultStyle: 'width:20px;height:20px;'
     }),
     IconsHelper({
-      entries: [
-        {
-          dir: './src/assets/svgIcons',
-          prefix: 'svg-icon'
-        }
-      ],
-      dts: 'types/icons.d.ts'
+      collections: {
+        'svg-icon': './src/assets/svgIcons'
+      },
+      dts: {
+        file: 'types/icons.d.ts',
+        banner: ''
+      }
     }),
     AutoImports({
       dts: 'types/imports.d.ts',

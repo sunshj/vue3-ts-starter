@@ -43,7 +43,6 @@
 <script setup lang="ts">
 import { Key, User } from '@element-plus/icons-vue'
 import { ApiLogin } from '@/api/auth'
-import { isPassword, isUserName } from '@/common/async-validators'
 import type { FormInstance, FormRules } from 'element-plus'
 
 definePage({

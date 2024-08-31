@@ -46,11 +46,14 @@ declare global {
   const inject: typeof import('vue')['inject']
   const injectLocal: typeof import('@vueuse/core')['injectLocal']
   const isDefined: typeof import('@vueuse/core')['isDefined']
+  const isEmail: typeof import('../src/utils/async-validators')['isEmail']
+  const isPassword: typeof import('../src/utils/async-validators')['isPassword']
   const isProxy: typeof import('vue')['isProxy']
   const isReactive: typeof import('vue')['isReactive']
   const isReadonly: typeof import('vue')['isReadonly']
   const isRef: typeof import('vue')['isRef']
   const isRefreshTokenUrl: typeof import('../src/utils/refresh-token')['isRefreshTokenUrl']
+  const isUserName: typeof import('../src/utils/async-validators')['isUserName']
   const makeDestructurable: typeof import('@vueuse/core')['makeDestructurable']
   const mapActions: typeof import('pinia')['mapActions']
   const mapGetters: typeof import('pinia')['mapGetters']
@@ -377,6 +380,8 @@ declare module 'vue' {
     readonly inject: UnwrapRef<typeof import('vue')['inject']>
     readonly injectLocal: UnwrapRef<typeof import('@vueuse/core')['injectLocal']>
     readonly isDefined: UnwrapRef<typeof import('@vueuse/core')['isDefined']>
+    readonly isEmail: UnwrapRef<typeof import('../src/utils/async-validators')['isEmail']>
+    readonly isPassword: UnwrapRef<typeof import('../src/utils/async-validators')['isPassword']>
     readonly isProxy: UnwrapRef<typeof import('vue')['isProxy']>
     readonly isReactive: UnwrapRef<typeof import('vue')['isReactive']>
     readonly isReadonly: UnwrapRef<typeof import('vue')['isReadonly']>
@@ -384,6 +389,7 @@ declare module 'vue' {
     readonly isRefreshTokenUrl: UnwrapRef<
       typeof import('../src/utils/refresh-token')['isRefreshTokenUrl']
     >
+    readonly isUserName: UnwrapRef<typeof import('../src/utils/async-validators')['isUserName']>
     readonly makeDestructurable: UnwrapRef<typeof import('@vueuse/core')['makeDestructurable']>
     readonly mapActions: UnwrapRef<typeof import('pinia')['mapActions']>
     readonly mapGetters: UnwrapRef<typeof import('pinia')['mapGetters']>

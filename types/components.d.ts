@@ -56,7 +56,7 @@ declare module 'vue' {
     ErrorLog: typeof import('./../src/components/ErrorLog.vue')['default']
     LayoutMenu: typeof import('./../src/components/LayoutMenu.vue')['default']
     MapChart: typeof import('./../src/components/MapChart.vue')['default']
-    MonacoEditor: typeof import('./../src/components/MonacoEditor.vue')['default']
+    MonacoEditor: typeof import('./../src/components/MonacoEditor/index.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     SingleImageUpload: typeof import('./../src/components/SingleImageUpload.vue')['default']
