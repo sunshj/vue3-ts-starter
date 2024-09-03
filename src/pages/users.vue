@@ -216,7 +216,7 @@ const {
   dialogTitle,
   dialogVisible,
   onDialogClose
-} = useInitForm<WithDate<IUser>>(
+} = useForm<WithDate<IUser>>(
   {
     id: 0,
     name: '',

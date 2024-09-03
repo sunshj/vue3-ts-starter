@@ -11,7 +11,7 @@ interface Options<T extends object> {
 
 const structuredCloneFn = <T>(val: T): T => structuredClone(val)
 
-export function useInitForm<T extends object>(initialValues: T, options: Options<T> = {}) {
+export function useForm<T extends object>(initialValues: T, options: Options<T> = {}) {
   const {
     rules = {},
     formTitles = ['新增', '编辑'],
