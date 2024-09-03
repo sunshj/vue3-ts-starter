@@ -9,22 +9,27 @@ interface Options<T extends object> {
   validateFailed?: () => void | Promise<void>
 }
 
-const cloneFnJSON = <T>(obj: T): T => JSON.parse(JSON.stringify(obj))
+const structuredCloneFn = <T>(val: T): T => structuredClone(val)
 
 export function useInitForm<T extends object>(initialValues: T, options: Options<T> = {}) {
-  const { rules = {}, clone = cloneFnJSON, validateFailed, formTitles = ['新增', '编辑'] } = options
+  const {
+    rules = {},
+    formTitles = ['新增', '编辑'],
+    clone = structuredCloneFn,
+    validateFailed
+  } = options
 
   const defaultForm = clone(initialValues)
-  const form = ref<T>(initialValues)
+  const form = ref(initialValues) as Ref<T>
   const formRef = ref<FormInstance | null>(null)
   const formRules = computed(() => unref(rules))
   const isSubmitting = ref(false)
 
   function resetForm() {
-    formRef.value?.resetFields()
+    form.value = clone(defaultForm)
   }
 
-  function submitForm(callback: () => Promise<void>) {
+  function submitForm(callback: (values: T) => Promise<void>) {
     if (!formRef.value) return
     formRef.value.validate(async valid => {
       if (!valid) {
@@ -33,7 +38,7 @@ export function useInitForm<T extends object>(initialValues: T, options: Options
       }
       isSubmitting.value = true
 
-      await callback().finally(() => {
+      await callback(toRaw(form.value)).finally(() => {
         isSubmitting.value = false
       })
     })

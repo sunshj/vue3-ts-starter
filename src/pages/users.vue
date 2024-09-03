@@ -5,7 +5,7 @@
         <ElCol :span="16" :xs="12" class="type-group">
           <ElButton type="primary" :icon="Plus" @click="openDialog(true)"> 添加用户 </ElButton>
           <ElTooltip effect="dark" content="刷新" placement="top">
-            <ElButton :icon="Refresh" circle @click="getUsersList" />
+            <ElButton :icon="Refresh" circle @click="refetch" />
           </ElTooltip>
         </ElCol>
         <ElCol :span="8" :xs="12">
@@ -16,15 +16,16 @@
             @change="handleSearchChange"
           >
             <template #prefix>
-              <ElIcon class="el-input__icon"><Search /></ElIcon> </template
-          ></ElInput>
+              <ElIcon><Search /></ElIcon>
+            </template>
+          </ElInput>
         </ElCol>
       </ElRow>
 
       <ElTable
-        v-loading="tableLoading"
+        v-loading="isLoading"
         row-key="id"
-        :data="userList"
+        :data="tableData"
         border
         stripe
         @selection-change="handleSelectionChange"
@@ -76,11 +77,11 @@
         v-model:current-page="currentPage"
         v-model:page-size="pageSize"
         background
-        :page-sizes="[5, 10, 15, 20]"
-        :total="userTotal"
+        :page-sizes="pageSizeOptions"
+        :total="totalPages"
         layout="total, sizes, prev, pager, next, jumper"
-        @size-change="handleSizeChange"
-        @current-change="handleCurrentChange"
+        @size-change="onSizeChange"
+        @current-change="onCurrentChange"
       />
     </CustomCard>
 
@@ -155,7 +156,9 @@
 
 <script setup lang="ts">
 import { Delete, Edit, Plus, Refresh, Search } from '@element-plus/icons-vue'
+import { objectOmit } from '@vueuse/core'
 import { ApiGetUser, ApiGetUserList, type IUser } from '@/api/user'
+import type { WithDate } from '@/api/types'
 
 definePage({
   meta: {
@@ -168,22 +171,31 @@ definePage({
 
 const UPLOAD_API_URL = import.meta.env.VITE_API_UPLOAD_URL
 
-const userTotal = ref(0)
-const tableLoading = ref(true)
-const userList = ref<IUser[]>([])
-const currentPage = ref(1)
-const pageSize = ref(5)
 const inputVal = ref('')
 
-async function getUsersList() {
-  tableLoading.value = true
-  const res = await ApiGetUserList(currentPage.value, pageSize.value, inputVal.value).finally(
-    () => {
-      tableLoading.value = false
-    }
-  )
-  userList.value = res.result
-  userTotal.value = res.total
+const {
+  tableData,
+  isLoading,
+  totalPages,
+  pageSize,
+  currentPage,
+  pageSizeOptions,
+  onCurrentChange,
+  onSizeChange,
+  refetch
+} = useTable({
+  async fetchData() {
+    const res = await ApiGetUserList(currentPage.value, pageSize.value, inputVal.value)
+    totalPages.value = res.total
+    return res.result
+  }
+})
+
+// 输入框搜索
+function handleSearchChange(val: string) {
+  currentPage.value = 1
+  inputVal.value = val
+  refetch()
 }
 
 function handleSelectionChange(selection: IUser[]) {
@@ -204,8 +216,17 @@ const {
   dialogTitle,
   dialogVisible,
   onDialogClose
-} = useInitForm(
-  { name: '', pass: '', email: '', avatar: '', role: 1 },
+} = useInitForm<WithDate<IUser>>(
+  {
+    id: 0,
+    name: '',
+    pass: '',
+    email: '',
+    avatar: '',
+    role: 1,
+    createdAt: undefined,
+    updatedAt: undefined
+  },
   {
     rules: {
       name: [{ validator: isUserName, trigger: 'blur' }],
@@ -240,9 +261,10 @@ function userDialogClosed() {
 
 // 添加用户
 function addDashUser() {
-  submitForm(async () => {
+  submitForm(async values => {
     await delay(1500)
-    console.log('添加用户信息：', JSON.parse(JSON.stringify(form)))
+    const info = objectOmit(values, ['id', 'createdAt', 'updatedAt'])
+    console.log('添加用户信息：', info)
     ElMessage.warning('添加用户成功：（仅供演示）')
     userDialogClosed()
   })
@@ -250,9 +272,10 @@ function addDashUser() {
 
 // 提交编辑
 function editUser() {
-  submitForm(async () => {
+  submitForm(async values => {
     await delay(1500)
-    console.log('更新用户信息：', JSON.parse(JSON.stringify(form)))
+    const { id, ...info } = objectOmit(values, ['pass', 'createdAt', 'updatedAt'])
+    console.log('更新用户信息：', id, info)
     ElMessage.warning('更新用户信息成功：（仅供演示）')
     userDialogClosed()
   })
@@ -267,7 +290,7 @@ async function handleDelete(id: number) {
   }).catch(() => ElMessage.info('已取消删除'))
   if (action !== 'confirm') return false
   ElMessage.warning(`删除用户成功：${id}（仅供演示）`)
-  userList.value = userList.value.filter(v => v.id !== id)
+  tableData.value = tableData.value.filter(v => v.id !== id)
 }
 
 // 上传事件
@@ -278,29 +301,6 @@ function uploadSuccess(url: string) {
 function uploadFailed(err: any) {
   ElMessage.error(err.message)
 }
-
-// 输入框搜索
-function handleSearchChange(val: string) {
-  currentPage.value = 1
-  inputVal.value = val
-  getUsersList()
-}
-
-// 页面切换方法
-function handleCurrentChange(val: number) {
-  currentPage.value = val
-  getUsersList()
-}
-
-// pageSize
-function handleSizeChange(val: number) {
-  pageSize.value = val
-  getUsersList()
-}
-
-onMounted(() => {
-  getUsersList()
-})
 </script>
 
 <style lang="scss" scoped>
