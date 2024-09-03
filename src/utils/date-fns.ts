@@ -26,3 +26,7 @@ export function timeFormat(
   if (type === 'calendar') return dayjs(time).calendar()
   return dayjs(time).format('YYYY-MM-DD HH:mm:ss')
 }
+
+export function delay(ms: number) {
+  return new Promise(resolve => setTimeout(resolve, ms))
+}

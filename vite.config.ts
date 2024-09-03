@@ -45,7 +45,13 @@ export default defineConfig(({ mode }) => ({
     }),
     AutoImports({
       dts: 'types/imports.d.ts',
-      imports: ['vue', 'pinia', '@vueuse/core', VueRouterAutoImports],
+      imports: [
+        'vue',
+        'pinia',
+        '@vueuse/core',
+        VueRouterAutoImports,
+        { from: 'reset-ref', imports: ['resetRef', 'useReset'] }
+      ],
       resolvers: [
         ElementPlusResolver(),
         IconsResolver({

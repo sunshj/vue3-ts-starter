@@ -3,7 +3,7 @@
     <CustomCard :header="false">
       <ElRow :gutter="20">
         <ElCol :span="16" :xs="12" class="type-group">
-          <ElButton type="primary" :icon="Plus" @click="showAddDialog()"> 添加用户 </ElButton>
+          <ElButton type="primary" :icon="Plus" @click="openDialog(true)"> 添加用户 </ElButton>
           <ElTooltip effect="dark" content="刷新" placement="top">
             <ElButton :icon="Refresh" circle @click="getUsersList" />
           </ElTooltip>
@@ -86,8 +86,8 @@
 
     <!-- 添加/编辑 -->
     <ElDialog
-      v-model="userDialog.show"
-      :title="userDialog.isAdd ? '添加用户' : '编辑用户信息'"
+      v-model="dialogVisible"
+      :title="dialogTitle"
       center
       draggable
       width="40%"
@@ -95,29 +95,25 @@
     >
       <!-- 表单 -->
       <ElForm
-        ref="userInfoRef"
-        :model="userInfo"
-        :rules="formRulesComputed"
+        ref="formRef"
+        :model="form"
+        :rules="formRules"
         :validate-on-rule-change="false"
         label-width="80px"
         status-icon
       >
         <ElFormItem label="用户名" prop="name">
-          <ElInput v-model="userInfo.name" clearable />
+          <ElInput v-model="form.name" clearable />
         </ElFormItem>
-        <ElFormItem v-if="userDialog.isAdd" label="登录密码" prop="pass">
-          <ElInput v-model="userInfo.pass" type="password" show-password clearable />
+        <ElFormItem v-if="isAddForm" label="登录密码" prop="pass">
+          <ElInput v-model="form.pass" type="password" show-password clearable />
         </ElFormItem>
         <ElFormItem label="用户邮箱" prop="email">
-          <ElInput v-model="userInfo.email" type="email" clearable />
+          <ElInput v-model="form.email" type="email" clearable />
         </ElFormItem>
         <ElFormItem label="用户头像">
-          <div :class="userDialog.isAdd ? '' : 'edit_img'">
-            <ElImage
-              v-if="!userDialog.isAdd"
-              style="width: 60px; height: 60px"
-              :src="userInfo.avatar"
-            />
+          <div :class="isAddForm ? '' : 'edit_img'">
+            <ElImage v-if="!isAddForm" style="width: 60px; height: 60px" :src="form.avatar" />
             <SingleImageUpload
               :file="fileList"
               :action="UPLOAD_API_URL"
@@ -127,8 +123,8 @@
           </div>
         </ElFormItem>
 
-        <ElFormItem label="用户角色">
-          <ElSelect v-model="userInfo.role" placeholder="选择角色">
+        <ElFormItem label="用户角色" prop="role">
+          <ElSelect v-model="form.role" placeholder="选择角色">
             <ElOption
               v-for="item in userRoleOption"
               :key="item.value"
@@ -142,11 +138,12 @@
       <template #footer>
         <span class="dialog-footer">
           <ElButton @click="userDialogClosed">取消</ElButton>
+          <ElButton type="danger" @click="resetForm">重置</ElButton>
           <ElButton
             v-throttle
-            :loading="submitLoading"
+            :loading="isSubmitting"
             type="primary"
-            @click="userDialog.isAdd ? addDashUser() : editUser()"
+            @click="isAddForm ? addDashUser() : editUser()"
           >
             提交
           </ElButton>
@@ -159,8 +156,6 @@
 <script setup lang="ts">
 import { Delete, Edit, Plus, Refresh, Search } from '@element-plus/icons-vue'
 import { ApiGetUser, ApiGetUserList, type IUser } from '@/api/user'
-import type { WithDate } from '@/api/types'
-import type { FormInstance } from 'element-plus'
 
 definePage({
   meta: {
@@ -195,24 +190,31 @@ function handleSelectionChange(selection: IUser[]) {
   console.log('selection:', selection)
 }
 
-const userInfoRef = ref<FormInstance>()
-const submitLoading = ref(false)
-
-const userDialog = reactive({
-  show: false,
-  isAdd: false
-})
-
 const fileList = ref([])
 
-const initialUserInfo: Omit<IUser, 'id'> = {
-  name: '',
-  pass: '',
-  email: '',
-  avatar: '',
-  role: 1
-}
-const userInfo = ref<Omit<WithDate<IUser>, 'id'>>({ ...initialUserInfo })
+const {
+  form,
+  formRef,
+  formRules,
+  isSubmitting,
+  submitForm,
+  resetForm,
+  isAddForm,
+  openDialog,
+  dialogTitle,
+  dialogVisible,
+  onDialogClose
+} = useInitForm(
+  { name: '', pass: '', email: '', avatar: '', role: 1 },
+  {
+    rules: {
+      name: [{ validator: isUserName, trigger: 'blur' }],
+      pass: [{ validator: isPassword, trigger: 'blur' }],
+      email: [{ validator: isEmail, trigger: 'blur' }]
+    },
+    formTitles: ['编辑用户信息', '添加用户']
+  }
+)
 
 const userRoleOption = [
   {
@@ -225,71 +227,34 @@ const userRoleOption = [
   }
 ]
 
-const userFormRules = reactive({
-  name: [{ validator: isUserName, trigger: 'blur' }],
-  pass: [{ validator: isPassword, trigger: 'blur' }],
-  email: [{ validator: isEmail, trigger: 'blur' }]
-})
-
-const formRulesComputed = computed(() => {
-  if (userDialog.isAdd) {
-    return userFormRules
-  }
-  return { name: userFormRules.name, email: userFormRules.email }
-})
-
-function showAddDialog() {
-  userDialog.show = true
-  userDialog.isAdd = true
-}
-
 async function showEditDialog(id: number) {
-  userDialog.show = true
-  userDialog.isAdd = false
+  openDialog(false)
   const res = await ApiGetUser(id)
-  userInfo.value = { ...res, pass: '' }
+  form.value = { ...res, pass: '' }
 }
 
 function userDialogClosed() {
-  userDialog.show = false
-  userInfoRef.value?.resetFields()
-  userInfo.value = { ...initialUserInfo }
   fileList.value = []
+  onDialogClose()
 }
 
 // 添加用户
 function addDashUser() {
-  if (!userInfoRef.value) return
-  userInfoRef.value.validate(valid => {
-    if (!valid) {
-      ElMessage.warning('请正确填写表单')
-      return
-    }
-    submitLoading.value = true
-    setTimeout(() => {
-      console.log('添加用户信息：', JSON.parse(JSON.stringify(userInfo)))
-      ElMessage.warning('添加用户成功：（仅供演示）')
-      submitLoading.value = false
-      userDialogClosed()
-    }, 1500)
+  submitForm(async () => {
+    await delay(1500)
+    console.log('添加用户信息：', JSON.parse(JSON.stringify(form)))
+    ElMessage.warning('添加用户成功：（仅供演示）')
+    userDialogClosed()
   })
 }
 
 // 提交编辑
 function editUser() {
-  if (!userInfoRef.value) return
-  userInfoRef.value.validate(valid => {
-    if (!valid) {
-      ElMessage.warning('请正确填写表单')
-      return
-    }
-    submitLoading.value = true
-    setTimeout(() => {
-      console.log('更新用户信息：', JSON.parse(JSON.stringify(userInfo)))
-      ElMessage.warning('更新用户信息成功：（仅供演示）')
-      submitLoading.value = false
-      userDialogClosed()
-    }, 1500)
+  submitForm(async () => {
+    await delay(1500)
+    console.log('更新用户信息：', JSON.parse(JSON.stringify(form)))
+    ElMessage.warning('更新用户信息成功：（仅供演示）')
+    userDialogClosed()
   })
 }
 
@@ -307,7 +272,7 @@ async function handleDelete(id: number) {
 
 // 上传事件
 function uploadSuccess(url: string) {
-  userInfo.value.avatar = url
+  form.value.avatar = url
 }
 
 function uploadFailed(err: any) {
