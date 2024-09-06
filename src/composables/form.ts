@@ -4,7 +4,7 @@ import type { MaybeRef } from 'vue'
 interface Options<T extends object> {
   rules?: MaybeRef<FormRules<T>>
   /** [editTitle, addTitle] */
-  formTitles?: [string, string]
+  dialogFormTitles?: [string, string]
   clone?: (val: T) => T
   validateFailed?: () => void | Promise<void>
 }
@@ -14,7 +14,7 @@ const structuredCloneFn = <T>(val: T): T => structuredClone(val)
 export function useForm<T extends object>(initialValues: T, options: Options<T> = {}) {
   const {
     rules = {},
-    formTitles = ['新增', '编辑'],
+    dialogFormTitles = ['编辑', '新增'],
     clone = structuredCloneFn,
     validateFailed
   } = options
@@ -22,11 +22,17 @@ export function useForm<T extends object>(initialValues: T, options: Options<T> 
   const defaultForm = clone(initialValues)
   const form = ref(initialValues) as Ref<T>
   const formRef = ref<FormInstance | null>(null)
-  const formRules = computed(() => unref(rules))
+  const formRules = computed<FormRules>(() => unref(rules))
   const isSubmitting = ref(false)
 
-  function resetForm() {
-    form.value = clone(defaultForm)
+  function resetForm(patches?: Partial<T>) {
+    form.value = patches ? { ...form.value, ...patches } : clone(defaultForm)
+  }
+
+  function resetFields(props: Array<keyof T>) {
+    props.forEach(prop => {
+      form.value[prop] = clone(defaultForm)[prop]
+    })
   }
 
   function submitForm(callback: (values: T) => Promise<void>) {
@@ -46,7 +52,7 @@ export function useForm<T extends object>(initialValues: T, options: Options<T> 
 
   const dialogVisible = ref(false)
   const isAddForm = ref(true)
-  const dialogTitle = computed(() => formTitles[Number(isAddForm.value)])
+  const dialogTitle = computed(() => dialogFormTitles[Number(isAddForm.value)])
 
   function openDialog(isAdd = true) {
     dialogVisible.value = true
@@ -65,6 +71,7 @@ export function useForm<T extends object>(initialValues: T, options: Options<T> 
     formRef,
     isSubmitting,
     resetForm,
+    resetFields,
     submitForm,
 
     dialogVisible,

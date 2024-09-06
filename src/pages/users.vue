@@ -139,7 +139,7 @@
       <template #footer>
         <span class="dialog-footer">
           <ElButton @click="userDialogClosed">取消</ElButton>
-          <ElButton type="danger" @click="resetForm">重置</ElButton>
+          <ElButton type="danger" @click="resetForm()">重置</ElButton>
           <ElButton
             v-throttle
             :loading="isSubmitting"
@@ -233,7 +233,7 @@ const {
       pass: [{ validator: isPassword, trigger: 'blur' }],
       email: [{ validator: isEmail, trigger: 'blur' }]
     },
-    formTitles: ['编辑用户信息', '添加用户']
+    dialogFormTitles: ['编辑用户信息', '添加用户']
   }
 )
 
