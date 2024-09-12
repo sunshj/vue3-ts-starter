@@ -238,7 +238,7 @@ const worldChartOption: Ref<EChartsOption> = ref({
   ]
 })
 
-const randomNetworkSpeed = (minSpeed: number, maxSpeed: number) => {
+function randomNetworkSpeed(minSpeed: number, maxSpeed: number) {
   return Number.parseFloat((Math.random() * (maxSpeed - minSpeed) + minSpeed).toFixed(2))
 }
 

@@ -97,6 +97,7 @@
       <!-- 表单 -->
       <ElForm
         ref="formRef"
+        v-loading="formLoading"
         :model="form"
         :rules="formRules"
         :validate-on-rule-change="false"
@@ -248,9 +249,14 @@ const userRoleOption = [
   }
 ]
 
+const formLoading = ref(false)
+
 async function showEditDialog(id: number) {
   openDialog(false)
-  const res = await ApiGetUser(id)
+  formLoading.value = true
+  const res = await ApiGetUser(id).finally(() => {
+    formLoading.value = false
+  })
   form.value = { ...res, pass: '' }
 }
 

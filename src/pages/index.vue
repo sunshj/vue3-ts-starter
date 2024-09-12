@@ -97,7 +97,7 @@ watchEffect(() => {
   console.log(suggest.value)
 })
 
-const showMessage = (value: any) => {
+function showMessage(value: any) {
   ElMessage({
     type: value,
     message: value,

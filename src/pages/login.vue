@@ -67,12 +67,12 @@ const loginFormRules = reactive<FormRules>({
 const loginLoading = ref(false)
 const popoverVisible = ref(false)
 
-const resetForm = () => {
+function resetForm() {
   loginFormRef.value?.resetFields()
   popoverVisible.value = false
 }
 
-const submitForm = async () => {
+async function submitForm() {
   if (!loginFormRef.value) return
   await loginFormRef.value.validate(async valid => {
     if (!valid) {
