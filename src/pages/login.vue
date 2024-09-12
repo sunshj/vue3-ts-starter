@@ -1,36 +1,32 @@
 <template>
-  <ActionFormCard title="后台管理" subtitle="欢迎登录到后台管理系统" @reset="resetForm">
+  <ActionFormCard title="后台管理" subtitle="欢迎登录到后台管理系统" @reset="reset">
     <template #form>
-      <!-- 表单 -->
       <ElForm
-        ref="loginFormRef"
+        ref="formRef"
         class="login_form"
-        :model="loginForm"
-        :rules="loginFormRules"
+        :model="form"
+        :rules="formRules"
         status-icon
         @submit.prevent
       >
-        <!-- username -->
         <ElFormItem prop="username">
-          <ElInput v-model="loginForm.username" :prefix-icon="User" placeholder="用户名" />
+          <ElInput v-model="form.username" :prefix-icon="User" placeholder="用户名: sunshj" />
         </ElFormItem>
-        <!-- password -->
         <ElFormItem prop="password">
           <ElInput
-            v-model="loginForm.password"
+            v-model="form.password"
             show-password
             :prefix-icon="Key"
-            placeholder="密码"
+            placeholder="密码: 123456"
           />
         </ElFormItem>
-        <!-- 按钮 -->
         <ElButton
           v-throttle
           class="submit_btn"
           type="primary"
           native-type="submit"
-          :loading="loginLoading"
-          @click="submitForm"
+          :loading="isSubmitting"
+          @click="login"
         >
           <SvgIconArrowRightToBracket />
           <span style="margin-left: 5px">登入</span>
@@ -43,7 +39,6 @@
 <script setup lang="ts">
 import { Key, User } from '@element-plus/icons-vue'
 import { ApiLogin } from '@/api/auth'
-import type { FormInstance, FormRules } from 'element-plus'
 
 definePage({
   meta: {
@@ -54,46 +49,37 @@ definePage({
 const userStore = useUserStore()
 const router = useRouter()
 
-const loginFormRef = ref<FormInstance>()
-const loginForm = reactive({
-  username: 'sunshj',
-  password: '123456'
-})
-const loginFormRules = reactive<FormRules>({
-  username: [{ validator: isUserName, trigger: 'blur' }],
-  password: [{ validator: isPassword, trigger: 'blur' }]
-})
+const { form, formRef, formRules, isSubmitting, resetForm, submitForm } = useForm(
+  {
+    username: '',
+    password: ''
+  },
+  {
+    rules: {
+      username: [{ validator: isUserName, trigger: 'blur' }],
+      password: [{ validator: isPassword, trigger: 'blur' }]
+    }
+  }
+)
 
-const loginLoading = ref(false)
 const popoverVisible = ref(false)
 
-function resetForm() {
-  loginFormRef.value?.resetFields()
+function reset() {
+  resetForm()
   popoverVisible.value = false
 }
 
-async function submitForm() {
-  if (!loginFormRef.value) return
-  await loginFormRef.value.validate(async valid => {
-    if (!valid) {
-      ElMessage.warning('未通过校验')
-      return
-    }
-    loginLoading.value = true
-    // 登录逻辑
-    await ApiLogin({ ...loginForm })
-      .then(loginData => {
-        userStore.setAccessToken(loginData.access_token)
-        userStore.setRefreshToken(loginData.refresh_token)
-        const { id, name, avatar } = loginData.user
-        userStore.setUserInfo({ id, name, avatar })
+function login() {
+  submitForm(async values => {
+    const res = await ApiLogin(values)
 
-        router.push('/')
-        ElMessage.success('登录成功')
-      })
-      .finally(() => {
-        loginLoading.value = false
-      })
+    userStore.setAccessToken(res.access_token)
+    userStore.setRefreshToken(res.refresh_token)
+    const { id, name, avatar } = res.user
+    userStore.setUserInfo({ id, name, avatar })
+
+    router.push('/')
+    ElMessage.success('登录成功')
   })
 }
 </script>
