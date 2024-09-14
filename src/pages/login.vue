@@ -38,7 +38,7 @@
 
 <script setup lang="ts">
 import { Key, User } from '@element-plus/icons-vue'
-import { ApiLogin } from '@/api/auth'
+import { apiLogin } from '@/api/auth'
 
 definePage({
   meta: {
@@ -71,7 +71,7 @@ function reset() {
 
 function login() {
   submitForm(async values => {
-    const res = await ApiLogin(values)
+    const res = await apiLogin(values)
 
     userStore.setAccessToken(res.access_token)
     userStore.setRefreshToken(res.refresh_token)

@@ -1,13 +1,13 @@
 import type { LoginResData } from './types'
 
-export async function ApiLogin(data: { username: string; password: string }) {
+export async function apiLogin(data: { username: string; password: string }) {
   return await request<LoginResData>('/auth/login', {
     method: 'POST',
     data
   })
 }
 
-export async function ApiGetRefreshToken() {
+export async function apiGetRefreshToken() {
   const userStore = useUserStore()
 
   const res = await request<{ access_token: string }>('/auth/refresh_token', {

@@ -158,7 +158,7 @@
 <script setup lang="ts">
 import { Delete, Edit, Plus, Refresh, Search } from '@element-plus/icons-vue'
 import { objectOmit } from '@vueuse/core'
-import { ApiGetUser, ApiGetUserList, type IUser } from '@/api/user'
+import { apiGetUser, apiGetUserList, type IUser } from '@/api/user'
 import type { WithDate } from '@/api/types'
 
 definePage({
@@ -186,7 +186,7 @@ const {
   refetch
 } = useTable({
   async fetchData() {
-    const res = await ApiGetUserList(currentPage.value, pageSize.value, inputVal.value)
+    const res = await apiGetUserList(currentPage.value, pageSize.value, inputVal.value)
     totalPages.value = res.total
     return res.result
   }
@@ -254,7 +254,7 @@ const formLoading = ref(false)
 async function showEditDialog(id: number) {
   openDialog(false)
   formLoading.value = true
-  const res = await ApiGetUser(id).finally(() => {
+  const res = await apiGetUser(id).finally(() => {
     formLoading.value = false
   })
   form.value = { ...res, pass: '' }

@@ -17,6 +17,7 @@ export function timeFormat(
   datetime: string | number,
   type: 'normal' | 'ago' | 'calendar' = 'normal'
 ) {
+  if (!datetime) return ''
   const time =
     typeof datetime === 'number'
       ? Number.parseInt(datetime.toString().padEnd(13, '0'), 10)

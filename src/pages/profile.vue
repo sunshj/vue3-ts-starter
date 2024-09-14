@@ -8,19 +8,31 @@
       <div class="login-info">
         <div>用户名：{{ state?.name }}</div>
         <div>邮箱：{{ state?.email }}</div>
-        <div>权限：{{ state?.role === 2 ? '管理员' : '普通用户' }}</div>
+        <div>
+          <span>权限：</span>
+          <span v-if="!isLoading">{{ state?.role === 2 ? '管理员' : '普通用户' }}</span>
+        </div>
         <div>注册时间：{{ timeFormat(state?.createdAt!) }}</div>
+      </div>
+    </CustomCard>
+
+    <CustomCard :padding="15" title="版本信息">
+      <div class="login-info">
+        <div>Hash：{{ gitInfo.shortHash }}</div>
+        <div>Commit：{{ gitInfo.msg }}</div>
+        <div>Date：{{ timeFormat(gitInfo.time) }}</div>
       </div>
     </CustomCard>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ApiGetUser } from '@/api/user'
+import { apiGetUser } from '@/api/user'
 
 const userStore = useUserStore()
+const gitInfo = useGitInfo()
 
-const { state } = useAsyncState(ApiGetUser(userStore.userInfo.id), null)
+const { state, isLoading } = useAsyncState(apiGetUser(userStore.userInfo.id), null)
 </script>
 
 <style lang="scss" scoped>
