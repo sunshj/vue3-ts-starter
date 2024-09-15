@@ -28,14 +28,14 @@ const collapseWidth = computed(() => {
   return configStore.isCollapse ? '64px' : '200px'
 })
 
-onMounted(() => {
-  if (Reflect.has(window, 'ontouchstart')) {
+onBeforeMount(() => {
+  if (configStore.isSupportTouch) {
     configStore.setIsMobile(true)
     configStore.setAppTitle('短标题')
     configStore.setIsCollapse(false)
   } else {
     configStore.setIsMobile(false)
-    configStore.setAppTitle(import.meta.env.VITE_APP_TITLE)
+    configStore.setAppTitle('后台管理')
   }
 })
 </script>

@@ -9,7 +9,7 @@ export const useCancelRequestStore = defineStore('cancelRequest', () => {
     cancelAjaxList.value.forEach(cancel => {
       cancel()
     })
-    cancelAjaxList.value = []
+    cancelAjaxList.value.length = 0
   }
 
   return { add, clear }

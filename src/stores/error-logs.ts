@@ -13,7 +13,7 @@ export const useErrorLogsStore = defineStore('errorLogs', () => {
   }
 
   function clear() {
-    logs.value = []
+    logs.value.length = 0
   }
 
   return { logs, add, clear }
