@@ -43,7 +43,6 @@ declare module 'vue' {
     ElPageHeader: typeof import('element-plus/es')['ElPageHeader']
     ElPagination: typeof import('element-plus/es')['ElPagination']
     ElPopover: typeof import('element-plus/es')['ElPopover']
-    ElResult: typeof import('element-plus/es')['ElResult']
     ElRow: typeof import('element-plus/es')['ElRow']
     ElSelect: typeof import('element-plus/es')['ElSelect']
     ElSubMenu: typeof import('element-plus/es')['ElSubMenu']
@@ -54,6 +53,7 @@ declare module 'vue' {
     ElTooltip: typeof import('element-plus/es')['ElTooltip']
     ElUpload: typeof import('element-plus/es')['ElUpload']
     ErrorLog: typeof import('./../src/components/ErrorLog.vue')['default']
+    LanguageDropDown: typeof import('./../src/components/LanguageDropDown.vue')['default']
     LayoutMenu: typeof import('./../src/components/LayoutMenu.vue')['default']
     MapChart: typeof import('./../src/components/MapChart.vue')['default']
     MonacoEditor: typeof import('./../src/components/MonacoEditor/index.vue')['default']
@@ -66,6 +66,7 @@ declare module 'vue' {
     SvgIconDoubleArrowLeft: typeof import('~icons/svg-icon/double-arrow-left')['default']
     SvgIconDoubleArrowRight: typeof import('~icons/svg-icon/double-arrow-right')['default']
     SvgIconGithub: typeof import('~icons/svg-icon/github')['default']
+    SvgIconI18n: typeof import('~icons/svg-icon/i18n')['default']
     TopHeader: typeof import('./../src/components/TopHeader.vue')['default']
   }
   export interface ComponentCustomProperties {

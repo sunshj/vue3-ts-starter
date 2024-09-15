@@ -31,11 +31,11 @@ const collapseWidth = computed(() => {
 onMounted(() => {
   if (Reflect.has(window, 'ontouchstart')) {
     configStore.setIsMobile(true)
-    configStore.setAppTitle('短标题')
+    configStore.setAppTitleKey('short_title')
     configStore.setIsCollapse(false)
   } else {
     configStore.setIsMobile(false)
-    configStore.setAppTitle(import.meta.env.VITE_APP_TITLE)
+    configStore.setAppTitleKey('title')
   }
 })
 </script>

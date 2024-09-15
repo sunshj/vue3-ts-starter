@@ -3,7 +3,7 @@
     <div class="left_wrapper">
       <div class="logo_title_wrap">
         <img src="@/assets/logo.svg" />
-        <span v-if="!configStore.isCollapse">{{ configStore.appTitle }}</span>
+        <span v-if="!configStore.isCollapse">{{ $t(configStore.appTitleKey) }}</span>
       </div>
       <AutoBreadcrumb
         v-if="configStore.isCollapse && !configStore.isMobile && $route.meta.isMenuitem"
@@ -31,6 +31,8 @@
       <ElTooltip content="切换夜间模式" effect="dark" placement="bottom">
         <DarkSwitch @change="darkModeSwitchChange" />
       </ElTooltip>
+
+      <LanguageDropDown />
 
       <ElTooltip content="前往仓库" effect="dark" placement="bottom">
         <a href="https://github.com/sunshj/vue3-ts-starter" target="_blank">

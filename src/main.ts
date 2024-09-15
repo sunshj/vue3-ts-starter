@@ -3,6 +3,7 @@ import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
 import { createApp, nextTick } from 'vue'
 
 import App from './App.vue'
+import { i18n } from './i18n'
 import router from './router'
 
 import './router/permission'
@@ -16,6 +17,7 @@ pinia.use(piniaPluginPersistedstate)
 
 app.use(pinia)
 app.use(router)
+app.use(i18n)
 
 // 全局错误捕获
 app.config.errorHandler = (err, instance, info) => {

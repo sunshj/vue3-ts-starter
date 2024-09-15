@@ -100,7 +100,6 @@ declare global {
   const refWithControl: typeof import('@vueuse/core')['refWithControl']
   const refreshToken: typeof import('../src/utils/refresh-token')['refreshToken']
   const request: typeof import('../src/utils/http')['request']
-  const resetRef: typeof import('reset-ref')['resetRef']
   const resolveComponent: typeof import('vue')['resolveComponent']
   const resolveRef: typeof import('@vueuse/core')['resolveRef']
   const resolveUnref: typeof import('@vueuse/core')['resolveUnref']
@@ -204,6 +203,7 @@ declare global {
   const useGamepad: typeof import('@vueuse/core')['useGamepad']
   const useGeolocation: typeof import('@vueuse/core')['useGeolocation']
   const useGitInfo: typeof import('../src/composables/git-info')['useGitInfo']
+  const useI18n: typeof import('vue-i18n')['useI18n']
   const useIdle: typeof import('@vueuse/core')['useIdle']
   const useImage: typeof import('@vueuse/core')['useImage']
   const useInfiniteScroll: typeof import('@vueuse/core')['useInfiniteScroll']
@@ -246,7 +246,6 @@ declare global {
   const usePrevious: typeof import('@vueuse/core')['usePrevious']
   const useRafFn: typeof import('@vueuse/core')['useRafFn']
   const useRefHistory: typeof import('@vueuse/core')['useRefHistory']
-  const useReset: typeof import('reset-ref')['useReset']
   const useResizeObserver: typeof import('@vueuse/core')['useResizeObserver']
   const useRoute: typeof import('vue-router')['useRoute']
   const useRouter: typeof import('vue-router')['useRouter']
@@ -555,6 +554,7 @@ declare module 'vue' {
     readonly useGamepad: UnwrapRef<typeof import('@vueuse/core')['useGamepad']>
     readonly useGeolocation: UnwrapRef<typeof import('@vueuse/core')['useGeolocation']>
     readonly useGitInfo: UnwrapRef<typeof import('../src/composables/git-info')['useGitInfo']>
+    readonly useI18n: UnwrapRef<typeof import('vue-i18n')['useI18n']>
     readonly useIdle: UnwrapRef<typeof import('@vueuse/core')['useIdle']>
     readonly useImage: UnwrapRef<typeof import('@vueuse/core')['useImage']>
     readonly useInfiniteScroll: UnwrapRef<typeof import('@vueuse/core')['useInfiniteScroll']>

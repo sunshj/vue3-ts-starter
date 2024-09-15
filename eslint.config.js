@@ -11,6 +11,12 @@ export default defineConfig([
     }
   },
   {
+    files: ['**/i18n/**/*.json'],
+    rules: {
+      'unicorn/filename-case': 'off'
+    }
+  },
+  {
     ignores: ['types/**/*.d.ts']
   }
 ])
