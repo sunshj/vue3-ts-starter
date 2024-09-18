@@ -8,7 +8,7 @@
     "build": "vue-tsc && vite build",
     "preview": "vite preview",
     "format": "prettier --write .",
-    "lint": "eslint .",
+    "lint": "eslint . --cache",
     "lint:fix": "eslint . --fix --cache",
     "type-check": "vue-tsc --noEmit",
     "stylelint": "stylelint --fix \"src/**/*.{vue,css,scss}\" --cache",
