@@ -9,9 +9,9 @@
     "preview": "vite preview",
     "format": "prettier --write .",
     "lint": "eslint .",
-    "lint:fix": "eslint . --fix",
+    "lint:fix": "eslint . --fix --cache",
     "type-check": "vue-tsc --noEmit",
-    "stylelint": "stylelint --cache --fix \"src/**/*.{vue,css,scss}\" --cache --cache-location node_modules/.cache/stylelint/",
+    "stylelint": "stylelint --fix \"src/**/*.{vue,css,scss}\" --cache",
     "commit": "git-cz"
   },
   "dependencies": {
@@ -30,7 +30,7 @@
   },
   "devDependencies": {
     "@sunshj/commitlint-config": "1.0.0",
-    "@sunshj/eslint-config": "2.1.0",
+    "@sunshj/eslint-config": "2.1.2",
     "@sunshj/prettier-config": "1.0.0",
     "@sunshj/stylelint-config": "1.0.2",
     "@sunshj/vite-plugins": "0.5.0",
@@ -84,7 +84,7 @@
       "prettier --write"
     ],
     "*.{vue,css,scss}": [
-      "pnpm stylelint"
+      "stylelint --fix"
     ]
   },
   "prettier": "@sunshj/prettier-config",
