@@ -5,11 +5,11 @@ export * from './types'
 
 export async function apiGetUserList(pageNum: number, pagesize: number, query: string) {
   const encodeQuery = encodeURIComponent(query)
-  return await request<GetUserList>(
+  return await http.get<GetUserList>(
     `/api/user?page=${pageNum}&size=${pagesize}&query=${encodeQuery}`
   )
 }
 
 export async function apiGetUser(id: number) {
-  return await request<Omit<WithDate<IUser>, 'pass'>>(`/api/user/${id}`)
+  return await http.get<Omit<WithDate<IUser>, 'pass'>>(`/api/user/${id}`)
 }
