@@ -94,11 +94,15 @@ class Http {
   async post<T>(url: string, data?: any, config?: AxiosRequestConfig) {
     return await this.request<T>(url, { method: 'post', data, ...config })
   }
+
+  static toFunctional(http: Http) {
+    return Object.assign(http.request.bind(http), {
+      get: http.get.bind(http),
+      post: http.post.bind(http)
+    })
+  }
 }
 
 export const http = new Http()
 
-export const $http = Object.assign(http.request.bind(http), {
-  get: http.get.bind(http),
-  post: http.post.bind(http)
-})
+export const $http = Http.toFunctional(http)
