@@ -72,7 +72,7 @@ function reset() {
 function login() {
   submitForm(async values => {
     const res = await apiLogin(values)
-
+    if (!res) return
     userStore.setAccessToken(res.access_token)
     userStore.setRefreshToken(res.refresh_token)
     const { id, name, avatar } = res.user

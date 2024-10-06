@@ -44,9 +44,11 @@ export function useForm<T extends object>(initialValues: T, options: Options<T> 
       }
       isSubmitting.value = true
 
-      await callback(toRaw(form.value)).finally(() => {
-        isSubmitting.value = false
-      })
+      await callback(toRaw(form.value))
+        .catch(() => null)
+        .finally(() => {
+          isSubmitting.value = false
+        })
     })
   }
 
