@@ -12,7 +12,7 @@
     <div class="right_wrapper">
       <ElTooltip
         v-if="!configStore.isMobile && errorLogsStore.logs.length > 0"
-        content="查看错误日志"
+        :content="$t('view_error_log')"
         effect="dark"
         placement="bottom"
       >
@@ -28,13 +28,13 @@
         Refresh Token
       </ElButton>
 
-      <ElTooltip content="切换夜间模式" effect="dark" placement="bottom">
+      <ElTooltip :content="$t('dark_mode.toggle')" effect="dark" placement="bottom">
         <DarkSwitch @change="darkModeSwitchChange" />
       </ElTooltip>
 
       <LanguageDropDown />
 
-      <ElTooltip content="前往仓库" effect="dark" placement="bottom">
+      <ElTooltip :content="$t('github_repo')" effect="dark" placement="bottom">
         <a href="https://github.com/sunshj/vue3-ts-starter" target="_blank">
           <SvgIconGithub class="github_icon" />
         </a>
@@ -48,10 +48,10 @@
 
         <template #dropdown>
           <ElDropdownMenu>
-            <ElDropdownItem @click="linkToUserProfile">个人中心</ElDropdownItem>
+            <ElDropdownItem @click="linkToUserProfile">{{ $t('user_profile') }}</ElDropdownItem>
           </ElDropdownMenu>
           <ElDropdownMenu>
-            <ElDropdownItem @click="logout">退出</ElDropdownItem>
+            <ElDropdownItem @click="logout">{{ $t('auth.logout') }}</ElDropdownItem>
           </ElDropdownMenu>
         </template>
       </ElDropdown>
@@ -61,7 +61,7 @@
   <div v-if="configStore.isMobile" class="mobile">
     <span class="menu" @click="sideDrawerVisible = true">
       <SvgIconBars />
-      <span>菜单</span>
+      <span>{{ $t('menus._name') }}</span>
     </span>
   </div>
   <ElDrawer v-model="sideDrawerVisible" :with-header="false" direction="ltr" size="200px">
@@ -76,9 +76,10 @@ const router = useRouter()
 const configStore = useConfigStore()
 const userStore = useUserStore()
 const errorLogsStore = useErrorLogsStore()
+const { t } = useI18n()
 
 function darkModeSwitchChange(val: boolean) {
-  ElMessage.success(`已${val ? '开启' : '关闭'}暗黑模式`)
+  ElMessage.success(val ? t('dark_mode.enabled') : t('dark_mode.disabled'))
 }
 
 function linkToUserProfile() {

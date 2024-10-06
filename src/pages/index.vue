@@ -79,7 +79,7 @@
 <script setup lang="ts">
 definePage({
   meta: {
-    title: '首页',
+    title: 'menus.home',
     icon: 'home',
     isMenuitem: true,
     menuitemOrder: 0

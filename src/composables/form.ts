@@ -19,11 +19,17 @@ export function useForm<T extends object>(initialValues: T, options: Options<T> 
     validateFailed
   } = options
 
+  const { locale, t } = useI18n()
+
   const defaultForm = clone(initialValues)
   const form = ref(initialValues) as Ref<T>
   const formRef = ref<FormInstance | null>(null)
   const formRules = computed<FormRules>(() => unref(rules))
   const isSubmitting = ref(false)
+
+  watch(locale, () => {
+    formRef.value?.validate()
+  })
 
   function resetForm(patches?: Partial<T>) {
     form.value = patches ? { ...form.value, ...patches } : clone(defaultForm)
@@ -39,7 +45,7 @@ export function useForm<T extends object>(initialValues: T, options: Options<T> 
     if (!formRef.value) return
     formRef.value.validate(async valid => {
       if (!valid) {
-        validateFailed ? await validateFailed() : ElMessage.error('请检查表单是否填写正确')
+        validateFailed ? await validateFailed() : ElMessage.error(t('validator.check_form'))
         return
       }
       isSubmitting.value = true

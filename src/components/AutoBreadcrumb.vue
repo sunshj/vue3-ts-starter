@@ -6,7 +6,7 @@
         :key="index"
         :to="item.isLink ? { path: item.path } : ''"
       >
-        {{ item.title }}
+        {{ $t(item.title) }}
       </ElBreadcrumbItem>
     </TransitionGroup>
   </ElBreadcrumb>

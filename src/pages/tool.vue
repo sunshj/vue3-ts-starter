@@ -6,7 +6,7 @@
 definePage({
   redirect: '/tool/editor',
   meta: {
-    title: '系统工具',
+    title: 'menus.tools',
     icon: 'setting',
     isMenuitem: true,
     menuitemOrder: 3,

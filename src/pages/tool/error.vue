@@ -7,7 +7,7 @@
 <script setup lang="ts">
 definePage({
   meta: {
-    title: '错误日志',
+    title: 'menus.error_log',
     icon: 'error',
     isMenuitem: true
   }

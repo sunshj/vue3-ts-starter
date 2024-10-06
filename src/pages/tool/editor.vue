@@ -27,7 +27,7 @@
 <script setup lang="ts">
 definePage({
   meta: {
-    title: '代码编辑',
+    title: 'menus.code_editor',
     icon: 'code',
     isMenuitem: true
   }

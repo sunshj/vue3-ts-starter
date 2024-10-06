@@ -7,7 +7,7 @@
         <div class="toggle_collapse" @click="configStore.toggleCollapse()">
           <SvgIconDoubleArrowRight v-if="configStore.isCollapse" />
           <SvgIconDoubleArrowLeft v-else />
-          <span>{{ configStore.isCollapse ? '' : '折叠边栏' }}</span>
+          <span>{{ configStore.isCollapse ? '' : $t('collapse_sidebar') }}</span>
         </div>
       </ElAside>
       <ElMain class="layout_main" :class="configStore.isMobile ? 'mobile' : ''">
@@ -28,8 +28,8 @@ const collapseWidth = computed(() => {
   return configStore.isCollapse ? '64px' : '200px'
 })
 
-onMounted(() => {
-  if (Reflect.has(window, 'ontouchstart')) {
+onBeforeMount(() => {
+  if (configStore.isSupportTouch) {
     configStore.setIsMobile(true)
     configStore.setAppTitleKey('short_title')
     configStore.setIsCollapse(false)

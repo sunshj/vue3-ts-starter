@@ -1,5 +1,5 @@
 <template>
-  <ActionFormCard title="后台管理" subtitle="欢迎登录到后台管理系统" @reset="reset">
+  <ActionFormCard :title="$t('title')" :subtitle="$t('welcome')" @reset="reset">
     <template #form>
       <ElForm
         ref="formRef"
@@ -10,14 +10,18 @@
         @submit.prevent
       >
         <ElFormItem prop="username">
-          <ElInput v-model="form.username" :prefix-icon="User" placeholder="用户名: sunshj" />
+          <ElInput
+            v-model="form.username"
+            :prefix-icon="User"
+            :placeholder="`${$t('auth.username')}: sunshj`"
+          />
         </ElFormItem>
         <ElFormItem prop="password">
           <ElInput
             v-model="form.password"
             show-password
             :prefix-icon="Key"
-            placeholder="密码: 123456"
+            :placeholder="`${$t('auth.password')}: 123456`"
           />
         </ElFormItem>
         <ElButton
@@ -29,9 +33,13 @@
           @click="login"
         >
           <SvgIconArrowRightToBracket />
-          <span style="margin-left: 5px">登入</span>
+          <span style="margin-left: 5px">{{ $t('auth.login') }}</span>
         </ElButton>
       </ElForm>
+    </template>
+
+    <template #action>
+      <LanguageDropDown />
     </template>
   </ActionFormCard>
 </template>
@@ -48,6 +56,7 @@ definePage({
 
 const userStore = useUserStore()
 const router = useRouter()
+const { t } = useI18n()
 
 const { form, formRef, formRules, isSubmitting, resetForm, submitForm } = useForm(
   {
@@ -79,7 +88,7 @@ function login() {
     userStore.setUserInfo({ id, name, avatar })
 
     router.push('/')
-    ElMessage.success('登录成功')
+    ElMessage.success(t('auth.login_success'))
   })
 }
 </script>

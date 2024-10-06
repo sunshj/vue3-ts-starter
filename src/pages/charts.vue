@@ -41,7 +41,7 @@ import type { EChartsOption } from 'echarts'
 
 definePage({
   meta: {
-    title: '图表统计',
+    title: 'menus.charts',
     icon: 'chart',
     isMenuitem: true,
     menuitemOrder: 2

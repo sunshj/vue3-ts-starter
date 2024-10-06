@@ -17,7 +17,7 @@ export type Locale = (typeof languages)[number]['value']
 
 export type MessageSchema = typeof enUS
 
-export const i18n = createI18n<[MessageSchema], Locale>({
+export const i18n = createI18n<[MessageSchema], Locale, false>({
   legacy: false,
   locale: 'zh-CN',
   fallbackLocale: 'zh-CN',

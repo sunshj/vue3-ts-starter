@@ -163,7 +163,7 @@ import type { WithDate } from '@/api/types'
 
 definePage({
   meta: {
-    title: '用户管理',
+    title: 'menus.users',
     icon: 'customer',
     isMenuitem: true,
     menuitemOrder: 1

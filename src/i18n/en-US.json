@@ -1,4 +1,43 @@
 {
   "title": "Dashboard",
-  "short_title": "Short Title"
+  "welcome": "Welcome to Dashboard",
+  "short_title": "Short Title",
+  "menus": {
+    "_name": "Menu",
+    "home": "Home",
+    "users": "Users",
+    "charts": "Charts",
+    "tools": "Tools",
+    "code_editor": "Code Editor",
+    "error_log": "Error Log",
+    "markdown": "Markdown"
+  },
+
+  "collapse_sidebar": "Collapse Sidebar",
+  "dark_mode": {
+    "toggle": "Toggle Dark Mode",
+    "enabled": "Enabled Dark Mode",
+    "disabled": "Disabled Dark Mode"
+  },
+  "github_repo": "GitHub Repo",
+  "user_profile": "User Profile",
+  "view_error_log": "View Error Log",
+  "auth": {
+    "login": "Login",
+    "logout": "Logout",
+    "username": "Username",
+    "password": "Password",
+    "login_success": "Login Success",
+    "login_failed": "Login Failed",
+    "logout_success": "Logout Success"
+  },
+  "validator": {
+    "check_form": "Please check the form",
+    "username_required": "Username is required",
+    "username_regex": "Username must be 2 ~ 10 characters and not contain special characters.",
+    "password_required": "Password is required",
+    "password_regex": "Password must be 6 ~ 15 characters and not contain special characters.",
+    "email_required": "Email is required",
+    "email_regex": "Email format is incorrect."
+  }
 }

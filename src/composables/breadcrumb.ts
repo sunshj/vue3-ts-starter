@@ -11,7 +11,7 @@ export function useBreadcrumb() {
   function getBreadcrumbs() {
     const breadcrumbs: BreadList[] = []
     const matched = route.matched.filter(v => v.meta.isMenuitem && v.meta.title)
-    if (route.path !== '/') breadcrumbs.push({ path: '/', title: '首页', isLink: true })
+    if (route.path !== '/') breadcrumbs.push({ path: '/', title: 'menus.home', isLink: true })
 
     matched.forEach(item => {
       breadcrumbs.push({

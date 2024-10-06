@@ -7,14 +7,12 @@
     active-text-color="var(--el-menu-text-color)"
     :default-active="configStore.currentPath"
   >
-    <!-- 菜单项 -->
     <template v-for="item in menusList">
-      <!-- 有子菜单时渲染submenu -->
       <template v-if="item.children?.length">
         <ElSubMenu :key="item.path" :index="item.path">
           <template #title>
             <ElIcon :size="20"> <component :is="svgIconsMap.get(item.meta?.icon!)" /></ElIcon>
-            <span>{{ item.meta?.title }}</span>
+            <span>{{ $t(item.meta!.title!) }}</span>
           </template>
           <ElMenuItem
             v-for="subItem in item.children"
@@ -23,17 +21,17 @@
           >
             <template #title>
               <component :is="svgIconsMap.get(subItem.meta?.icon!)" />
-              <span>{{ subItem.meta?.title }}</span>
+              <span>{{ $t(subItem.meta!.title!) }}</span>
             </template>
           </ElMenuItem>
         </ElSubMenu>
       </template>
-      <!-- 没有子菜单直接作为一级菜单 -->
+
       <template v-else>
         <ElMenuItem :key="item.path" :index="item.path">
           <component :is="svgIconsMap.get(item.meta?.icon!)" />
           <template #title>
-            <span>{{ item.meta?.title }}</span>
+            <span>{{ $t(item.meta!.title!) }}</span>
           </template>
         </ElMenuItem>
       </template>

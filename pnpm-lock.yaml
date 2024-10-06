@@ -37,8 +37,8 @@ dependencies:
     specifier: 5.5.0
     version: 5.5.0
   element-plus:
-    specifier: 2.5.6
-    version: 2.5.6(vue@3.4.19)
+    specifier: 2.8.3
+    version: 2.8.3(vue@3.4.19)
   mavon-editor:
     specifier: 3.0.1
     version: 3.0.1
@@ -66,8 +66,8 @@ devDependencies:
     specifier: 1.0.0
     version: 1.0.0
   '@sunshj/eslint-config':
-    specifier: 2.1.0
-    version: 2.1.0(eslint@9.10.0)(typescript@5.3.3)
+    specifier: 2.1.2
+    version: 2.1.2(eslint@9.10.0)(typescript@5.3.3)
   '@sunshj/prettier-config':
     specifier: 1.0.0
     version: 1.0.0
@@ -1209,11 +1209,11 @@ packages:
     resolution: {integrity: sha512-tiy/d4lcSfCoyDN2s0Cf+sFxMlkJswxBW9urvcbau9KN+0VMrLx2G+CGcqOEWoYQpX7O2/Ii0TYfsJCb+/UJFA==}
     dev: true
 
-  /@sunshj/eslint-config@2.1.0(eslint@9.10.0)(typescript@5.3.3):
-    resolution: {integrity: sha512-dO6arIa02i7IFXR9uJIceKiDC4jd7LFsEtm/9YtgHb2yl6cBU4UW8bEl3Iw0slsZgtBofP2izn8YOjks1WnKpg==}
+  /@sunshj/eslint-config@2.1.2(eslint@9.10.0)(typescript@5.3.3):
+    resolution: {integrity: sha512-50ZyI3VsiG3VFwVSAuA+GK8fOC+rrMehba1mxgfAU9z1mZK1Rbk/n3c76GVRAhIMwM3o4/wgJ2cw6Ka6mHaT1w==}
     engines: {node: ^18.18.0 || >=20.0.0}
     peerDependencies:
-      eslint: ^9.0.0
+      eslint: ^9.10.0
     dependencies:
       '@eslint-react/eslint-plugin': 1.14.1(eslint@9.10.0)(typescript@5.3.3)
       '@eslint/js': 9.10.0
@@ -2592,8 +2592,8 @@ packages:
     resolution: {integrity: sha512-lbBcvtIJ4J6sS4tb5TLp1b4LyfCdMkwStzXPyAgVgTRAsep4bvrAGaBOP7ZJtQMNJpSQ9SqG4brWOroNaQtm7Q==}
     dev: true
 
-  /element-plus@2.5.6(vue@3.4.19):
-    resolution: {integrity: sha512-zctKTiyIDmcnMp3K5WG1hglgraW9EbiCLiIDVtaMCS5mPMl2fRKdS0vOFGnECIq9taFoxnyoDwxHD81nv0B4RA==}
+  /element-plus@2.8.3(vue@3.4.19):
+    resolution: {integrity: sha512-BXQOyDf0s7JHyNEV8iaO+iaOzTZPsBXVKMzMI967vLCodUBDLrtiY5vglAn1YEebQcUOEUMhGcttTpIvEkcBjQ==}
     peerDependencies:
       vue: ^3.2.0
     dependencies:

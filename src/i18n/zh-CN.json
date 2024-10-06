@@ -1,4 +1,42 @@
 {
   "title": "后台管理",
-  "short_title": "短标题"
+  "welcome": "欢迎登录到后台管理系统",
+  "short_title": "短标题",
+  "menus": {
+    "charts": "图表统计",
+    "code_editor": "代码编辑",
+    "error_log": "错误日志",
+    "home": "首页",
+    "markdown": "Markdown",
+    "tools": "系统工具",
+    "users": "用户管理",
+    "_name": "菜单"
+  },
+  "collapse_sidebar": "折叠边栏",
+  "auth": {
+    "login": "登入",
+    "logout": "退出",
+    "password": "密码",
+    "username": "用户名",
+    "login_failed": "登录失败",
+    "login_success": "登录成功",
+    "logout_success": "已退出登录"
+  },
+  "view_error_log": "查看错误日志",
+  "github_repo": "前往仓库",
+  "user_profile": "个人资料",
+  "dark_mode": {
+    "disabled": "已关闭深色模式",
+    "enabled": "已开启深色模式",
+    "toggle": "切换深色模式"
+  },
+  "validator": {
+    "check_form": "请检查表单是否填写正确",
+    "email_regex": "请输入合法的邮箱地址",
+    "email_required": "请输入邮箱地址",
+    "password_regex": "密码必须为6~15个字符，且不能包含特殊字符。",
+    "password_required": "请输入密码",
+    "username_regex": "用户名必须为2~10个字符，且不能包含特殊字符。",
+    "username_required": "请输入用户名"
+  }
 }

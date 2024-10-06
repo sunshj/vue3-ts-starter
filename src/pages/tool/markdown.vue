@@ -20,7 +20,7 @@ import 'mavon-editor/dist/css/index.css'
 
 definePage({
   meta: {
-    title: 'Markdown',
+    title: 'menus.markdown',
     icon: 'md',
     isMenuitem: true
   }
