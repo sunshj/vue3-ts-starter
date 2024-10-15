@@ -6,10 +6,25 @@
 
 declare module 'virtual:icons-helper' {
   
-  export const svgIcons : Array<{ name: SvgIcon; icon: Component }>
+  export const svgIcons: Array<{ name: SvgIcon; icon: Component }>
   
-  export const svgIconsMap : Map<SvgIcon, Component>
+  export const svgIconsMap: Map<SvgIcon, Component>
   
-  export type SvgIcon = 'arrow-right-to-bracket' | 'bars' | 'bug' | 'chart' | 'code' | 'customer' | 'double-arrow-left' | 'double-arrow-right' | 'error' | 'github' | 'home' | 'i18n' | 'md' | 'setting' | 'user'
+  export type SvgIcon =  
+    | 'arrow-right-to-bracket'
+    | 'bars'
+    | 'bug'
+    | 'chart'
+    | 'code'
+    | 'customer'
+    | 'double-arrow-left'
+    | 'double-arrow-right'
+    | 'error'
+    | 'github'
+    | 'home'
+    | 'i18n'
+    | 'md'
+    | 'setting'
+    | 'user'
   
 }
