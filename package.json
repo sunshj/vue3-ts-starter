@@ -48,7 +48,7 @@
     "typescript": "5.3.3",
     "unplugin-auto-import": "0.16.7",
     "unplugin-icons": "0.16.6",
-    "unplugin-icons-helper": "^0.1.1",
+    "unplugin-icons-helper": "^0.1.2",
     "unplugin-vue-components": "0.26.0",
     "unplugin-vue-router": "0.10.7",
     "vite": "4.5.2",
