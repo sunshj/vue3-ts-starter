@@ -18,9 +18,10 @@
 
     <CustomCard :padding="15" title="版本信息">
       <div class="login-info">
-        <div>Hash：{{ gitInfo.shortHash }}</div>
-        <div>Commit：{{ gitInfo.msg }}</div>
-        <div>Date：{{ timeFormat(gitInfo.time) }}</div>
+        <div>Commit Branch：{{ gitInfo.gitBranch }}</div>
+        <div>Commit Hash：{{ gitInfo.gitCommit }}</div>
+        <div>Commit Message：{{ gitInfo.gitCommitMessage }}</div>
+        <div>Commit Date：{{ timeFormat(gitInfo.gitCommitDate) }}</div>
       </div>
     </CustomCard>
   </div>
@@ -29,8 +30,10 @@
 <script setup lang="ts">
 import { apiGetUser } from '@/api/user'
 
+// @ts-expect-error
+const gitInfo = (window.__RUNTIME_ENV__ = __RUNTIME_ENV__)
+
 const userStore = useUserStore()
-const gitInfo = useGitInfo()
 
 const { state, isLoading } = useAsyncState(apiGetUser(userStore.userInfo.id), null)
 </script>

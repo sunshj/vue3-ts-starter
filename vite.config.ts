@@ -1,5 +1,6 @@
+import { execSync } from 'node:child_process'
 import { fileURLToPath, URL } from 'node:url'
-import { EnvDts, GitInfo } from '@sunshj/vite-plugins'
+import { runtimeConfig } from '@sunshj/vite-plugins'
 import vue from '@vitejs/plugin-vue'
 import AutoImports from 'unplugin-auto-import/vite'
 import IconsHelper from 'unplugin-icons-helper/vite'
@@ -78,13 +79,19 @@ export default defineConfig(({ mode }) => ({
         }
       ]
     }),
-    GitInfo({
-      injectToHead: false
-    }),
-    EnvDts({
-      dts: 'types/env.d.ts'
+    runtimeConfig({
+      envDts: 'types/env.d.ts',
+      runtimeDts: 'types/runtime.d.ts'
     })
   ],
+
+  runtimeConfig: {
+    gitCommit: execSync('git rev-parse HEAD').toString().trim(),
+    gitBranch: execSync('git rev-parse --abbrev-ref HEAD').toString().trim(),
+    gitCommitDate: execSync('git log -1 --format=%cd').toString().trim(),
+    gitCommitMessage: execSync('git log -1 --pretty=%B').toString().trim()
+  },
+
   optimizeDeps: {
     include: [
       'monaco-editor/esm/vs/editor/editor.worker',
