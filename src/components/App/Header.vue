@@ -46,7 +46,9 @@
 
         <template #dropdown>
           <ElDropdownMenu>
-            <ElDropdownItem @click="linkToUserProfile">个人中心</ElDropdownItem>
+            <AppLink to="/profile" prefetch>
+              <ElDropdownItem> 个人中心 </ElDropdownItem>
+            </AppLink>
           </ElDropdownMenu>
           <ElDropdownMenu>
             <ElDropdownItem @click="logout">退出</ElDropdownItem>
@@ -63,24 +65,19 @@
     </span>
   </div>
   <ElDrawer v-model="sideDrawerVisible" :with-header="false" direction="ltr" size="200px">
-    <LayoutMenu />
+    <AppMenu />
   </ElDrawer>
 </template>
 
 <script setup lang="ts">
 import { CaretBottom, Refresh } from '@element-plus/icons-vue'
 
-const router = useRouter()
 const configStore = useConfigStore()
 const userStore = useUserStore()
 const errorLogsStore = useErrorLogsStore()
 
 function darkModeSwitchChange(val: boolean) {
   ElMessage.success(`已${val ? '开启' : '关闭'}暗黑模式`)
-}
-
-function linkToUserProfile() {
-  router.push('/profile')
 }
 
 function logout() {

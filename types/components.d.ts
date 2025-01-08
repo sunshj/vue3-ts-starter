@@ -8,6 +8,9 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     ActionFormCard: typeof import('./../src/components/ActionFormCard.vue')['default']
+    AppHeader: typeof import('./../src/components/App/Header.vue')['default']
+    AppLink: typeof import('./../src/components/App/Link.vue')['default']
+    AppMenu: typeof import('./../src/components/App/Menu.vue')['default']
     AutoBreadcrumb: typeof import('./../src/components/AutoBreadcrumb.vue')['default']
     AutoComplete: typeof import('./../src/components/AutoComplete.vue')['default']
     BasicChart: typeof import('./../src/components/BasicChart.vue')['default']
@@ -54,7 +57,6 @@ declare module 'vue' {
     ElTooltip: typeof import('element-plus/es')['ElTooltip']
     ElUpload: typeof import('element-plus/es')['ElUpload']
     ErrorLog: typeof import('./../src/components/ErrorLog.vue')['default']
-    LayoutMenu: typeof import('./../src/components/LayoutMenu.vue')['default']
     MapChart: typeof import('./../src/components/MapChart.vue')['default']
     MonacoEditor: typeof import('./../src/components/MonacoEditor/index.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
@@ -66,7 +68,6 @@ declare module 'vue' {
     SvgIconDoubleArrowLeft: typeof import('~icons/svg-icon/double-arrow-left')['default']
     SvgIconDoubleArrowRight: typeof import('~icons/svg-icon/double-arrow-right')['default']
     SvgIconGithub: typeof import('~icons/svg-icon/github')['default']
-    TopHeader: typeof import('./../src/components/TopHeader.vue')['default']
   }
   export interface ComponentCustomProperties {
     vLoading: typeof import('element-plus/es')['ElLoadingDirective']

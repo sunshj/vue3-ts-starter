@@ -19,12 +19,7 @@ export default defineConfig(({ mode }) => ({
   plugins: [
     VueRouter({
       exclude: ['**/components/**.vue'],
-      dts: 'types/router.d.ts',
-      importMode(filepath) {
-        const lazyLoadPages = ['/login.vue', '/index.vue', '/charts.vue']
-        if (lazyLoadPages.includes(filepath.split('src/pages')[1])) return 'async'
-        return 'sync'
-      }
+      dts: 'types/router.d.ts'
     }),
     vue(),
     Layouts(),

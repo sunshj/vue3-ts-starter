@@ -1,9 +1,9 @@
 <template>
   <ElContainer class="layout_container">
-    <TopHeader />
+    <AppHeader />
     <ElContainer>
       <ElAside :width="collapseWidth" class="layout_aside">
-        <LayoutMenu />
+        <AppMenu />
         <div class="toggle_collapse" @click="configStore.toggleCollapse()">
           <SvgIconDoubleArrowRight v-if="configStore.isCollapse" />
           <SvgIconDoubleArrowLeft v-else />
