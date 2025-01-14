@@ -9,9 +9,9 @@
     <template v-for="item in menusList">
       <template v-if="!item.children?.length">
         <ElMenuItem :key="item.path" :index="item.path">
+          <component :is="svgIconsMap.get(item.meta?.icon!)" />
           <template #title>
             <AppLink :to="item.path" prefetch prefetch-on="interaction">
-              <component :is="svgIconsMap.get(item.meta?.icon!)" />
               <span>{{ item.meta?.title }}</span>
             </AppLink>
           </template>
@@ -21,7 +21,7 @@
       <template v-else>
         <ElSubMenu :key="item.path" :index="item.path">
           <template #title>
-            <component :is="svgIconsMap.get(item.meta?.icon!)" />
+            <ElIcon :size="20"> <component :is="svgIconsMap.get(item.meta?.icon!)" /></ElIcon>
             <span>{{ item.meta?.title }}</span>
           </template>
           <ElMenuItem

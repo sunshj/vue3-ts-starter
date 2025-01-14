@@ -28,20 +28,20 @@ function shouldPrefetch(mode: 'interaction' | 'visibility') {
   return route.path !== props.to && props.prefetch === true && props.prefetchOn === mode
 }
 
-const cleanup = useEventListener(
-  el,
-  ['pointerenter', 'focus'],
-  () => {
-    if (shouldPrefetch('interaction')) {
+if (shouldPrefetch('interaction')) {
+  const cleanup = useEventListener(
+    el,
+    ['pointerenter', 'focus'],
+    () => {
       preloadRouteComponents(props.to, router)
       cleanup()
-    }
-  },
-  { once: true }
-)
+    },
+    { once: true }
+  )
+}
 
-const { stop } = useIntersectionObserver(el, entries => {
-  if (shouldPrefetch('visibility')) {
+if (shouldPrefetch('visibility')) {
+  const { stop } = useIntersectionObserver(el, entries => {
     for (const entry of entries) {
       const isVisible = entry.isIntersecting || entry.intersectionRatio > 0
       if (isVisible) {
@@ -49,8 +49,8 @@ const { stop } = useIntersectionObserver(el, entries => {
         stop()
       }
     }
-  }
-})
+  })
+}
 </script>
 
 <style lang="scss" scoped>

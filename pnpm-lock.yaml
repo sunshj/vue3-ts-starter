@@ -76,8 +76,8 @@ importers:
         specifier: 1.0.2
         version: 1.0.2(stylelint@16.2.1(typescript@5.3.3))
       '@sunshj/vite-plugins':
-        specifier: 0.6.0
-        version: 0.6.0
+        specifier: 0.7.0
+        version: 0.7.0
       '@types/node':
         specifier: 20.11.20
         version: 20.11.20
@@ -121,8 +121,8 @@ importers:
         specifier: 0.16.6
         version: 0.16.6(@vue/compiler-sfc@3.4.38)
       unplugin-icons-helper:
-        specifier: ^0.1.2
-        version: 0.1.2
+        specifier: ^0.2.0
+        version: 0.2.0
       unplugin-vue-components:
         specifier: 0.26.0
         version: 0.26.0(@babel/parser@7.25.4)(rollup@3.29.4)(vue@3.4.19(typescript@5.3.3))
@@ -719,8 +719,8 @@ packages:
     peerDependencies:
       stylelint: ^16.2.1
 
-  '@sunshj/vite-plugins@0.6.0':
-    resolution: {integrity: sha512-SZlOLVx6UoBCuGd0vinASfqWM61hLV+tneJrjH/D48IbiYUI/SQQIvNceRoAE2nnEmBpzQ/KDVAoJCQHNarQAw==}
+  '@sunshj/vite-plugins@0.7.0':
+    resolution: {integrity: sha512-5xJsnBwp4jIH2Y4ATu/2sOVGbum6yqzvPFxanIcGjN9rFVnMzy5USGRyNBqeKDX6Gsz5N35LSaBtXAu4wAiB+g==}
 
   '@sxzz/popperjs-es@2.11.7':
     resolution: {integrity: sha512-Ccy0NlLkzr0Ex2FKvh2X+OyERHXJ88XJ1MXtsI9y9fGexlaXaVTPzBCRBwIxFkORuOb+uBqeu+RqnpgYTEZRUQ==}
@@ -3271,8 +3271,8 @@ packages:
       '@vueuse/core':
         optional: true
 
-  unplugin-icons-helper@0.1.2:
-    resolution: {integrity: sha512-QuJp4XxWx4/PQc8hyCofhiG7BHtxXqhUUx49MwnebXSq4McE+IAkgUaw3BAb2IpzgxNEgM/cUW0RFeZpckeSFw==}
+  unplugin-icons-helper@0.2.0:
+    resolution: {integrity: sha512-xYWLd7S8uX+Y2bVaKlwDogkV2NO4gtF6/LnE7FaKuFsai4KdB5sZYbHAAxpvtAJpMMdINJRgqKtQ7XpV47/2yA==}
     engines: {node: '>=18.12.0'}
 
   unplugin-icons@0.16.6:
@@ -4121,7 +4121,7 @@ snapshots:
       stylelint-config-standard: 36.0.1(stylelint@16.2.1(typescript@5.3.3))
       stylelint-config-standard-scss: 13.1.0(postcss@8.4.41)(stylelint@16.2.1(typescript@5.3.3))
 
-  '@sunshj/vite-plugins@0.6.0':
+  '@sunshj/vite-plugins@0.7.0':
     dependencies:
       scule: 1.3.0
 
@@ -7093,7 +7093,7 @@ snapshots:
     transitivePeerDependencies:
       - rollup
 
-  unplugin-icons-helper@0.1.2:
+  unplugin-icons-helper@0.2.0:
     dependencies:
       scule: 1.3.0
       unplugin: 1.12.2
