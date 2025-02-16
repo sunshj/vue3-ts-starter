@@ -14,6 +14,8 @@ import VueRouter from 'unplugin-vue-router/vite'
 import { defineConfig } from 'vite'
 import Layouts from 'vite-plugin-vue-layouts'
 
+const resolve = (p: string) => fileURLToPath(new URL(p, import.meta.url))
+
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
   plugins: [
@@ -86,14 +88,27 @@ export default defineConfig(({ mode }) => ({
     gitCommitDate: execSync('git log -1 --format=%cd').toString().trim(),
     gitCommitMessage: execSync('git log -1 --pretty=%B').toString().trim()
   },
-
+  experimental: {},
   optimizeDeps: {
     include: [
+      'monaco-editor',
       'monaco-editor/esm/vs/editor/editor.worker',
       'monaco-editor/esm/vs/language/json/json.worker',
       'monaco-editor/esm/vs/language/css/css.worker',
       'monaco-editor/esm/vs/language/html/html.worker',
-      'monaco-editor/esm/vs/language/typescript/ts.worker'
+      'monaco-editor/esm/vs/language/typescript/ts.worker',
+      'mavon-editor',
+      'echarts',
+      'dayjs',
+      'dayjs/plugin/*',
+      'dayjs/locale/*',
+      'unplugin-vue-router/runtime',
+      '@vueuse/core',
+      'axios',
+      'element-plus',
+      'element-plus/es',
+      '@element-plus/icons-vue',
+      'element-plus/es/components/*/style/css'
     ]
   },
   css: {
@@ -117,7 +132,7 @@ export default defineConfig(({ mode }) => ({
   },
   resolve: {
     alias: {
-      '@': fileURLToPath(new URL('./src', import.meta.url))
+      '@': resolve('./src')
     }
   }
 }))

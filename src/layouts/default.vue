@@ -87,14 +87,14 @@ onBeforeMount(() => {
   .layout_main {
     position: absolute;
     inset: 0 0 0 v-bind(collapseWidth);
-    padding: 10;
+    padding: 10px;
     padding-top: $layout-padding-top;
     overflow-y: auto;
     background-color: var(--layout-bg-color);
 
     &.mobile {
       left: 0;
-      padding-top: calc($layout-padding-top + $mobile-menu-height);
+      padding-top: calc(#{$layout-padding-top} + #{$mobile-menu-height});
       padding-right: 10px;
       padding-left: 10px;
     }
