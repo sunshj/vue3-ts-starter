@@ -88,7 +88,6 @@ export default defineConfig(({ mode }) => ({
     gitCommitDate: execSync('git log -1 --format=%cd').toString().trim(),
     gitCommitMessage: execSync('git log -1 --pretty=%B').toString().trim()
   },
-  experimental: {},
   optimizeDeps: {
     include: [
       'monaco-editor',
